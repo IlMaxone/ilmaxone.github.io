@@ -1,0 +1,44 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  background: linear-gradient(to right, #a5b4fc, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.intro {
+  margin: 0.35rem 0 0.9rem;
+  font-size: 0.92rem;
+  max-width: 560px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* volendo, rendiamo i primi 1-2 lavori un filo più evidenti */
+app-info-block:nth-child(3) {
+  // primo blocco dopo h1 + intro → se vuoi evidenziarlo
+  .info-block {
+    border-color: var(--border-strong);
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .intro {
+    font-size: 0.87rem;
+  }
+}

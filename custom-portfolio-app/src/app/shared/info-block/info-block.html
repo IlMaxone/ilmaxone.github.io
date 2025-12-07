@@ -1,0 +1,33 @@
+<article class="info-block" [class.info-block--highlight]="highlight">
+  <header>
+    <h2>{{ title }}</h2>
+
+    @if (subtitle) {
+      <p class="subtitle">{{ subtitle }}</p>
+    }
+  </header>
+
+  @if (bodyLines.length > 0) {
+    <section class="body">
+      @for (line of bodyLines; track $index) {
+        <p>{{ line }}</p>
+      }
+    </section>
+  }
+
+  <footer class="footer">
+    @if (tags?.length) {
+      <div class="tags">
+        @for (tag of tags; track $index) {
+          <span class="tag">{{ tag }}</span>
+        }
+      </div>
+    }
+
+    @if (linkUrl) {
+      <a [href]="linkUrl" target="_blank" rel="noreferrer">
+        {{ linkLabel || 'Scopri di più' }}
+      </a>
+    }
+  </footer>
+</article>
