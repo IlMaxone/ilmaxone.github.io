@@ -1,0 +1,17 @@
+<section class="page">
+  <h1>Lavori & Progetti</h1>
+  <p class="intro">
+    Alcune cose su cui ho lavorato negli ultimi anni.
+  </p>
+
+  @for (work of works; track $index) {
+    <app-info-block
+      [title]="work.title"
+      [subtitle]="work.subtitle"
+      [body]="work.body"
+      [tags]="work.tags"
+      [linkUrl]="work.linkUrl"
+      [linkLabel]="work.linkLabel"
+    />
+  }
+</section>

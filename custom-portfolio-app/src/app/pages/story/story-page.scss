@@ -1,0 +1,41 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+
+  background: linear-gradient(to right, #e5e7eb, #9ca3af);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.intro {
+  margin: 0.35rem 0 0.8rem;
+  font-size: 0.92rem;
+  max-width: 560px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* leggerissima separazione verticale tra sezioni */
+app-info-block:not(:last-child) {
+  margin-bottom: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .intro {
+    font-size: 0.87rem;
+  }
+}

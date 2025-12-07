@@ -1,0 +1,112 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(18px);
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 6, 23, 0.92),
+    rgba(2, 6, 23, 0.75),
+    transparent
+  );
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.nav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.6rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  &__logo {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 0, #4f46e5, #0f172a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+  }
+
+  &__links {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+
+    a {
+      position: relative;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: all 0.18s ease-out;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 16%;
+        right: 16%;
+        bottom: 0.2rem;
+        height: 2px;
+        border-radius: 999px;
+        background: var(--accent);
+        transform-origin: center;
+        transform: scaleX(0);
+        opacity: 0;
+        transition: all 0.16s ease-out;
+      }
+
+      &:hover {
+        color: var(--text-main);
+        background: rgba(15, 23, 42, 0.75);
+      }
+
+      &.active {
+        color: var(--text-main);
+        background: rgba(15, 23, 42, 0.95);
+        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.7);
+
+        &::after {
+          transform: scaleX(1);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.shell {
+  display: flex;
+  justify-content: center;
+  padding: 2.4rem 1.5rem 3.5rem;
+
+  &__inner {
+    width: 100%;
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav {
+    padding-inline: 1rem;
+
+    &__links {
+      gap: 0.2rem;
+
+      a {
+        padding-inline: 0.7rem;
+      }
+    }
+  }
+
+  .shell {
+    padding-inline: 1rem;
+  }
+}
