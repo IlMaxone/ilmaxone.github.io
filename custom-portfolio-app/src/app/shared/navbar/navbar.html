@@ -1,0 +1,35 @@
+<header class="topbar">
+  <nav class="nav">
+    <div class="nav__logo">GM</div>
+
+    <div class="nav__links">
+      <button
+        type="button"
+        class="nav__link"
+        routerLink="/landing"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Home
+      </button>
+
+      <button
+        type="button"
+        class="nav__link"
+        routerLink="/story"
+        routerLinkActive="active"
+      >
+        Storia
+      </button>
+
+      <button
+        type="button"
+        class="nav__link"
+        routerLink="/works"
+        routerLinkActive="active"
+      >
+        Lavori
+      </button>
+    </div>
+  </nav>
+</header>
