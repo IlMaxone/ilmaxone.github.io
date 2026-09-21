@@ -1,10 +1,18 @@
 <aside class="sidebar">
-  <a class="brand" routerLink="/riferimenti" aria-label="IlMaxone — riferimenti e contatti">
-    <span class="brand__copy">
-      <strong>IlMaxone</strong>
-      <small>Riferimenti & contatti</small>
-    </span>
-  </a>
+  <div class="sidebar__identity-row">
+    <a class="brand" routerLink="/riferimenti" aria-label="IlMaxone — riferimenti e contatti">
+      <span class="brand__copy">
+        <strong>IlMaxone</strong>
+        <small>Riferimenti & contatti</small>
+      </span>
+    </a>
+    <a
+      class="home-comet"
+      routerLink="/"
+      aria-label="Torna rapidamente alla landing"
+      data-label="Landing"
+    ><span class="home-comet__core" aria-hidden="true"></span></a>
+  </div>
 
   <section class="palette-panel" aria-labelledby="palette-title">
     <p id="palette-title" class="sidebar__label">Palette</p>
@@ -12,10 +20,19 @@
       <button
         type="button"
         class="mobile-rail__arrow mobile-rail__arrow--left"
+        [class.mobile-rail__arrow--hidden]="!paletteCanScrollLeft"
+        [disabled]="!paletteCanScrollLeft"
+        [attr.aria-hidden]="!paletteCanScrollLeft"
         aria-label="Palette precedenti"
         (click)="scrollMenu('palette', -1)"
-      >←</button>
-      <div #paletteScroller class="palette-list" role="group" aria-label="Seleziona la palette del sito">
+      ><span class="stellar-arrow-shape" aria-hidden="true"></span></button>
+      <div
+        #paletteScroller
+        class="palette-list"
+        role="group"
+        aria-label="Seleziona la palette del sito"
+        (scroll)="updateScrollState('palette')"
+      >
         @for (palette of paletteService.palettes; track palette.id) {
           <button
             type="button"
@@ -36,9 +53,12 @@
       <button
         type="button"
         class="mobile-rail__arrow mobile-rail__arrow--right"
+        [class.mobile-rail__arrow--hidden]="!paletteCanScrollRight"
+        [disabled]="!paletteCanScrollRight"
+        [attr.aria-hidden]="!paletteCanScrollRight"
         aria-label="Palette successive"
         (click)="scrollMenu('palette', 1)"
-      >→</button>
+      ><span class="stellar-arrow-shape" aria-hidden="true"></span></button>
     </div>
   </section>
 
@@ -48,10 +68,17 @@
       <button
         type="button"
         class="mobile-rail__arrow mobile-rail__arrow--left"
+        [class.mobile-rail__arrow--hidden]="!navigationCanScrollLeft"
+        [disabled]="!navigationCanScrollLeft"
+        [attr.aria-hidden]="!navigationCanScrollLeft"
         aria-label="Pagine precedenti"
         (click)="scrollMenu('navigation', -1)"
-      >←</button>
-      <div #navigationScroller class="universe-nav__list">
+      ><span class="stellar-arrow-shape" aria-hidden="true"></span></button>
+      <div
+        #navigationScroller
+        class="universe-nav__list"
+        (scroll)="updateScrollState('navigation')"
+      >
         <a
           class="universe-nav__link universe-nav__link--landing"
           routerLink="/"
@@ -77,9 +104,12 @@
       <button
         type="button"
         class="mobile-rail__arrow mobile-rail__arrow--right"
+        [class.mobile-rail__arrow--hidden]="!navigationCanScrollRight"
+        [disabled]="!navigationCanScrollRight"
+        [attr.aria-hidden]="!navigationCanScrollRight"
         aria-label="Pagine successive"
         (click)="scrollMenu('navigation', 1)"
-      >→</button>
+      ><span class="stellar-arrow-shape" aria-hidden="true"></span></button>
     </div>
   </nav>
 

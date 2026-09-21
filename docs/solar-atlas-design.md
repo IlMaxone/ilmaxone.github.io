@@ -46,6 +46,8 @@ Interazioni disponibili:
 - frecce, tasti `+`/`-` e `Home` per la tastiera;
 - supporto a `prefers-reduced-motion` e fallback senza WebGL.
 
+I comandi di rotazione della camera adottano il design **Coordinate stellari**, condiviso con le frecce dei menu mobile. Il pulsante Reset è centrato sul loro asse verticale e usa due emissioni laterali ametista per collegare visivamente i tre controlli. La scorciatoia globale alla landing usa invece il design **Cometa radente**.
+
 ## Scelte tecniche
 
 - Three.js `0.180.0` incluso nel bundle Angular.

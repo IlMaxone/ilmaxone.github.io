@@ -51,9 +51,13 @@
   </div>
 
   <div class="scene-controls" aria-label="Controlli della scena tridimensionale">
-    <button type="button" (click)="rotateCamera(18)" aria-label="Ruota a sinistra">←</button>
+    <button type="button" class="scene-controls__stellar scene-controls__stellar--left" (click)="rotateCamera(18)" aria-label="Ruota a sinistra">
+      <span class="stellar-arrow-shape" aria-hidden="true"></span>
+    </button>
     <button type="button" class="scene-controls__reset" (click)="resetView()">Reset</button>
-    <button type="button" (click)="rotateCamera(-18)" aria-label="Ruota a destra">→</button>
+    <button type="button" class="scene-controls__stellar scene-controls__stellar--right" (click)="rotateCamera(-18)" aria-label="Ruota a destra">
+      <span class="stellar-arrow-shape" aria-hidden="true"></span>
+    </button>
   </div>
 
   <p class="scene-hint"><span></span> Trascina · zoom · seleziona</p>
