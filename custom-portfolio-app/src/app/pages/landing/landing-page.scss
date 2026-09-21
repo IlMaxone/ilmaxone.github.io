@@ -82,8 +82,9 @@ h1 em {
 }
 
 .atlas-layout {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(290px, 0.72fr);
+  grid-template-columns: 1fr;
   min-height: 690px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -93,22 +94,118 @@ h1 em {
 }
 
 .atlas-layout--landing {
-  grid-template-columns: 1fr;
   min-height: min(720px, 72vh);
+}
+
+.experience-modal-backdrop {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  padding: 22px;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, color-mix(in srgb, var(--accent) 10%, transparent), transparent 54%),
+    color-mix(in srgb, var(--deep) 58%, transparent);
+  backdrop-filter: blur(7px) saturate(0.82);
+  animation: detail-backdrop-in 220ms ease-out both;
 }
 
 .experience-detail {
   position: relative;
   display: flex;
+  width: min(520px, 100%);
   min-width: 0;
   flex-direction: column;
-  justify-content: center;
-  padding: clamp(2rem, 3.6vw, 3.6rem) clamp(1.5rem, 3vw, 2.8rem);
-  border-left: 1px solid var(--border);
+  justify-content: flex-start;
+  padding: clamp(2rem, 3vw, 2.8rem);
+  border: 1px solid var(--border-strong);
+  border-radius: 1.5rem;
   color: var(--text-main);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, var(--deep)), var(--surface)),
-    radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 10%, transparent), transparent 46%);
+    radial-gradient(circle at top right, color-mix(in srgb, var(--accent-hot) 9%, transparent), transparent 42%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 97%, var(--deep)), var(--surface));
+  box-shadow:
+    0 30px 90px color-mix(in srgb, var(--shadow) 84%, transparent),
+    0 0 34px color-mix(in srgb, var(--accent) 14%, transparent),
+    inset 0 0 40px color-mix(in srgb, var(--accent) 4%, transparent);
+  animation: detail-modal-in 260ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+}
+
+.experience-detail__close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--accent-hot);
+  background: color-mix(in srgb, var(--deep) 76%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent-hot) 38%, transparent),
+    0 0 20px color-mix(in srgb, var(--accent-hot) 23%, transparent),
+    inset 0 0 15px color-mix(in srgb, var(--accent-hot) 9%, transparent);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  isolation: isolate;
+}
+
+.experience-detail__close::before,
+.experience-detail__close::after {
+  position: absolute;
+  top: 50%;
+  right: calc(100% - 0.1rem);
+  width: 1.15rem;
+  height: 1px;
+  content: '';
+  transform: translateY(-50%);
+}
+
+.experience-detail__close::before {
+  background: linear-gradient(90deg, transparent, var(--accent-hot));
+  box-shadow: 0 0 8px var(--accent-hot);
+}
+
+.experience-detail__close::after {
+  width: 0.48rem;
+  background: var(--accent);
+  filter: blur(2px);
+}
+
+.experience-detail__close span::before,
+.experience-detail__close span::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.08rem;
+  height: 1px;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+  content: '';
+}
+
+.experience-detail__close span::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.experience-detail__close span::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.experience-detail__close:hover,
+.experience-detail__close:focus-visible {
+  transform: rotate(8deg) scale(1.06);
+  box-shadow:
+    0 0 0 1px var(--accent-hot),
+    0 0 27px color-mix(in srgb, var(--accent-hot) 44%, transparent),
+    inset 0 0 17px color-mix(in srgb, var(--accent-hot) 16%, transparent);
+}
+
+.experience-detail__close:focus-visible {
+  outline: 2px solid var(--accent-hot);
+  outline-offset: 4px;
 }
 
 .experience-detail__topline {
@@ -116,6 +213,7 @@ h1 em {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  padding-right: 3rem;
   color: var(--text-muted);
   font-size: 0.61rem;
   font-weight: 700;
@@ -289,6 +387,17 @@ h1 em {
   text-transform: uppercase;
 }
 
+@keyframes detail-backdrop-in {
+  from { opacity: 0; }
+}
+
+@keyframes detail-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+}
+
 @media (max-width: 1120px) {
   .atlas-hero {
     grid-template-columns: 1fr;
@@ -299,15 +408,6 @@ h1 em {
     grid-column: 1;
   }
 
-  .atlas-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .experience-detail {
-    min-height: 430px;
-    border-top: 1px solid var(--border);
-    border-left: 0;
-  }
 }
 
 @media (max-width: 680px) {
@@ -319,12 +419,62 @@ h1 em {
     border-radius: 1.15rem;
   }
 
+  .experience-modal-backdrop {
+    padding: 12px;
+  }
+
   .experience-detail {
-    padding: 2rem 1.25rem;
+    width: 100%;
+    padding: 2.2rem 1.2rem 1.2rem;
+    border-radius: 1.15rem;
+  }
+
+  .experience-detail__close {
+    top: 0.85rem;
+    right: 0.85rem;
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .experience-detail__marker {
+    margin: 1rem 0 1.2rem;
+  }
+
+  .experience-detail h2 {
+    font-size: clamp(1.75rem, 8vw, 2.3rem);
+  }
+
+  .experience-detail__description {
+    margin-top: 0.85rem;
+    font-size: 0.82rem;
+    line-height: 1.58;
+  }
+
+  .experience-detail__tags {
+    margin-top: 1.05rem;
+  }
+
+  .experience-detail__link {
+    margin-top: 1.2rem;
+  }
+
+  .experience-detail__navigation {
+    margin-top: 1.35rem;
   }
 
   .page-note {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-modal-backdrop,
+  .experience-detail {
+    animation-duration: 1ms;
+  }
+
+  .experience-detail__close {
+    transition-duration: 1ms;
   }
 }

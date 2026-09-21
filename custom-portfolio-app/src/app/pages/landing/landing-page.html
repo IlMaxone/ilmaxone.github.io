@@ -27,48 +27,68 @@
         [selectedIndex]="selectedIndex"
         [paletteId]="paletteService.activePalette()"
         [navigationMode]="isLanding"
+        [motionPaused]="motionPaused"
+        [manualPaused]="manualPaused"
+        [motionStatus]="cosmosStatus"
         (experienceSelected)="handlePlanetSelection($event)"
+        (manualPauseChanged)="setManualPause($event)"
       />
 
-      @if (!isLanding && selectedExperience; as selected) {
-        <aside class="experience-detail" aria-live="polite">
-          <div class="experience-detail__topline">
-            <span>{{ selected.eyebrow }}</span>
-            <span>{{ formatNumber(selectedIndex + 1) }} / {{ formatNumber(experiences.length) }}</span>
-          </div>
+      @if (!isLanding && detailOpen && selectedExperience; as selected) {
+        <div class="experience-modal-backdrop" (click)="closeDetail()">
+          <aside
+            class="experience-detail"
+            role="dialog"
+            aria-modal="true"
+            [attr.aria-labelledby]="'planet-title-' + selected.id"
+            (click)="$event.stopPropagation()"
+          >
+            <button
+              #modalClose
+              type="button"
+              class="experience-detail__close"
+              aria-label="Chiudi il dettaglio"
+              (click)="closeDetail()"
+            ><span aria-hidden="true"></span></button>
 
-          <div class="experience-detail__marker" aria-hidden="true"><span></span></div>
-          <p class="experience-detail__period">{{ selected.period }}</p>
-          <h2>{{ selected.title }}</h2>
-          <p class="experience-detail__description">{{ selected.description }}</p>
-
-          <ul class="experience-detail__tags" aria-label="Tecnologie e temi">
-            @for (tag of selected.tags; track $index) {
-              <li>{{ tag }}</li>
-            }
-          </ul>
-
-          <a class="experience-detail__link" [routerLink]="selected.route">
-            {{ selected.routeLabel }}
-            <span aria-hidden="true">↗</span>
-          </a>
-
-          <div class="experience-detail__navigation">
-            <button type="button" (click)="previousExperience()" aria-label="Pianeta precedente">←</button>
-            <div class="experience-detail__pagination" aria-label="Selezione rapida dei pianeti">
-              @for (experience of experiences; track experience.id; let index = $index) {
-                <button
-                  type="button"
-                  [class.active]="index === selectedIndex"
-                  [attr.aria-label]="'Vai a ' + experience.shortLabel"
-                  [attr.aria-current]="index === selectedIndex ? 'true' : null"
-                  (click)="selectExperience(index)"
-                ></button>
-              }
+            <div class="experience-detail__topline">
+              <span>{{ selected.eyebrow }}</span>
+              <span>{{ formatNumber(selectedIndex + 1) }} / {{ formatNumber(experiences.length) }}</span>
             </div>
-            <button type="button" (click)="nextExperience()" aria-label="Pianeta successivo">→</button>
-          </div>
-        </aside>
+
+            <div class="experience-detail__marker" aria-hidden="true"><span></span></div>
+            <p class="experience-detail__period">{{ selected.period }}</p>
+            <h2 [id]="'planet-title-' + selected.id">{{ selected.title }}</h2>
+            <p class="experience-detail__description">{{ selected.description }}</p>
+
+            <ul class="experience-detail__tags" aria-label="Tecnologie e temi">
+              @for (tag of selected.tags; track $index) {
+                <li>{{ tag }}</li>
+              }
+            </ul>
+
+            <a class="experience-detail__link" [routerLink]="selected.route">
+              {{ selected.routeLabel }}
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <div class="experience-detail__navigation">
+              <button type="button" (click)="previousExperience()" aria-label="Pianeta precedente">←</button>
+              <div class="experience-detail__pagination" aria-label="Selezione rapida dei pianeti">
+                @for (experience of experiences; track experience.id; let index = $index) {
+                  <button
+                    type="button"
+                    [class.active]="index === selectedIndex"
+                    [attr.aria-label]="'Vai a ' + experience.shortLabel"
+                    [attr.aria-current]="index === selectedIndex ? 'true' : null"
+                    (click)="selectExperience(index)"
+                  ></button>
+                }
+              </div>
+              <button type="button" (click)="nextExperience()" aria-label="Pianeta successivo">→</button>
+            </div>
+          </aside>
+        </div>
       }
     </div>
   } @else {

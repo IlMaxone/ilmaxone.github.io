@@ -128,6 +128,31 @@
   letter-spacing: 0.08em;
 }
 
+.scene-status .scene-status__motion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  color: var(--text-main);
+}
+
+.scene-status__motion i {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--secondary);
+  box-shadow: 0 0 8px var(--secondary);
+}
+
+.scene-status .scene-status__motion--paused {
+  border-color: color-mix(in srgb, var(--accent-hot) 55%, transparent);
+  color: var(--accent-hot);
+}
+
+.scene-status__motion--paused i {
+  background: var(--accent-hot);
+  box-shadow: 0 0 10px var(--accent-hot);
+}
+
 .scene-controls {
   right: 1.2rem;
   bottom: 1rem;
@@ -262,6 +287,58 @@
   background: linear-gradient(90deg, var(--secondary), transparent);
 }
 
+.scene-controls .scene-controls__motion {
+  position: relative;
+  width: 2.5rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-color: color-mix(in srgb, var(--secondary) 62%, transparent);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--secondary) 10%, transparent), transparent 68%),
+    color-mix(in srgb, var(--deep) 84%, transparent);
+  box-shadow:
+    0 0 16px color-mix(in srgb, var(--secondary) 20%, transparent),
+    inset 0 0 12px color-mix(in srgb, var(--secondary) 8%, transparent);
+}
+
+.motion-symbol {
+  display: flex;
+  width: 0.75rem;
+  height: 0.9rem;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.motion-symbol i {
+  width: 0.2rem;
+  border-radius: 999px;
+  background: var(--accent-hot);
+  box-shadow: 0 0 7px var(--accent-hot);
+}
+
+.scene-controls .scene-controls__motion--paused {
+  border-color: color-mix(in srgb, var(--accent-hot) 68%, transparent);
+  box-shadow:
+    0 0 22px color-mix(in srgb, var(--accent-hot) 34%, transparent),
+    inset 0 0 14px color-mix(in srgb, var(--accent-hot) 12%, transparent);
+}
+
+.scene-controls__motion--paused .motion-symbol {
+  display: block;
+  width: 0.88rem;
+  height: 1.05rem;
+  background: var(--accent-hot);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  filter: drop-shadow(0 0 6px var(--accent-hot));
+  transform: translateX(0.08rem);
+}
+
+.scene-controls__motion--paused .motion-symbol i {
+  display: none;
+}
+
 .scene-hint {
   top: 1.15rem;
   right: 1.2rem;
@@ -313,7 +390,8 @@
   }
 
   .scene-status span:nth-child(2),
-  .scene-status span:nth-child(3) {
+  .scene-status span:nth-child(3),
+  .scene-status span:nth-child(4) {
     display: none;
   }
 

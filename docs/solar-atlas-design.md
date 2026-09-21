@@ -46,7 +46,9 @@ Interazioni disponibili:
 - frecce, tasti `+`/`-` e `Home` per la tastiera;
 - supporto a `prefers-reduced-motion` e fallback senza WebGL.
 
-I comandi di rotazione della camera adottano il design **Coordinate stellari**, condiviso con le frecce dei menu mobile. Il pulsante Reset è centrato sul loro asse verticale e usa due emissioni laterali ametista per collegare visivamente i tre controlli. La scorciatoia globale alla landing usa invece il design **Cometa radente**.
+I comandi di rotazione della camera adottano il design **Coordinate stellari**, condiviso con le frecce dei menu mobile. Il pulsante Reset è centrato sul loro asse verticale e usa due emissioni laterali ametista. Alla sua destra, `II` mette in pausa manualmente il cosmo e diventa un triangolo arancione quando è possibile riprendere la rotazione. La scorciatoia globale alla landing usa invece il design **Cometa radente**.
+
+Nelle pagine interne la selezione di un pianeta ferma la rotazione e apre il contenuto in un popup responsive. La chiusura usa una X arancione con scia di fuoco; il cosmo riparte dopo un conto alla rovescia di due secondi. Misure, interazioni e accessibilità sono descritte in [Popup dei pianeti e pausa cosmica](planet-detail-popup.md).
 
 ## Scelte tecniche
 
@@ -64,4 +66,3 @@ I comandi di rotazione della camera adottano il design **Coordinate stellari**, 
 - `custom-portfolio-app/src/app/pages/landing/orbital-scene.*`: scena WebGL.
 - `custom-portfolio-app/src/app/shared/navbar/*`: menu e selettore palette.
 - `custom-portfolio-app/src/app/theme/palette.ts`: definizioni e persistenza delle palette.
-- [`solar-atlas-color-motion.html`](solar-atlas-color-motion.html): laboratorio standalone originale.

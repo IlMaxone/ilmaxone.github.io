@@ -44,7 +44,8 @@
     </div>
   }
 
-  <div class="scene-status" aria-hidden="true">
+  <div class="scene-status" role="status" aria-live="polite">
+    <span class="scene-status__motion" [class.scene-status__motion--paused]="motionPaused"><i></i>{{ motionStatus }}</span>
     <span>360° WebGL</span>
     <span>{{ experiences.length }} pianeti</span>
     <span>{{ distance.toFixed(1) }} AU</span>
@@ -55,6 +56,16 @@
       <span class="stellar-arrow-shape" aria-hidden="true"></span>
     </button>
     <button type="button" class="scene-controls__reset" (click)="resetView()">Reset</button>
+    <button
+      type="button"
+      class="scene-controls__motion"
+      [class.scene-controls__motion--paused]="manualPaused"
+      [attr.aria-label]="manualPaused ? 'Riprendi la rotazione cosmica' : 'Metti in pausa la rotazione cosmica'"
+      [attr.aria-pressed]="manualPaused"
+      (click)="toggleManualPause()"
+    >
+      <span class="motion-symbol" aria-hidden="true"><i></i><i></i></span>
+    </button>
     <button type="button" class="scene-controls__stellar scene-controls__stellar--right" (click)="rotateCamera(-18)" aria-label="Ruota a destra">
       <span class="stellar-arrow-shape" aria-hidden="true"></span>
     </button>

@@ -46,7 +46,11 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
   @Input() selectedIndex = 0;
   @Input() paletteId: PaletteId = 'amethyst';
   @Input() navigationMode = false;
+  @Input() motionPaused = false;
+  @Input() manualPaused = false;
+  @Input() motionStatus = 'Cosmo in rotazione';
   @Output() readonly experienceSelected = new EventEmitter<number>();
+  @Output() readonly manualPauseChanged = new EventEmitter<boolean>();
 
   @ViewChild('canvas', { static: true }) private canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('viewport', { static: true }) private viewportRef!: ElementRef<HTMLElement>;
@@ -153,6 +157,10 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
     this.pitch = 0.28;
     this.distance = 13.8;
     this.updateCamera();
+  }
+
+  toggleManualPause(): void {
+    this.manualPauseChanged.emit(!this.manualPaused);
   }
 
   onWheel(event: WheelEvent): void {
@@ -582,7 +590,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
       const delta = Math.min(clock.getDelta(), 0.05);
 
       this.bodies.forEach((body) => {
-        if (!reducedMotion) {
+        if (!reducedMotion && !this.motionPaused) {
           body.angle += delta * body.speed;
           body.planet.rotation.y += delta * (0.42 + body.index * 0.035);
           body.planet.rotation.x += delta * 0.07;
@@ -602,7 +610,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
         lineMaterial.opacity += ((active ? 0.48 : 0.18) - lineMaterial.opacity) * 0.08;
       });
 
-      if (!reducedMotion) {
+      if (!reducedMotion && !this.motionPaused) {
         this.sun!.rotation.y += delta * 0.13;
         this.sun!.rotation.x = Math.sin(clock.elapsedTime * 0.21) * 0.08;
         this.world!.rotation.y += delta * 0.018;

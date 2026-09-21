@@ -67,8 +67,8 @@ Checklist:
 
 Ricognizione del sito pubblico effettuata il 21 settembre 2026. La versione iniziale aveva tema scuro, logo `GM`, navbar con Home/Storia/Lavori e card testuali. Home e Storia erano duplicate; Home puntava alla rotta non dichiarata `/landing`; il progetto conteneva un link repository placeholder, un riferimento ad Angular 20 con dipendenze Angular 21 e il titolo HTML `CustomPortfolioApp`.
 
-La prima evoluzione è descritta in [Demo: navigazione a costellazione](star-navigation-demo.md).
+L’evoluzione attuale dell’interfaccia è descritta in [Direzione scelta: Atlante solare](solar-atlas-design.md).
 
 ## Debito tecnico noto
 
-Durante l'installazione del 21 settembre 2026, `npm audit` ha segnalato 43 vulnerabilità nella struttura completa delle dipendenze (2 basse, 9 moderate, 29 alte e 3 critiche). La demo genera esclusivamente artefatti statici, ma il lockfile va analizzato e aggiornato in un intervento dedicato prima di usare il server SSR in produzione. Non è stato eseguito `npm audit fix` automaticamente per evitare aggiornamenti incompatibili non verificati.
+Durante l'installazione del 21 settembre 2026, `npm audit` ha segnalato 43 vulnerabilità nella struttura completa delle dipendenze (2 basse, 9 moderate, 29 alte e 3 critiche). Il sito genera esclusivamente artefatti statici, ma il lockfile va analizzato e aggiornato in un intervento dedicato prima di usare il server SSR in produzione. Non è stato eseguito `npm audit fix` automaticamente per evitare aggiornamenti incompatibili non verificati.

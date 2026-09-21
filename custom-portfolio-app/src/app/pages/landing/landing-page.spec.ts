@@ -47,4 +47,25 @@ describe('HomePageComponent', () => {
   it('uses Ametista solare as the default palette', () => {
     expect(component.paletteService.activePalette()).toBe('amethyst');
   });
+
+  it('toggles manual cosmic pause from the orbital controls', async () => {
+    const pauseButton = fixture.nativeElement.querySelector(
+      '.scene-controls__motion',
+    ) as HTMLButtonElement;
+
+    expect(pauseButton.getAttribute('aria-label')).toBe('Metti in pausa la rotazione cosmica');
+    pauseButton.click();
+    await fixture.whenStable();
+
+    expect(component.manualPaused).toBe(true);
+    expect(component.motionPaused).toBe(true);
+    expect(component.cosmosStatus).toBe('Cosmo in pausa manuale');
+    expect(pauseButton.classList).toContain('scene-controls__motion--paused');
+    expect(pauseButton.getAttribute('aria-label')).toBe('Riprendi la rotazione cosmica');
+
+    pauseButton.click();
+    await fixture.whenStable();
+    expect(component.manualPaused).toBe(false);
+    expect(component.motionPaused).toBe(false);
+  });
 });
