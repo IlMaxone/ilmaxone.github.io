@@ -1,49 +1,65 @@
 # Direzione scelta: Atlante solare
 
-## Combinazione approvata
+## Esperienza approvata
 
 - Design: **Atlante solare**.
-- Palette principale: **Ametista solare**.
+- Palette predefinita: **Ametista solare**.
 - Movimento: **Orbite inclinate**.
 - Nucleo: texture ispirata alla **Singolarità editoriale**, reinterpretata in rosso, arancio e giallo caldo.
+- Frase principale: **“Benvenuto nel mio Universo Lavorativo. La raccolta definitiva delle abilità professionali e non.”**
+
+## Navigazione gerarchica
+
+La landing è la mappa dell’universo. Ogni cartella in `content/landing/` produce un pianeta; premendo il pianeta si apre la pagina della sezione corrispondente. Dentro quella pagina, ogni JSON della cartella produce un nuovo pianeta selezionabile con titolo, descrizione, tag e collegamento di approfondimento.
+
+Il menu laterale rende sempre visibili:
+
+1. selettore della palette;
+2. collegamento alla Landing;
+3. una voce per ogni cartella generata;
+4. numero di JSON presenti nella sezione.
+
+Su schermi piccoli palette e navigazione diventano due righe orizzontali controllate da frecce. Il trascinamento laterale è disabilitato per evitare conflitti con lo scorrimento della pagina e con la scena WebGL.
+
+## Palette
+
+Sono mantenute tutte le cinque combinazioni del laboratorio:
+
+- Terra Cotta;
+- Oro notturno;
+- Cobalto corallo;
+- Salvia rame;
+- Ametista solare, predefinita.
+
+La palette modifica l’intera interfaccia e la scena WebGL: sfondo, pannelli, testi, accenti, luci, stelle, orbite e texture procedurali delle sfere. La preferenza viene salvata in `localStorage`; una nuova visita senza preferenze parte da Ametista solare.
 
 ## Trattamento tridimensionale
 
-Il sole e i pianeti non sono dischi piatti. La scena usa WebGL e geometrie sferiche reali, illuminate nello spazio tridimensionale. Le superfici impiegano texture procedurali derivate dalla palette Ametista solare, mappate a 360° sulle sfere, con rilievo, rugosità, emissione luminosa e atmosfera separata per il nucleo.
+Sole e pianeti sono geometrie sferiche reali. Le texture procedurali avvolgono le superfici a 360° e cambiano con la palette. Ogni pianeta usa un piano orbitale indipendente sugli assi X, Y e Z, con velocità e direzione proprie.
 
-Ogni esperienza possiede un piano orbitale con inclinazione indipendente sugli assi X, Y e Z. Le orbite ruotano in direzioni e con velocità diverse, quindi il sistema non appare come una serie di cerchi sovrapposti sullo stesso piano. Con gli otto contenuti attuali vengono creati otto pianeti e otto orbite.
+Interazioni disponibili:
 
-## Interazione
+- trascinamento per ruotare la camera a 360°;
+- rotella o trackpad per lo zoom;
+- ray casting per selezionare direttamente le sfere;
+- etichette HTML proiettate sulle coordinate 3D;
+- frecce, tasti `+`/`-` e `Home` per la tastiera;
+- supporto a `prefers-reduced-motion` e fallback senza WebGL.
 
-- Trascinamento sullo spazio per ruotare la camera a 360° attorno al sistema.
-- Rotella o trackpad per regolare lo zoom.
-- Ray casting WebGL per riconoscere il pianeta sotto il puntatore.
-- Apertura della scheda esperienza con puntatore o tastiera.
-- Etichette HTML proiettate sulle coordinate dei pianeti per mantenere leggibilità e accessibilità.
+## Scelte tecniche
 
-## Scelte tecniche WebGL
+- Three.js `0.180.0` incluso nel bundle Angular.
+- Pixel ratio massimo `2` per controllare il costo GPU.
+- Nessuna texture remota obbligatoria.
+- Prerender Angular con inizializzazione WebGL solo nel browser.
+- Artefatti statici compatibili con GitHub Pages.
 
-- Rendering con Three.js `0.180.0`, installato come dipendenza npm e incluso nel bundle Angular, con antialiasing.
-- Sfere ad alta definizione per sole e pianeti.
-- Un gruppo orbitale per ogni file esperienza, con inclinazioni indipendenti sui tre assi.
-- Texture generate localmente a runtime: nessuna immagine remota obbligatoria.
-- Pixel ratio limitato a `2` per controllare il costo GPU su schermi ad alta densità.
-- Supporto a `prefers-reduced-motion` e messaggio di fallback quando WebGL non è disponibile.
+## File principali
 
-La scena non richiede un processo server: Three.js viene compilato insieme all'applicazione e il risultato resta un insieme di artefatti statici compatibili con GitHub Pages. Il componente verifica l'ambiente browser prima di inizializzare WebGL, così il prerender Angular continua a funzionare.
-
-## Implementazione nella home
-
-La direzione è stata integrata nella home il 21 settembre 2026.
-
-- `landing-page.*` definisce impaginazione, contenuto selezionato e pannello informativo.
-- `orbital-scene.*` contiene renderer WebGL, camera, texture, orbite, ray casting e controlli.
-- `three` è una dipendenza di produzione; `@types/three` è una dipendenza di sviluppo.
-- La route home resta prerenderizzata; WebGL viene inizializzato nel browser dopo il rendering statico.
-- La build prodotta continua a essere sincronizzata nella radice del repository per GitHub Pages.
-
-## File di riferimento
-
-- Demo standalone: [`solar-atlas-color-motion.html`](solar-atlas-color-motion.html)
-- Sorgente dei contenuti: `custom-portfolio-app/content/experiences/`
-- Componente Angular: `custom-portfolio-app/src/app/pages/landing/orbital-scene.ts`
+- `custom-portfolio-app/content/landing/`: gerarchia editoriale.
+- `custom-portfolio-app/scripts/generate-experiences.mjs`: generatore e validazione.
+- `custom-portfolio-app/src/app/pages/landing/landing-page.*`: landing e pagine delle sezioni.
+- `custom-portfolio-app/src/app/pages/landing/orbital-scene.*`: scena WebGL.
+- `custom-portfolio-app/src/app/shared/navbar/*`: menu e selettore palette.
+- `custom-portfolio-app/src/app/theme/palette.ts`: definizioni e persistenza delle palette.
+- [`solar-atlas-color-motion.html`](solar-atlas-color-motion.html): laboratorio standalone originale.

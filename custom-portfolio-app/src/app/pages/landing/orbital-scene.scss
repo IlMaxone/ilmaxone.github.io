@@ -14,9 +14,9 @@
   touch-action: none;
   isolation: isolate;
   background:
-    radial-gradient(circle at 52% 48%, rgba(240, 68, 44, 0.1), transparent 24%),
-    radial-gradient(circle at 52% 48%, rgba(184, 152, 255, 0.08), transparent 54%),
-    #12091b;
+    radial-gradient(circle at 52% 48%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24%),
+    radial-gradient(circle at 52% 48%, color-mix(in srgb, var(--secondary) 8%, transparent), transparent 54%),
+    var(--deep);
 }
 
 .orbital-viewport--dragging {
@@ -29,7 +29,7 @@
   z-index: 5;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle, transparent 46%, rgba(10, 4, 16, 0.54) 100%);
+  background: radial-gradient(circle, transparent 46%, color-mix(in srgb, var(--deep) 68%, transparent) 100%);
 }
 
 .orbital-canvas {
@@ -42,7 +42,7 @@
 }
 
 .orbital-canvas:focus-visible {
-  outline: 2px solid #ff7047;
+  outline: 2px solid var(--accent);
   outline-offset: -4px;
 }
 
@@ -60,11 +60,11 @@
   padding: 0.32rem 0.52rem;
   align-items: center;
   gap: 0.38rem;
-  border: 1px solid rgba(255, 112, 71, 0.32);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
   border-radius: 0.2rem;
-  color: #eadbea;
-  background: rgba(24, 12, 34, 0.76);
-  box-shadow: 0 8px 24px rgba(5, 2, 9, 0.36);
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--deep) 78%, transparent);
+  box-shadow: 0 8px 24px var(--shadow);
   transform: translate(-50%, -50%);
   transition:
     border-color 180ms ease,
@@ -76,7 +76,7 @@
 }
 
 .orbit-label small {
-  color: #9e809f;
+  color: var(--text-muted);
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
   font-size: 0.52rem;
   letter-spacing: 0.08em;
@@ -92,13 +92,13 @@
 .orbit-label--hovered,
 .orbit-label--selected,
 .orbit-label:focus-visible {
-  border-color: #ffd05f;
-  color: #ffd05f;
-  background: rgba(52, 19, 39, 0.92);
+  border-color: var(--accent-hot);
+  color: var(--accent-hot);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
 }
 
 .orbit-label:focus-visible {
-  outline: 2px solid #ffd05f;
+  outline: 2px solid var(--accent-hot);
   outline-offset: 3px;
 }
 
@@ -119,10 +119,10 @@
 
 .scene-status span {
   padding: 0.3rem 0.45rem;
-  border: 1px solid rgba(184, 152, 255, 0.16);
+  border: 1px solid var(--border);
   border-radius: 0.3rem;
-  color: #917b9d;
-  background: rgba(15, 7, 24, 0.58);
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--deep) 65%, transparent);
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
   font-size: 0.54rem;
   letter-spacing: 0.08em;
@@ -143,22 +143,22 @@
   height: 2.35rem;
   padding: 0 0.72rem;
   place-items: center;
-  border: 1px solid rgba(184, 152, 255, 0.25);
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
-  color: #f7e9d7;
-  background: rgba(23, 10, 33, 0.84);
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--deep) 84%, transparent);
   transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
 .scene-controls button:hover,
 .scene-controls button:focus-visible {
-  color: #ffd05f;
-  border-color: #ff7047;
+  color: var(--accent-hot);
+  border-color: var(--accent);
   transform: translateY(-2px);
 }
 
 .scene-controls button:focus-visible {
-  outline: 2px solid #ffd05f;
+  outline: 2px solid var(--accent-hot);
   outline-offset: 3px;
 }
 
@@ -176,7 +176,7 @@
   align-items: center;
   gap: 0.45rem;
   margin: 0;
-  color: #9e809f;
+  color: var(--text-muted);
   font-size: 0.56rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -185,9 +185,9 @@
 .scene-hint span {
   width: 7px;
   height: 7px;
-  border: 1px solid #ff7047;
+  border: 1px solid var(--accent);
   border-radius: 50%;
-  box-shadow: 0 0 12px rgba(255, 112, 71, 0.72);
+  box-shadow: 0 0 12px var(--accent);
 }
 
 .webgl-fallback {
@@ -196,13 +196,13 @@
   place-content: center;
   gap: 0.5rem;
   padding: 2rem;
-  color: #f7e9d7;
-  background: rgba(18, 9, 27, 0.72);
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--deep) 82%, transparent);
   text-align: center;
 }
 
 .webgl-fallback span {
-  color: #a995ae;
+  color: var(--text-muted);
   font-size: 0.82rem;
 }
 

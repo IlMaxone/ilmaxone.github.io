@@ -3,28 +3,29 @@
 }
 
 .atlas-page {
-  --amethyst: #b898ff;
-  --solar: #ff7047;
-  --solar-hot: #ffd05f;
   display: grid;
-  gap: 2rem;
+  gap: 1.7rem;
 }
 
 .atlas-hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(280px, 0.55fr);
-  column-gap: clamp(2rem, 8vw, 7rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.6fr);
+  column-gap: clamp(2rem, 6vw, 6rem);
   align-items: end;
 }
 
-.eyebrow {
+.eyebrow,
+.atlas-hero__back {
   grid-column: 1 / -1;
+}
+
+.eyebrow {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  margin: 0 0 1rem;
-  color: var(--solar);
-  font-size: 0.68rem;
+  margin: 0 0 0.8rem;
+  color: var(--accent);
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -37,39 +38,63 @@
   box-shadow: 0 0 12px currentColor;
 }
 
+.atlas-hero__back {
+  width: fit-content;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
 h1 {
   margin: 0;
-  color: #f7e9d7;
+  color: var(--text-main);
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(3.2rem, 7.4vw, 7.2rem);
+  font-size: clamp(3rem, 6.5vw, 6.5rem);
   font-weight: 400;
   letter-spacing: -0.065em;
-  line-height: 0.78;
+  line-height: 0.91;
 }
 
 h1 em {
-  color: var(--solar);
+  display: block;
+  color: var(--accent);
   font-weight: 400;
 }
 
 .atlas-hero__intro {
   max-width: 520px;
-  margin: 0 0 0.4rem;
-  color: #a995ae;
+  margin: 0 0 0.35rem;
+  color: var(--text-main);
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(0.96rem, 1.45vw, 1.12rem);
-  line-height: 1.7;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.58;
+}
+
+.atlas-hero__guide {
+  grid-column: 2;
+  max-width: 490px;
+  margin: 0.8rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.65;
 }
 
 .atlas-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.72fr);
+  grid-template-columns: minmax(0, 1.65fr) minmax(290px, 0.72fr);
   min-height: 690px;
   overflow: hidden;
-  border: 1px solid rgba(184, 152, 255, 0.17);
-  border-radius: 1.8rem;
-  background: #12091b;
-  box-shadow: 0 36px 110px rgba(6, 2, 10, 0.54);
+  border: 1px solid var(--border);
+  border-radius: 1.6rem;
+  background: var(--deep);
+  box-shadow: 0 36px 110px var(--shadow);
+}
+
+.atlas-layout--landing {
+  grid-template-columns: 1fr;
+  min-height: min(720px, 72vh);
 }
 
 .experience-detail {
@@ -78,11 +103,12 @@ h1 em {
   min-width: 0;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(2rem, 4vw, 4rem) clamp(1.5rem, 3.2vw, 3rem);
-  border-left: 1px solid rgba(184, 152, 255, 0.16);
+  padding: clamp(2rem, 3.6vw, 3.6rem) clamp(1.5rem, 3vw, 2.8rem);
+  border-left: 1px solid var(--border);
+  color: var(--text-main);
   background:
-    linear-gradient(180deg, rgba(31, 15, 43, 0.92), rgba(17, 8, 25, 0.98)),
-    radial-gradient(circle at top right, rgba(255, 112, 71, 0.11), transparent 46%);
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, var(--deep)), var(--surface)),
+    radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 10%, transparent), transparent 46%);
 }
 
 .experience-detail__topline {
@@ -90,29 +116,29 @@ h1 em {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  color: #8f7898;
-  font-size: 0.64rem;
+  color: var(--text-muted);
+  font-size: 0.61rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .experience-detail__topline span:first-child {
-  color: var(--solar);
+  color: var(--accent);
 }
 
 .experience-detail__marker {
   display: flex;
   width: 100%;
   align-items: center;
-  margin: 1.55rem 0 2rem;
+  margin: 1.45rem 0 1.8rem;
 }
 
 .experience-detail__marker::before,
 .experience-detail__marker::after {
-  content: '';
   height: 1px;
-  background: rgba(184, 152, 255, 0.18);
+  background: var(--border);
+  content: '';
 }
 
 .experience-detail__marker::before {
@@ -128,31 +154,31 @@ h1 em {
   height: 7px;
   margin: 0 0.55rem;
   border-radius: 50%;
-  background: var(--solar);
-  box-shadow: 0 0 14px rgba(255, 112, 71, 0.72);
+  background: var(--accent);
+  box-shadow: 0 0 14px var(--accent);
 }
 
 .experience-detail__period {
   margin: 0 0 0.9rem;
-  color: #9e809f;
+  color: var(--text-muted);
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.72rem;
+  font-size: 0.69rem;
 }
 
-.experience-detail h2 {
+.experience-detail h2,
+.empty-system h2 {
   margin: 0;
-  color: #f7e9d7;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 400;
   letter-spacing: -0.045em;
   line-height: 1.03;
 }
 
 .experience-detail__description {
-  margin: 1.25rem 0 0;
-  color: #b9a9bd;
-  font-size: 0.92rem;
+  margin: 1.15rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
   line-height: 1.72;
 }
 
@@ -160,41 +186,33 @@ h1 em {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 1.6rem 0 0;
+  margin: 1.5rem 0 0;
   padding: 0;
   list-style: none;
 }
 
 .experience-detail__tags li {
-  padding: 0.42rem 0.68rem;
-  border: 1px solid rgba(184, 152, 255, 0.2);
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--border);
   border-radius: 999px;
-  color: #d8c6dc;
-  background: rgba(184, 152, 255, 0.055);
-  font-size: 0.66rem;
+  color: var(--text-main);
+  background: var(--surface-soft);
+  font-size: 0.64rem;
 }
 
 .experience-detail__link {
-  display: inline-flex;
+  display: flex;
+  width: 100%;
+  margin-top: 1.8rem;
+  padding-bottom: 0.7rem;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 0 0 0.72rem;
-  border-bottom: 1px solid rgba(255, 112, 71, 0.55);
-  color: var(--solar);
-  font-size: 0.76rem;
+  border-bottom: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.72rem;
   font-weight: 720;
   letter-spacing: 0.06em;
-  text-decoration: none;
   text-transform: uppercase;
-}
-
-.experience-detail__link:hover {
-  color: var(--solar-hot);
-  border-color: var(--solar-hot);
-  text-decoration: none;
 }
 
 .experience-detail__navigation {
@@ -202,7 +220,7 @@ h1 em {
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
-  margin-top: 2.5rem;
+  margin-top: 2.2rem;
 }
 
 .experience-detail__navigation > button {
@@ -211,16 +229,10 @@ h1 em {
   height: 2.1rem;
   padding: 0;
   place-items: center;
-  border: 1px solid rgba(184, 152, 255, 0.25);
+  border: 1px solid var(--border-strong);
   border-radius: 50%;
-  color: #f7e9d7;
+  color: var(--text-main);
   background: transparent;
-}
-
-.experience-detail__navigation > button:hover,
-.experience-detail__navigation > button:focus-visible {
-  color: var(--solar-hot);
-  border-color: var(--solar);
 }
 
 .experience-detail__pagination {
@@ -236,20 +248,34 @@ h1 em {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: #59455f;
-  transition: width 220ms ease, border-radius 220ms ease, background 220ms ease;
+  background: color-mix(in srgb, var(--text-muted) 58%, transparent);
 }
 
 .experience-detail__pagination button.active {
   width: 1.85rem;
   border-radius: 999px;
-  background: var(--solar);
+  background: var(--accent);
 }
 
-.experience-detail__pagination button:focus-visible,
-.experience-detail__navigation > button:focus-visible {
-  outline: 2px solid var(--solar-hot);
-  outline-offset: 3px;
+.empty-system {
+  display: grid;
+  min-height: 470px;
+  padding: 2rem;
+  place-content: center;
+  justify-items: center;
+  border: 1px dashed var(--border-strong);
+  border-radius: 1.5rem;
+  text-align: center;
+}
+
+.empty-system > span {
+  color: var(--accent);
+  font-size: 5rem;
+}
+
+.empty-system p {
+  max-width: 480px;
+  color: var(--text-muted);
 }
 
 .page-note {
@@ -257,20 +283,20 @@ h1 em {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  color: #806d88;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-size: 0.61rem;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
-.page-note span:first-child {
-  color: #b5a4ba;
-}
-
-@media (max-width: 1080px) {
+@media (max-width: 1120px) {
   .atlas-hero {
     grid-template-columns: 1fr;
-    gap: 1.4rem;
+    gap: 1rem;
+  }
+
+  .atlas-hero__guide {
+    grid-column: 1;
   }
 
   .atlas-layout {
@@ -278,38 +304,27 @@ h1 em {
   }
 
   .experience-detail {
-    min-height: 450px;
-    border-top: 1px solid rgba(184, 152, 255, 0.16);
+    min-height: 430px;
+    border-top: 1px solid var(--border);
     border-left: 0;
   }
 }
 
 @media (max-width: 680px) {
-  .atlas-page {
-    gap: 1.5rem;
-  }
-
   h1 {
-    font-size: clamp(3.4rem, 18vw, 5rem);
+    font-size: clamp(2.8rem, 14vw, 4.4rem);
   }
 
   .atlas-layout {
-    border-radius: 1.25rem;
+    border-radius: 1.15rem;
   }
 
   .experience-detail {
-    min-height: 430px;
-    padding: 2rem 1.35rem;
+    padding: 2rem 1.25rem;
   }
 
   .page-note {
     align-items: flex-start;
     flex-direction: column;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .experience-detail__pagination button {
-    transition-duration: 1ms;
   }
 }

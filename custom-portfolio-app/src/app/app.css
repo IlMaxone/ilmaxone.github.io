@@ -1,16 +1,24 @@
 .shell {
-  display: flex;
-  justify-content: center;
-  padding: clamp(2rem, 5vw, 4.5rem) 1.75rem 3.5rem;
+  min-height: 100vh;
+  margin-left: 292px;
+  padding: clamp(2rem, 4vw, 4rem) clamp(1.25rem, 3vw, 3.5rem) 3rem;
 }
 
 .shell__inner {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    margin-left: 0;
+    padding-top: 1.5rem;
+  }
 }
 
 @media (max-width: 640px) {
   .shell {
-    padding-inline: 1rem;
+    padding-inline: 0.85rem;
   }
 }

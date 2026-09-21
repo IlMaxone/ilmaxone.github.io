@@ -8,8 +8,14 @@ export interface ExperienceContent {
   period: string;
   description: string;
   tags: string[];
-  route: '/story' | '/works';
+  route: string;
   routeLabel: string;
+}
+
+export interface AtlasSection extends ExperienceContent {
+  slug: string;
+  folderName: string;
+  items: ExperienceContent[];
 }
 
 export interface ExperienceNode extends ExperienceContent {

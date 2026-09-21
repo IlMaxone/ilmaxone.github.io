@@ -18,14 +18,14 @@
     (keydown)="onKeydown($event)"
   ></canvas>
 
-  <div class="orbit-labels" aria-label="Esperienze in orbita">
+  <div class="orbit-labels" [attr.aria-label]="navigationMode ? 'Sezioni in orbita' : 'Contenuti in orbita'">
     @for (experience of experiences; track experience.id; let index = $index) {
       <button
         #labelElement
         type="button"
         class="orbit-label"
         [class.orbit-label--selected]="index === selectedIndex"
-        [attr.aria-label]="'Apri esperienza ' + experience.shortLabel"
+        [attr.aria-label]="(navigationMode ? 'Apri sezione ' : 'Seleziona pianeta ') + experience.shortLabel"
         [attr.aria-current]="index === selectedIndex ? 'true' : null"
         (click)="selectExperience(index)"
         (focus)="focusPlanet(index)"
@@ -40,7 +40,7 @@
   @if (fallbackVisible) {
     <div class="webgl-fallback" role="status">
       <strong>WebGL non disponibile</strong>
-      <span>Usa le etichette per navigare tra le esperienze.</span>
+      <span>Usa le etichette per navigare tra i pianeti.</span>
     </div>
   }
 

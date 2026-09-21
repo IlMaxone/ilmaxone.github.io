@@ -1,63 +1,86 @@
-<section class="atlas-page">
+<section class="atlas-page" [class.atlas-page--landing]="isLanding">
   <header class="atlas-hero">
-    <p class="eyebrow"><span></span> Selected direction / 02 · WebGL</p>
-    <h1>Atlante<br /><em>solare</em></h1>
-    <p class="atlas-hero__intro">
-      Esperienze in orbita attorno a un’identità viva e navigabile. Ogni file nella cartella
-      dei contenuti genera un nuovo pianeta tridimensionale.
-    </p>
+    @if (isLanding) {
+      <p class="eyebrow"><span></span> Portfolio orbitale · WebGL</p>
+      <h1>Benvenuto nel mio <em>Universo Lavorativo.</em></h1>
+      <p class="atlas-hero__intro">
+        La raccolta definitiva delle abilità professionali e non.
+      </p>
+      <p class="atlas-hero__guide">
+        Ogni pianeta è una sezione. Selezionane uno per entrare nella sua costellazione.
+      </p>
+    } @else {
+      <a class="atlas-hero__back" routerLink="/">← Torna alla landing</a>
+      <p class="eyebrow"><span></span> Settore {{ section?.period }}</p>
+      <h1>{{ section?.title }}</h1>
+      <p class="atlas-hero__intro">{{ section?.description }}</p>
+      <p class="atlas-hero__guide">
+        I pianeti di questa pagina corrispondono ai JSON nella cartella “{{ section?.folderName }}”.
+      </p>
+    }
   </header>
 
-  <div class="atlas-layout">
-    <app-orbital-scene
-      [experiences]="experiences"
-      [selectedIndex]="selectedIndex"
-      (experienceSelected)="selectExperience($event)"
-    />
+  @if (experiences.length > 0) {
+    <div class="atlas-layout" [class.atlas-layout--landing]="isLanding">
+      <app-orbital-scene
+        [experiences]="experiences"
+        [selectedIndex]="selectedIndex"
+        [paletteId]="paletteService.activePalette()"
+        [navigationMode]="isLanding"
+        (experienceSelected)="handlePlanetSelection($event)"
+      />
 
-    <aside class="experience-detail" aria-live="polite">
-      <div class="experience-detail__topline">
-        <span>{{ selectedExperience.eyebrow }}</span>
-        <span>{{ formatNumber(selectedIndex + 1) }} / {{ formatNumber(experiences.length) }}</span>
-      </div>
+      @if (!isLanding && selectedExperience; as selected) {
+        <aside class="experience-detail" aria-live="polite">
+          <div class="experience-detail__topline">
+            <span>{{ selected.eyebrow }}</span>
+            <span>{{ formatNumber(selectedIndex + 1) }} / {{ formatNumber(experiences.length) }}</span>
+          </div>
 
-      <div class="experience-detail__marker" aria-hidden="true"><span></span></div>
+          <div class="experience-detail__marker" aria-hidden="true"><span></span></div>
+          <p class="experience-detail__period">{{ selected.period }}</p>
+          <h2>{{ selected.title }}</h2>
+          <p class="experience-detail__description">{{ selected.description }}</p>
 
-      <p class="experience-detail__period">{{ selectedExperience.period }}</p>
-      <h2>{{ selectedExperience.title }}</h2>
-      <p class="experience-detail__description">{{ selectedExperience.description }}</p>
+          <ul class="experience-detail__tags" aria-label="Tecnologie e temi">
+            @for (tag of selected.tags; track $index) {
+              <li>{{ tag }}</li>
+            }
+          </ul>
 
-      <ul class="experience-detail__tags" aria-label="Tecnologie e temi">
-        @for (tag of selectedExperience.tags; track $index) {
-          <li>{{ tag }}</li>
-        }
-      </ul>
+          <a class="experience-detail__link" [routerLink]="selected.route">
+            {{ selected.routeLabel }}
+            <span aria-hidden="true">↗</span>
+          </a>
 
-      <a class="experience-detail__link" [routerLink]="selectedExperience.route">
-        {{ selectedExperience.routeLabel }}
-        <span aria-hidden="true">↗</span>
-      </a>
-
-      <div class="experience-detail__navigation">
-        <button type="button" (click)="previousExperience()" aria-label="Esperienza precedente">←</button>
-        <div class="experience-detail__pagination" aria-label="Selezione rapida delle esperienze">
-          @for (experience of experiences; track experience.id; let index = $index) {
-            <button
-              type="button"
-              [class.active]="index === selectedIndex"
-              [attr.aria-label]="'Vai a ' + experience.shortLabel"
-              [attr.aria-current]="index === selectedIndex ? 'true' : null"
-              (click)="selectExperience(index)"
-            ></button>
-          }
-        </div>
-        <button type="button" (click)="nextExperience()" aria-label="Esperienza successiva">→</button>
-      </div>
-    </aside>
-  </div>
+          <div class="experience-detail__navigation">
+            <button type="button" (click)="previousExperience()" aria-label="Pianeta precedente">←</button>
+            <div class="experience-detail__pagination" aria-label="Selezione rapida dei pianeti">
+              @for (experience of experiences; track experience.id; let index = $index) {
+                <button
+                  type="button"
+                  [class.active]="index === selectedIndex"
+                  [attr.aria-label]="'Vai a ' + experience.shortLabel"
+                  [attr.aria-current]="index === selectedIndex ? 'true' : null"
+                  (click)="selectExperience(index)"
+                ></button>
+              }
+            </div>
+            <button type="button" (click)="nextExperience()" aria-label="Pianeta successivo">→</button>
+          </div>
+        </aside>
+      }
+    </div>
+  } @else {
+    <section class="empty-system">
+      <span aria-hidden="true">○</span>
+      <h2>Questa orbita è pronta.</h2>
+      <p>Aggiungi il primo file JSON nella cartella “{{ section?.folderName }}” per generare un pianeta.</p>
+    </section>
+  }
 
   <footer class="page-note">
-    <span>{{ experiences.length }} pianeti · orbite inclinate · un nucleo.</span>
-    <span>Trascina 360° · zoom · seleziona</span>
+    <span>{{ experiences.length }} {{ experiences.length === 1 ? 'pianeta' : 'pianeti' }} · orbite inclinate · un nucleo.</span>
+    <span>{{ isLanding ? 'Seleziona per entrare' : 'Trascina 360° · zoom · seleziona' }}</span>
   </footer>
 </section>

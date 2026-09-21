@@ -21,6 +21,8 @@ ilmaxone.github.io/
 ├── 404.html                   # Fallback SPA
 ├── story/index.html           # Rotta /story prerenderizzata
 ├── works/index.html           # Rotta /works prerenderizzata
+├── riferimenti/index.html     # Contatti e riferimenti pubblici
+├── universo/*/index.html      # Sezioni generate dalle cartelle dei contenuti
 ├── main-*.js                  # Bundle pubblicato
 ├── chunk-*.js                 # Chunk lazy-loaded pubblicati
 ├── styles-*.css               # Stili pubblicati
@@ -56,7 +58,7 @@ Checklist:
 2. eseguire test e build di produzione;
 3. sostituire nella radice gli artefatti con quelli della nuova build;
 4. mantenere `404.html` coerente con `index.html`;
-5. controllare `/`, `/story`, `/works` e una rotta inesistente;
+5. controllare `/`, `/riferimenti`, le rotte `/universo/*`, `/story`, `/works` e una rotta inesistente;
 6. verificare desktop, mobile e navigazione da tastiera;
 7. aggiornare la documentazione pertinente;
 8. controllare `git diff` e `git status` prima del commit.

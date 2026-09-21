@@ -8,5 +8,6 @@ Questa cartella è la fonte di verità per architettura, decisioni, demo e proce
 - [Anteprima interattiva: 5 direzioni di design](five-star-directions.html)
 - [Atlante solare: 5 palette e 5 movimenti 3D](solar-atlas-color-motion.html)
 - [Direzione scelta: Atlante solare](solar-atlas-design.md)
+- [Riferimenti e navigazione mobile](references-and-mobile-navigation.md)
 
 Ogni modifica significativa al sito deve aggiornare il documento pertinente. Il README del progetto rimane volutamente minimale e rimanda a questa cartella.

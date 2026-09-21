@@ -8,16 +8,19 @@ import {
   Inject,
   Input,
   NgZone,
+  OnChanges,
   OnDestroy,
   Output,
   PLATFORM_ID,
   QueryList,
+  SimpleChanges,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import * as THREE from 'three';
 import type { ExperienceContent } from '../../content/experience.model';
+import { PALETTES, PaletteDefinition, PaletteId } from '../../theme/palette';
 
 interface OrbitBody {
   angle: number;
@@ -38,9 +41,11 @@ interface OrbitBody {
   styleUrl: './orbital-scene.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
+export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input({ required: true }) experiences: ExperienceContent[] = [];
   @Input() selectedIndex = 0;
+  @Input() paletteId: PaletteId = 'amethyst';
+  @Input() navigationMode = false;
   @Output() readonly experienceSelected = new EventEmitter<number>();
 
   @ViewChild('canvas', { static: true }) private canvasRef!: ElementRef<HTMLCanvasElement>;
@@ -54,6 +59,8 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
   distance = 13.8;
 
   private animationFrame = 0;
+  private ambientLight?: THREE.AmbientLight;
+  private atmosphere?: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>;
   private bodies: OrbitBody[] = [];
   private camera?: THREE.PerspectiveCamera;
   private dragState: {
@@ -70,8 +77,11 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
   private raycaster = new THREE.Raycaster();
   private renderer?: THREE.WebGLRenderer;
   private resizeObserver?: ResizeObserver;
+  private rimLight?: THREE.DirectionalLight;
   private scene?: THREE.Scene;
+  private starMaterial?: THREE.PointsMaterial;
   private sun?: THREE.Mesh<THREE.SphereGeometry, THREE.MeshStandardMaterial>;
+  private sunLight?: THREE.PointLight;
   private textures: THREE.Texture[] = [];
   private world?: THREE.Group;
 
@@ -80,6 +90,12 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
     private readonly zone: NgZone,
     private readonly changeDetector: ChangeDetectorRef,
   ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['paletteId'] && !changes['paletteId'].firstChange && this.sun) {
+      this.updateScenePalette();
+    }
+  }
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) {
@@ -254,13 +270,19 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
     const world = new THREE.Group();
     world.rotation.z = -0.08;
     scene.add(world);
-    scene.add(new THREE.AmbientLight(0xc9afe5, 0.75));
+    const palette = this.palette;
+    const ambientLight = new THREE.AmbientLight(palette.secondary, 0.75);
+    scene.add(ambientLight);
 
-    const sunLight = new THREE.PointLight(0xff5638, 3.4, 36, 1.7);
+    const sunLight = new THREE.PointLight(palette.accent, 3.4, 36, 1.7);
     scene.add(sunLight);
-    const rimLight = new THREE.DirectionalLight(0xa784ff, 1.15);
+    const rimLight = new THREE.DirectionalLight(palette.secondary, 1.15);
     rimLight.position.set(-6, 5, 8);
     scene.add(rimLight);
+
+    this.ambientLight = ambientLight;
+    this.sunLight = sunLight;
+    this.rimLight = rimLight;
 
     this.scene = scene;
     this.camera = camera;
@@ -283,9 +305,10 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
   }
 
   private createSun(world: THREE.Group): void {
-    const texture = this.createSurfaceTexture('sun', '#f0442c', '#ff7047', '#ffd05f');
+    const palette = this.palette;
+    const texture = this.createSurfaceTexture('sun', palette.accent, palette.accent, palette.hot);
     const material = new THREE.MeshStandardMaterial({
-      emissive: 0xf0442c,
+      emissive: palette.accent,
       emissiveIntensity: 1.2,
       emissiveMap: texture,
       map: texture,
@@ -300,20 +323,21 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
       new THREE.SphereGeometry(1.53, 48, 32),
       new THREE.MeshBasicMaterial({
         blending: THREE.AdditiveBlending,
-        color: 0xff5738,
+        color: palette.accent,
         opacity: 0.12,
         side: THREE.BackSide,
         transparent: true,
       }),
     );
     sun.add(atmosphere);
+    this.atmosphere = atmosphere;
 
     const glow = new THREE.Sprite(
       new THREE.SpriteMaterial({
         blending: THREE.AdditiveBlending,
-        color: 0xff7047,
+        color: palette.accent,
         depthWrite: false,
-        map: this.createGlowTexture(),
+        map: this.createGlowTexture(palette.accent, palette.hot),
         opacity: 0.75,
         transparent: true,
       }),
@@ -324,7 +348,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
   }
 
   private createOrbitBodies(world: THREE.Group): void {
-    const palette = ['#e06450', '#8e65b8', '#ff9950', '#6e416f', '#d95566', '#a47bd1'];
+    const palette = this.palette;
     const sphereGeometry = new THREE.SphereGeometry(1, 56, 40);
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
 
@@ -349,19 +373,19 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
       const ring = new THREE.LineLoop(
         new THREE.BufferGeometry().setFromPoints(points),
         new THREE.LineBasicMaterial({
-          color: index % 2 === 0 ? 0xff7047 : 0xb898ff,
+          color: index % 2 === 0 ? palette.accent : palette.secondary,
           opacity: index === this.selectedIndex ? 0.34 : 0.18,
           transparent: true,
         }),
       );
       group.add(ring);
 
-      const planetColor = palette[index % palette.length];
+      const planetColor = palette.planetColors[index % palette.planetColors.length];
       const texture = this.createSurfaceTexture(
         experience.id,
-        '#21102d',
+        palette.space,
         planetColor,
-        index % 2 === 0 ? '#ffd05f' : '#e8d3ff',
+        index % 2 === 0 ? palette.hot : palette.text,
       );
       const material = new THREE.MeshStandardMaterial({
         bumpMap: texture,
@@ -404,18 +428,15 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
     }
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-    scene.add(
-      new THREE.Points(
-        geometry,
-        new THREE.PointsMaterial({
-          color: 0xd9c8ff,
+    const starMaterial = new THREE.PointsMaterial({
+          color: this.palette.text,
           opacity: 0.62,
           size: 0.035,
           sizeAttenuation: true,
           transparent: true,
-        }),
-      ),
-    );
+        });
+    this.starMaterial = starMaterial;
+    scene.add(new THREE.Points(geometry, starMaterial));
   }
 
   private createSurfaceTexture(key: string, base: string, accent: string, hot: string): THREE.CanvasTexture {
@@ -483,7 +504,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
     return texture;
   }
 
-  private createGlowTexture(): THREE.CanvasTexture {
+  private createGlowTexture(accent: string, hot: string): THREE.CanvasTexture {
     const glow = document.createElement('canvas');
     glow.width = glow.height = 256;
     const context = glow.getContext('2d');
@@ -492,14 +513,61 @@ export class OrbitalSceneComponent implements AfterViewInit, OnDestroy {
     }
     const gradient = context.createRadialGradient(128, 128, 10, 128, 128, 126);
     gradient.addColorStop(0, 'rgba(255,255,255,1)');
-    gradient.addColorStop(0.18, 'rgba(255,125,62,.72)');
-    gradient.addColorStop(0.55, 'rgba(255,52,34,.16)');
-    gradient.addColorStop(1, 'rgba(255,20,20,0)');
+    gradient.addColorStop(0.18, this.hexToRgba(hot, 0.72));
+    gradient.addColorStop(0.55, this.hexToRgba(accent, 0.16));
+    gradient.addColorStop(1, this.hexToRgba(accent, 0));
     context.fillStyle = gradient;
     context.fillRect(0, 0, 256, 256);
     const texture = new THREE.CanvasTexture(glow);
     this.textures.push(texture);
     return texture;
+  }
+
+  private updateScenePalette(): void {
+    const palette = this.palette;
+    const oldTextures = this.textures;
+    this.textures = [];
+
+    this.ambientLight?.color.set(palette.secondary);
+    this.sunLight?.color.set(palette.accent);
+    this.rimLight?.color.set(palette.secondary);
+    this.starMaterial?.color.set(palette.text);
+
+    if (this.sun) {
+      const texture = this.createSurfaceTexture('sun', palette.accent, palette.accent, palette.hot);
+      this.sun.material.map = texture;
+      this.sun.material.emissiveMap = texture;
+      this.sun.material.emissive.set(palette.accent);
+      this.sun.material.needsUpdate = true;
+    }
+    this.atmosphere?.material.color.set(palette.accent);
+    if (this.glow) {
+      this.glow.material.color.set(palette.accent);
+      this.glow.material.map = this.createGlowTexture(palette.accent, palette.hot);
+      this.glow.material.needsUpdate = true;
+    }
+
+    this.bodies.forEach((body, index) => {
+      const accent = palette.planetColors[index % palette.planetColors.length];
+      const texture = this.createSurfaceTexture(
+        this.experiences[index]?.id ?? `planet-${index}`,
+        palette.space,
+        accent,
+        index % 2 === 0 ? palette.hot : palette.text,
+      );
+      body.planet.material.map = texture;
+      body.planet.material.bumpMap = texture;
+      body.planet.material.needsUpdate = true;
+      (body.ring.material as THREE.LineBasicMaterial).color.set(
+        index % 2 === 0 ? palette.accent : palette.secondary,
+      );
+    });
+
+    oldTextures.forEach(texture => texture.dispose());
+  }
+
+  private get palette(): PaletteDefinition {
+    return PALETTES.find(palette => palette.id === this.paletteId) ?? PALETTES[4];
   }
 
   private animate(): void {

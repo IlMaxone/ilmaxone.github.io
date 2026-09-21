@@ -7,6 +7,11 @@ export const routes: Routes = [
       import('./pages/landing/landing-page').then(m => m.HomePageComponent),
   },
   {
+    path: 'universo/:section',
+    loadComponent: () =>
+      import('./pages/landing/landing-page').then(m => m.HomePageComponent),
+  },
+  {
     path: 'story',
     loadComponent: () =>
       import('./pages/story/story-page').then(m => m.StoryPageComponent),
@@ -15,6 +20,11 @@ export const routes: Routes = [
     path: 'works',
     loadComponent: () =>
       import('./pages/works/works-page').then(m => m.WorksPageComponent),
+  },
+  {
+    path: 'riferimenti',
+    loadComponent: () =>
+      import('./pages/references/references-page').then(m => m.ReferencesPageComponent),
   },
   {
     path: '**',

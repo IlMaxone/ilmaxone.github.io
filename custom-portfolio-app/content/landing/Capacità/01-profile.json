@@ -1,0 +1,13 @@
+{
+  "id": "profile",
+  "order": 10,
+  "shortLabel": "Profilo",
+  "glyph": "P",
+  "eyebrow": "Nucleo personale",
+  "title": "Capire prima di costruire",
+  "period": "Il punto di partenza",
+  "description": "Sviluppo prodotti mettendo insieme codice, contesto e obiettivi. Cerco il perché dietro ogni richiesta e trasformo la complessità in un percorso leggibile.",
+  "tags": ["Problem solving", "Architettura", "Curiosità"],
+  "route": "/story",
+  "routeLabel": "Leggi la mia storia"
+}

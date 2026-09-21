@@ -1,38 +1,87 @@
-<header class="topbar">
-  <nav class="nav">
-    <a class="nav__brand" routerLink="/" aria-label="GM — torna alla home">
-      <span class="nav__logo">GM</span>
-      <span class="nav__identity">
-        <strong>IlMaxone</strong>
-        <small>Developer portfolio</small>
-      </span>
-    </a>
+<aside class="sidebar">
+  <a class="brand" routerLink="/riferimenti" aria-label="IlMaxone — riferimenti e contatti">
+    <span class="brand__copy">
+      <strong>IlMaxone</strong>
+      <small>Riferimenti & contatti</small>
+    </span>
+  </a>
 
-    <div class="nav__links">
-      <a
-        class="nav__link"
-        routerLink="/"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        Home
-      </a>
+  <section class="palette-panel" aria-labelledby="palette-title">
+    <p id="palette-title" class="sidebar__label">Palette</p>
+    <div class="mobile-rail">
+      <button
+        type="button"
+        class="mobile-rail__arrow mobile-rail__arrow--left"
+        aria-label="Palette precedenti"
+        (click)="scrollMenu('palette', -1)"
+      >←</button>
+      <div #paletteScroller class="palette-list" role="group" aria-label="Seleziona la palette del sito">
+        @for (palette of paletteService.palettes; track palette.id) {
+          <button
+            type="button"
+            class="palette-option"
+            [class.palette-option--active]="paletteService.activePalette() === palette.id"
+            [attr.aria-pressed]="paletteService.activePalette() === palette.id"
+            (click)="selectPalette(palette.id)"
+          >
+            <span class="palette-option__swatches" aria-hidden="true">
+              @for (swatch of palette.swatches; track swatch) {
+                <i [style.background]="swatch"></i>
+              }
+            </span>
+            <span>{{ palette.label }}</span>
+          </button>
+        }
+      </div>
+      <button
+        type="button"
+        class="mobile-rail__arrow mobile-rail__arrow--right"
+        aria-label="Palette successive"
+        (click)="scrollMenu('palette', 1)"
+      >→</button>
+    </div>
+  </section>
 
-      <a
-        class="nav__link"
-        routerLink="/story"
-        routerLinkActive="active"
-      >
-        Storia
-      </a>
+  <nav class="universe-nav" aria-label="Navigazione dell’universo">
+    <p class="sidebar__label">Navigazione</p>
+    <div class="mobile-rail">
+      <button
+        type="button"
+        class="mobile-rail__arrow mobile-rail__arrow--left"
+        aria-label="Pagine precedenti"
+        (click)="scrollMenu('navigation', -1)"
+      >←</button>
+      <div #navigationScroller class="universe-nav__list">
+        <a
+          class="universe-nav__link universe-nav__link--landing"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span class="universe-nav__index">00</span>
+          <span>Landing</span>
+        </a>
 
-      <a
-        class="nav__link"
-        routerLink="/works"
-        routerLinkActive="active"
-      >
-        Lavori
-      </a>
+        @for (section of sections; track section.slug; let index = $index) {
+          <a
+            class="universe-nav__link"
+            [routerLink]="section.route"
+            routerLinkActive="active"
+          >
+            <span class="universe-nav__index">{{ (index + 1).toString().padStart(2, '0') }}</span>
+            <span>{{ section.folderName }}</span>
+            <small>{{ section.items.length }}</small>
+          </a>
+        }
+      </div>
+      <button
+        type="button"
+        class="mobile-rail__arrow mobile-rail__arrow--right"
+        aria-label="Pagine successive"
+        (click)="scrollMenu('navigation', 1)"
+      >→</button>
     </div>
   </nav>
-</header>
+
+  <p class="sidebar__footer"><span></span> Sistema online</p>
+</aside>

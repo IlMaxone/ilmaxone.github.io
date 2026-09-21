@@ -1,54 +1,59 @@
-# Sistema di contenuti: una punta per file
+# Sistema di contenuti: cartelle e pianeti
 
-## Obiettivo
+## Regola principale
 
-L'atlante non contiene un elenco di esperienze scritto nel componente Angular. Ogni esperienza è un file JSON nella cartella `custom-portfolio-app/content/experiences/`; ogni nuovo file valido aggiunge automaticamente un pianeta e la relativa orbita durante start, test o build.
+La struttura in `custom-portfolio-app/content/landing/` è la fonte della navigazione:
 
-## Aggiungere una punta
+```text
+content/landing/
+├── Abilità acquisiste/   → pianeta nella landing + pagina /universo/abilita-acquisiste
+├── Capacità/             → pianeta nella landing + pagina /universo/capacita
+├── Lavori/               → pianeta nella landing + pagina /universo/lavori
+└── Progetti/             → pianeta nella landing + pagina /universo/progetti
+```
 
-1. Copiare `content/experiences/_template.json`.
-2. Rinominare la copia, per esempio `09-nuova-esperienza.json`.
-3. Compilare tutti i campi mantenendo la struttura del template.
-4. Eseguire `npm start`, `npm test` oppure `npm run build`.
+- Ogni sottocartella di `landing/` genera un pianeta sulla pagina principale.
+- Il nome della cartella diventa il nome visibile del pianeta.
+- Il nome normalizzato senza accenti diventa la rotta `/universo/<nome-cartella>`.
+- Ogni JSON della sottocartella genera un pianeta nella pagina della sezione.
+- I file o le cartelle che iniziano con `_` sono riservati e non diventano contenuti visibili.
+- Una cartella senza JSON rimane navigabile e mostra lo stato vuoto con le istruzioni per aggiungere il primo pianeta.
 
-I file che iniziano con `_` vengono ignorati, quindi `_template.json` non appare nell'atlante.
+## Aggiungere una sezione alla landing
 
-## Campi
+1. Creare una nuova cartella dentro `content/landing/`, per esempio `Formazione`.
+2. Aggiungere almeno un JSON valido nella nuova cartella.
+3. Eseguire `npm run generate:experiences`, `npm start`, `npm test` oppure `npm run build`.
+
+Compariranno automaticamente il pianeta `Formazione`, la voce nel menu laterale e la rotta `/universo/formazione`.
+
+## Aggiungere un pianeta a una sezione
+
+1. Copiare `content/landing/Capacità/_template.json` nella cartella desiderata.
+2. Rinominare la copia con un prefisso d’ordine, per esempio `20-nuovo-contenuto.json`.
+3. Compilare tutti i campi mantenendo la struttura.
+4. Eseguire uno degli script indicati sopra.
+
+Per eliminare un pianeta è sufficiente eliminare il relativo JSON. Le coordinate, il piano orbitale, la velocità e la texture vengono ricalcolati automaticamente.
+
+## Campi JSON
 
 | Campo | Tipo | Uso |
 | --- | --- | --- |
-| `id` | stringa | Identificatore univoco: minuscole, numeri e trattini |
+| `id` | stringa | Identificatore univoco nella cartella: minuscole, numeri e trattini |
 | `order` | numero | Ordine di lettura e selezione |
-| `shortLabel` | stringa | Etichetta breve proiettata accanto al pianeta |
-| `glyph` | stringa | Simbolo disponibile per viste compatte e future texture |
+| `shortLabel` | stringa | Nome breve proiettato accanto al pianeta |
+| `glyph` | stringa | Simbolo disponibile per viste compatte |
 | `eyebrow` | stringa | Categoria del pannello informativo |
-| `title` | stringa | Titolo dell’esperienza |
+| `title` | stringa | Titolo completo |
 | `period` | stringa | Periodo o contesto tecnico |
 | `description` | stringa | Descrizione sintetica |
 | `tags` | stringhe[] | Tecnologie o temi |
-| `route` | `/story` o `/works` | Approfondimento interno |
-| `routeLabel` | stringa | Testo del collegamento |
+| `route` | stringa | Percorso interno di approfondimento, sempre iniziato da `/` |
+| `routeLabel` | stringa | Testo del collegamento di approfondimento |
 
-## Generazione
+## Generazione e prerender
 
-Lo script `scripts/generate-experiences.mjs`:
+`scripts/generate-experiences.mjs` attraversa tutte le cartelle, valida ogni JSON, crea `src/app/generated/atlas.generated.ts` e interrompe build/test con un errore preciso in caso di dati non validi. Angular usa lo stesso catalogo per menu, landing, pagine interne e parametri di prerender.
 
-1. legge tutti i JSON non riservati;
-2. valida struttura, tipi, rotte e unicità degli identificatori;
-3. ordina le esperienze tramite `order`;
-4. genera `src/app/generated/experiences.generated.ts`;
-5. interrompe build o test con un messaggio preciso se un file non rispetta il template.
-
-Il file TypeScript generato è versionabile per rendere visibile il risultato, ma non deve essere modificato a mano.
-
-## Distribuzione orbitale automatica
-
-Il componente WebGL assegna a ogni esperienza raggio, inclinazione tridimensionale, velocità, direzione e texture procedurale. I valori derivano dall'indice ordinato e dall'angolo aureo: aggiungere o rimuovere un'esperienza rigenera il sistema orbitale senza coordinate manuali.
-
-## Integrazione con gli script npm
-
-La generazione viene eseguita automaticamente da:
-
-- `prestart` prima del server di sviluppo;
-- `pretest` prima dei test;
-- `prebuild` prima della build di produzione.
+Le rotte delle sezioni vengono prerenderizzate come directory statiche e restano quindi compatibili con la pubblicazione dalla radice di GitHub Pages.
