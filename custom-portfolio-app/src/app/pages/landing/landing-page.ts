@@ -1,47 +1,41 @@
 import { Component } from '@angular/core';
-import { InfoBlockComponent } from '../../shared/info-block/info-block';
-
-interface HomePageSection {
-  title: string;
-  subtitle?: string;
-  body: string | string[];
-  tags?: string[];
-  highlight?: boolean;
-}
+import { RouterLink } from '@angular/router';
+import type { ExperienceContent } from '../../content/experience.model';
+import { GENERATED_EXPERIENCES } from '../../generated/experiences.generated';
+import { OrbitalSceneComponent } from './orbital-scene';
 
 @Component({
-  selector: 'app-story-page',
+  selector: 'app-home-page',
   standalone: true,
-  imports: [InfoBlockComponent],
+  imports: [RouterLink, OrbitalSceneComponent],
   templateUrl: './landing-page.html',
-  styleUrls: ['./landing-page.scss'],
+  styleUrl: './landing-page.scss',
 })
 export class HomePageComponent {
-  sections: HomePageSection[] = [
-    {
-      title: 'Chi sono',
-      subtitle: 'Una panoramica veloce',
-      body: [
-        'Sono uno sviluppatore che ama mettere le mani nel codice e capire come funzionano davvero le cose.',
-        'Negli ultimi anni ho lavorato molto su Angular, NestJS e Google Cloud, con un focus su pipeline dati e architetture pulite.',
-      ],
-      tags: ['Angular', 'NestJS', 'GCP'],
-      highlight: true,
-    },
-    {
-      title: 'La mia storia',
-      body: [
-        'Ho iniziato a programmare per curiosità, poi è diventato il mio modo principale di esprimere idee.',
-        'Mi piacciono le soluzioni semplici a problemi complessi, e detesto la complessità gratuita.',
-      ],
-    },
-    {
-      title: 'Come penso al lavoro',
-      body: [
-        'Preferisco processi iterativi e modelli Time & Material – mi interessa più il flusso di lavoro che il “big bang finale”.',
-        'Cerco sempre di capire il perché dietro le richieste, non solo il cosa.',
-      ],
-      tags: ['Mindset', 'Processo', 'Time & Material'],
-    },
-  ];
+  readonly experiences: ExperienceContent[] = GENERATED_EXPERIENCES;
+  selectedIndex = 0;
+
+  get selectedExperience(): ExperienceContent {
+    return this.experiences[this.selectedIndex];
+  }
+
+  selectExperience(index: number): void {
+    this.selectedIndex = this.normalizeIndex(index);
+  }
+
+  previousExperience(): void {
+    this.selectExperience(this.selectedIndex - 1);
+  }
+
+  nextExperience(): void {
+    this.selectExperience(this.selectedIndex + 1);
+  }
+
+  formatNumber(value: number): string {
+    return value.toString().padStart(2, '0');
+  }
+
+  private normalizeIndex(index: number): number {
+    return ((index % this.experiences.length) + this.experiences.length) % this.experiences.length;
+  }
 }

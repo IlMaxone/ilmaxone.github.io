@@ -1,35 +1,38 @@
 <header class="topbar">
   <nav class="nav">
-    <div class="nav__logo">GM</div>
+    <a class="nav__brand" routerLink="/" aria-label="GM — torna alla home">
+      <span class="nav__logo">GM</span>
+      <span class="nav__identity">
+        <strong>IlMaxone</strong>
+        <small>Developer portfolio</small>
+      </span>
+    </a>
 
     <div class="nav__links">
-      <button
-        type="button"
+      <a
         class="nav__link"
-        routerLink="/landing"
+        routerLink="/"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
       >
         Home
-      </button>
+      </a>
 
-      <button
-        type="button"
+      <a
         class="nav__link"
         routerLink="/story"
         routerLinkActive="active"
       >
         Storia
-      </button>
+      </a>
 
-      <button
-        type="button"
+      <a
         class="nav__link"
         routerLink="/works"
         routerLinkActive="active"
       >
         Lavori
-      </button>
+      </a>
     </div>
   </nav>
 </header>

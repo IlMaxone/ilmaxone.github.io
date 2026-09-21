@@ -35,12 +35,10 @@ export class WorksPageComponent {
         'Bot che riceve segnali da TradingView, interagisce con un full node Bitcoin locale e gestisce operazioni di buy/sell quasi istantanee.',
       ],
       tags: ['NestJS', 'Bitcoin', 'TradingView'],
-      linkUrl: 'https://github.com/tuo-repo/bot-trading',
-      linkLabel: 'Vedi repository',
     },
     {
       title: 'Portfolio personale',
-      subtitle: 'Angular 20',
+      subtitle: 'Angular 21',
       body: 'Questo sito: un portfolio pensato come vetrina del mio modo di lavorare, non solo dei progetti.',
       tags: ['Angular', 'Frontend'],
     },

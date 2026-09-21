@@ -1,0 +1,13 @@
+{
+  "id": "bitcoin",
+  "order": 60,
+  "shortLabel": "Bitcoin",
+  "glyph": "₿",
+  "eyebrow": "Progetto personale",
+  "title": "Trading vicino al full node",
+  "period": "NestJS · Raspberry Pi 5",
+  "description": "Un bot che riceve segnali da TradingView, dialoga con un nodo Bitcoin locale e coordina operazioni con latenza ridotta.",
+  "tags": ["Bitcoin", "TradingView", "Raspberry Pi"],
+  "route": "/works",
+  "routeLabel": "Scopri il progetto"
+}

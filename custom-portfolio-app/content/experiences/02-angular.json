@@ -1,0 +1,13 @@
+{
+  "id": "angular",
+  "order": 20,
+  "shortLabel": "Angular",
+  "glyph": "A",
+  "eyebrow": "Frontend",
+  "title": "Interfacce che spiegano il prodotto",
+  "period": "Esperienza recente",
+  "description": "Componenti riutilizzabili, routing e attenzione ai dettagli per costruire esperienze solide, accessibili e facili da far evolvere.",
+  "tags": ["Angular 21", "TypeScript", "UX"],
+  "route": "/works",
+  "routeLabel": "Vedi i progetti"
+}

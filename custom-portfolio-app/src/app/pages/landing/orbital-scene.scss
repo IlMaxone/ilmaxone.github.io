@@ -1,0 +1,241 @@
+:host {
+  display: block;
+  height: 100%;
+  min-height: 690px;
+}
+
+.orbital-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 690px;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 52% 48%, rgba(240, 68, 44, 0.1), transparent 24%),
+    radial-gradient(circle at 52% 48%, rgba(184, 152, 255, 0.08), transparent 54%),
+    #12091b;
+}
+
+.orbital-viewport--dragging {
+  cursor: grabbing;
+}
+
+.orbital-viewport::after {
+  content: '';
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 46%, rgba(10, 4, 16, 0.54) 100%);
+}
+
+.orbital-canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.orbital-canvas:focus-visible {
+  outline: 2px solid #ff7047;
+  outline-offset: -4px;
+}
+
+.orbit-labels {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+  pointer-events: none;
+}
+
+.orbit-label {
+  position: absolute;
+  display: inline-flex;
+  min-height: 2rem;
+  padding: 0.32rem 0.52rem;
+  align-items: center;
+  gap: 0.38rem;
+  border: 1px solid rgba(255, 112, 71, 0.32);
+  border-radius: 0.2rem;
+  color: #eadbea;
+  background: rgba(24, 12, 34, 0.76);
+  box-shadow: 0 8px 24px rgba(5, 2, 9, 0.36);
+  transform: translate(-50%, -50%);
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background 180ms ease,
+    opacity 180ms ease;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+}
+
+.orbit-label small {
+  color: #9e809f;
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+}
+
+.orbit-label strong {
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.orbit-label--hovered,
+.orbit-label--selected,
+.orbit-label:focus-visible {
+  border-color: #ffd05f;
+  color: #ffd05f;
+  background: rgba(52, 19, 39, 0.92);
+}
+
+.orbit-label:focus-visible {
+  outline: 2px solid #ffd05f;
+  outline-offset: 3px;
+}
+
+.scene-status,
+.scene-controls,
+.scene-hint,
+.webgl-fallback {
+  position: absolute;
+  z-index: 9;
+}
+
+.scene-status {
+  top: 1.1rem;
+  left: 1.15rem;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.scene-status span {
+  padding: 0.3rem 0.45rem;
+  border: 1px solid rgba(184, 152, 255, 0.16);
+  border-radius: 0.3rem;
+  color: #917b9d;
+  background: rgba(15, 7, 24, 0.58);
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.54rem;
+  letter-spacing: 0.08em;
+}
+
+.scene-controls {
+  right: 1.2rem;
+  bottom: 1rem;
+  left: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.scene-controls button {
+  display: grid;
+  min-width: 2.35rem;
+  height: 2.35rem;
+  padding: 0 0.72rem;
+  place-items: center;
+  border: 1px solid rgba(184, 152, 255, 0.25);
+  border-radius: 999px;
+  color: #f7e9d7;
+  background: rgba(23, 10, 33, 0.84);
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.scene-controls button:hover,
+.scene-controls button:focus-visible {
+  color: #ffd05f;
+  border-color: #ff7047;
+  transform: translateY(-2px);
+}
+
+.scene-controls button:focus-visible {
+  outline: 2px solid #ffd05f;
+  outline-offset: 3px;
+}
+
+.scene-controls__reset {
+  font-size: 0.58rem;
+  font-weight: 720;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scene-hint {
+  top: 1.15rem;
+  right: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: #9e809f;
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scene-hint span {
+  width: 7px;
+  height: 7px;
+  border: 1px solid #ff7047;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255, 112, 71, 0.72);
+}
+
+.webgl-fallback {
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  color: #f7e9d7;
+  background: rgba(18, 9, 27, 0.72);
+  text-align: center;
+}
+
+.webgl-fallback span {
+  color: #a995ae;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 1080px) {
+  :host,
+  .orbital-viewport {
+    min-height: 680px;
+  }
+}
+
+@media (max-width: 680px) {
+  :host,
+  .orbital-viewport {
+    min-height: 560px;
+  }
+
+  .scene-status span:nth-child(2),
+  .scene-status span:nth-child(3) {
+    display: none;
+  }
+
+  .scene-hint {
+    display: none;
+  }
+
+  .orbit-label {
+    min-height: 2.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-label,
+  .scene-controls button {
+    transition-duration: 1ms;
+  }
+}

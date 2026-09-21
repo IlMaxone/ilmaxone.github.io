@@ -1,0 +1,13 @@
+{
+  "id": "gcp",
+  "order": 40,
+  "shortLabel": "GCP",
+  "glyph": "G",
+  "eyebrow": "Cloud",
+  "title": "Infrastruttura al servizio dei dati",
+  "period": "Google Cloud",
+  "description": "Progetto flussi su servizi gestiti scegliendo l’infrastruttura necessaria, osservabile e proporzionata al problema reale.",
+  "tags": ["GCP", "BigQuery", "Dataflow"],
+  "route": "/works",
+  "routeLabel": "Apri i progetti cloud"
+}

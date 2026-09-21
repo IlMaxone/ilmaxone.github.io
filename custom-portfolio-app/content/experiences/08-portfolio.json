@@ -1,0 +1,13 @@
+{
+  "id": "portfolio",
+  "order": 80,
+  "shortLabel": "Portfolio",
+  "glyph": "✦",
+  "eyebrow": "Laboratorio",
+  "title": "Questo sito è parte del lavoro",
+  "period": "Angular 21 · GitHub Pages",
+  "description": "Non una vetrina statica, ma un esperimento navigabile: il portfolio diventa una mappa di connessioni tra esperienze, tecnologie e modo di pensare.",
+  "tags": ["Interaction", "Design system", "GitHub Pages"],
+  "route": "/works",
+  "routeLabel": "Vedi tutti i lavori"
+}

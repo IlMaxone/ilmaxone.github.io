@@ -1,0 +1,13 @@
+{
+  "id": "nestjs",
+  "order": 30,
+  "shortLabel": "NestJS",
+  "glyph": "N",
+  "eyebrow": "Backend",
+  "title": "Servizi con confini chiari",
+  "period": "API e integrazioni",
+  "description": "Uso NestJS per modellare servizi leggibili, isolare le responsabilità e integrare sistemi esterni senza nascondere la complessità sotto il tappeto.",
+  "tags": ["NestJS", "Node.js", "API"],
+  "route": "/works",
+  "routeLabel": "Esplora i lavori"
+}

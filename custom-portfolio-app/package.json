@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "generate:experiences": "node scripts/generate-experiences.mjs",
+    "prestart": "npm run generate:experiences",
     "start": "ng serve",
+    "prebuild": "npm run generate:experiences",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "pretest": "npm run generate:experiences",
     "test": "ng test",
     "serve:ssr:custom-portfolio-app": "node dist/custom-portfolio-app/server/server.mjs"
   },
@@ -34,6 +38,7 @@
     "@angular/ssr": "^21.0.2",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
+    "three": "^0.180.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -42,6 +47,7 @@
     "@angular/compiler-cli": "^21.0.0",
     "@types/express": "^5.0.1",
     "@types/node": "^20.17.19",
+    "@types/three": "^0.180.0",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

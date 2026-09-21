@@ -1,12 +1,13 @@
 :root {
-  --bg-color: #05060a;
+  color-scheme: dark;
+  --bg-color: #03070e;
   --bg-elevated: rgba(16, 18, 27, 0.95);
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.16);
   --text-main: #f7f7f7;
   --text-muted: #a0a3b1;
-  --accent: #4f46e5;
-  --accent-soft: rgba(79, 70, 229, 0.12);
+  --accent: #f3ff6f;
+  --accent-soft: rgba(243, 255, 111, 0.12);
   --radius-lg: 1.2rem;
   --radius-pill: 999px;
   --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.65);
@@ -25,11 +26,30 @@ body {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-  background: radial-gradient(circle at top, #111827 0, #020617 42%, #000 100%);
+  background:
+    radial-gradient(circle at 18% 5%, rgba(45, 71, 125, 0.28), transparent 34rem),
+    radial-gradient(circle at 88% 30%, rgba(90, 108, 36, 0.08), transparent 30rem),
+    #03070e;
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 a {
@@ -43,4 +63,9 @@ a:hover {
 
 main {
   min-height: 100vh;
+}
+
+::selection {
+  color: #070b12;
+  background: #f3ff6f;
 }

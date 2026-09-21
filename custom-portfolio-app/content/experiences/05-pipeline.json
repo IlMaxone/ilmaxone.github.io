@@ -1,0 +1,13 @@
+{
+  "id": "pipeline",
+  "order": 50,
+  "shortLabel": "Pipeline",
+  "glyph": "D",
+  "eyebrow": "Data engineering",
+  "title": "Da MongoDB a BigQuery",
+  "period": "Dataflow · Apache Beam · 2024",
+  "description": "Una pipeline dati con logging dedicato e orchestrazione progressivamente semplificata: meno parti mobili, più controllo sul flusso.",
+  "tags": ["MongoDB", "Apache Beam", "BigQuery"],
+  "route": "/works",
+  "routeLabel": "Leggi il progetto"
+}

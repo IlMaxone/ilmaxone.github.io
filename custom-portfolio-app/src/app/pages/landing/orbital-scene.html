@@ -1,0 +1,60 @@
+<div
+  #viewport
+  class="orbital-viewport"
+  [class.orbital-viewport--dragging]="isDragging"
+  (wheel)="onWheel($event)"
+  (pointerdown)="startPointer($event)"
+  (pointermove)="movePointer($event)"
+  (pointerup)="endPointer($event)"
+  (pointercancel)="endPointer($event)"
+  (pointerleave)="clearHover()"
+>
+  <canvas
+    #canvas
+    class="orbital-canvas"
+    tabindex="0"
+    role="application"
+    aria-label="Sistema planetario WebGL. Trascina per ruotare a 360 gradi, usa la rotella per lo zoom e le frecce per orientare la camera."
+    (keydown)="onKeydown($event)"
+  ></canvas>
+
+  <div class="orbit-labels" aria-label="Esperienze in orbita">
+    @for (experience of experiences; track experience.id; let index = $index) {
+      <button
+        #labelElement
+        type="button"
+        class="orbit-label"
+        [class.orbit-label--selected]="index === selectedIndex"
+        [attr.aria-label]="'Apri esperienza ' + experience.shortLabel"
+        [attr.aria-current]="index === selectedIndex ? 'true' : null"
+        (click)="selectExperience(index)"
+        (focus)="focusPlanet(index)"
+        (blur)="focusPlanet(null)"
+      >
+        <small>{{ formatNumber(index + 1) }}</small>
+        <strong>{{ experience.shortLabel }}</strong>
+      </button>
+    }
+  </div>
+
+  @if (fallbackVisible) {
+    <div class="webgl-fallback" role="status">
+      <strong>WebGL non disponibile</strong>
+      <span>Usa le etichette per navigare tra le esperienze.</span>
+    </div>
+  }
+
+  <div class="scene-status" aria-hidden="true">
+    <span>360° WebGL</span>
+    <span>{{ experiences.length }} pianeti</span>
+    <span>{{ distance.toFixed(1) }} AU</span>
+  </div>
+
+  <div class="scene-controls" aria-label="Controlli della scena tridimensionale">
+    <button type="button" (click)="rotateCamera(18)" aria-label="Ruota a sinistra">←</button>
+    <button type="button" class="scene-controls__reset" (click)="resetView()">Reset</button>
+    <button type="button" (click)="rotateCamera(-18)" aria-label="Ruota a destra">→</button>
+  </div>
+
+  <p class="scene-hint"><span></span> Trascina · zoom · seleziona</p>
+</div>
