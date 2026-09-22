@@ -37,6 +37,18 @@ La palette modifica l’intera interfaccia e la scena WebGL: sfondo, pannelli, t
 
 Sole e pianeti sono geometrie sferiche reali. Le texture procedurali avvolgono le superfici a 360° e cambiano con la palette. Ogni pianeta usa un piano orbitale indipendente sugli assi X, Y e Z, con velocità e direzione proprie.
 
+### Texture planetarie: riferimento Giove
+
+La superficie dei pianeti prende **Giove** come riferimento visivo: fasce atmosferiche orizzontali di larghezza irregolare, filamenti mossi, piccole turbolenze e una macchia ellittica simile a una grande tempesta. Il riferimento riguarda esclusivamente la struttura della texture; i colori continuano a provenire dalla palette attiva.
+
+Con **Ametista solare** vengono quindi mantenuti il fondo `#12091b` e i colori planetari definiti in `palette.ts` (`#e06450`, `#8e65b8`, `#ff9950`, `#6e416f`, `#d95566`, `#a47bd1`). Il materiale resta completamente opaco; fasce e vortici hanno un contrasto leggermente superiore rispetto al fondo. Una componente emissiva molto contenuta li rende leggibili anche sul lato in ombra, senza appiattire la luce direzionale proveniente dal sole.
+
+![Riferimento visivo per le fasce atmosferiche dei pianeti: Giove](assets/references/jupiter-atmosphere-reference.png)
+
+L'immagine è stata fornita dall'utente come riferimento della direzione grafica. La resa finale non la usa come texture: viene generata proceduralmente nel canvas WebGL, così può essere ricolorata automaticamente per tutte le palette e avvolta sulle sfere a 360°.
+
+I pianeti usano una scala maggiore rispetto alla prima versione. Il nome è proiettato sul centro della sfera in giallo caldo, va a capo e si ridimensiona in base al diametro visibile; non sono presenti numero progressivo, bordo o pannello di sfondo. Il pianeta stesso resta quindi lo sfondo dell'etichetta. Ombra scura e alone molto contenuto mantengono il testo leggibile sulle zone chiare e su quelle in ombra.
+
 Interazioni disponibili:
 
 - trascinamento per ruotare la camera a 360°;

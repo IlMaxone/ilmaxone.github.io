@@ -35,6 +35,15 @@ describe('HomePageComponent', () => {
     expect(text).toContain('La raccolta definitiva delle abilità professionali e non.');
   });
 
+  it('uses the planet itself as the transparent background for its label', () => {
+    const labels = fixture.nativeElement.querySelectorAll(
+      '.orbit-label',
+    ) as NodeListOf<HTMLButtonElement>;
+
+    expect(labels[0].querySelector('small')).toBeNull();
+    expect(labels[0].textContent?.trim()).toBe(component.experiences[0].shortLabel);
+  });
+
   it('opens the corresponding section when a planet is selected', () => {
     const navigation = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
     const labels = fixture.nativeElement.querySelectorAll('.orbit-label') as NodeListOf<HTMLButtonElement>;

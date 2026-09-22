@@ -55,51 +55,59 @@
 
 .orbit-label {
   position: absolute;
-  display: inline-flex;
-  min-height: 2rem;
-  padding: 0.32rem 0.52rem;
+  display: grid;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
   align-items: center;
-  gap: 0.38rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-  border-radius: 0.2rem;
-  color: var(--text-main);
-  background: color-mix(in srgb, var(--deep) 78%, transparent);
-  box-shadow: 0 8px 24px var(--shadow);
+  justify-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: var(--accent-hot);
+  background: transparent;
+  box-shadow: none;
+  opacity: 0;
   transform: translate(-50%, -50%);
   transition:
-    border-color 180ms ease,
     color 180ms ease,
-    background 180ms ease,
+    filter 180ms ease,
     opacity 180ms ease;
-  pointer-events: auto;
-  backdrop-filter: blur(10px);
-}
-
-.orbit-label small {
-  color: var(--text-muted);
-  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.52rem;
-  letter-spacing: 0.08em;
+  pointer-events: none;
+  text-align: center;
+  text-shadow:
+    0 1px 2px color-mix(in srgb, var(--deep) 100%, transparent),
+    0 0 5px color-mix(in srgb, var(--deep) 96%, transparent),
+    0 0 10px color-mix(in srgb, var(--accent-hot) 34%, transparent);
 }
 
 .orbit-label strong {
-  font-size: 0.62rem;
+  width: 78%;
+  max-width: 78%;
+  font-size: inherit;
   font-weight: 650;
-  letter-spacing: 0.055em;
+  letter-spacing: 0.015em;
+  line-height: 1.04;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
   text-transform: uppercase;
+  white-space: normal;
 }
 
 .orbit-label--hovered,
 .orbit-label--selected,
 .orbit-label:focus-visible {
-  border-color: var(--accent-hot);
   color: var(--accent-hot);
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  background: transparent;
+  filter: brightness(1.18);
+  text-shadow:
+    0 1px 3px var(--deep),
+    0 0 6px var(--deep),
+    0 0 14px color-mix(in srgb, var(--accent-hot) 54%, transparent);
 }
 
 .orbit-label:focus-visible {
-  outline: 2px solid var(--accent-hot);
-  outline-offset: 3px;
+  outline: 1px dashed color-mix(in srgb, var(--secondary) 70%, transparent);
+  outline-offset: -4px;
 }
 
 .scene-status,
@@ -397,10 +405,6 @@
 
   .scene-hint {
     display: none;
-  }
-
-  .orbit-label {
-    min-height: 2.2rem;
   }
 }
 

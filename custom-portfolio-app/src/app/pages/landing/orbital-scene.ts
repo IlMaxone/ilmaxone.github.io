@@ -139,10 +139,6 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
     this.renderer?.dispose();
   }
 
-  formatNumber(value: number): string {
-    return value.toString().padStart(2, '0');
-  }
-
   selectExperience(index: number): void {
     this.experienceSelected.emit(index);
   }
@@ -362,7 +358,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
 
     this.bodies = this.experiences.map((experience, index) => {
       const radius = 2.55 + index * 0.52;
-      const size = 0.3 + (index % 4) * 0.055;
+      const size = 0.43 + (index % 4) * 0.055;
       const speed = (0.19 + (index % 3) * 0.055) * (index % 2 === 0 ? 1 : -1);
       const tilt = index * goldenAngle;
       const rotation = new THREE.Euler(
@@ -389,7 +385,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
       group.add(ring);
 
       const planetColor = palette.planetColors[index % palette.planetColors.length];
-      const texture = this.createSurfaceTexture(
+      const texture = this.createPlanetTexture(
         experience.id,
         palette.space,
         planetColor,
@@ -397,10 +393,17 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
       );
       const material = new THREE.MeshStandardMaterial({
         bumpMap: texture,
-        bumpScale: 0.055,
+        bumpScale: 0.1,
+        color: 0xffffff,
+        depthWrite: true,
+        emissive: planetColor,
+        emissiveIntensity: 0.11,
         map: texture,
-        metalness: 0.04,
+        metalness: 0.02,
+        opacity: 1,
         roughness: 0.7,
+        side: THREE.FrontSide,
+        transparent: false,
       });
       const planet = new THREE.Mesh(sphereGeometry, material);
       planet.scale.setScalar(size);
@@ -512,6 +515,195 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
     return texture;
   }
 
+  private createPlanetTexture(
+    key: string,
+    base: string,
+    accent: string,
+    hot: string,
+  ): THREE.CanvasTexture {
+    const surface = document.createElement('canvas');
+    surface.width = 768;
+    surface.height = 384;
+    const context = surface.getContext('2d');
+    if (!context) {
+      throw new Error('Canvas 2D context unavailable');
+    }
+
+    const random = this.seededRandom(
+      [...key].reduce((sum, character) => sum + character.charCodeAt(0), 211),
+    );
+    context.fillStyle = base;
+    context.fillRect(0, 0, surface.width, surface.height);
+    context.fillStyle = this.hexToRgba(accent, 0.18);
+    context.fillRect(0, 0, surface.width, surface.height);
+
+    const atmosphericHaze = context.createLinearGradient(0, 0, 0, surface.height);
+    atmosphericHaze.addColorStop(0, this.hexToRgba(hot, 0.06));
+    atmosphericHaze.addColorStop(0.24, this.hexToRgba(accent, 0.13));
+    atmosphericHaze.addColorStop(0.5, this.hexToRgba(base, 0.02));
+    atmosphericHaze.addColorStop(0.76, this.hexToRgba(accent, 0.17));
+    atmosphericHaze.addColorStop(1, this.hexToRgba(hot, 0.08));
+    context.fillStyle = atmosphericHaze;
+    context.fillRect(0, 0, surface.width, surface.height);
+
+    for (let band = 0; band < 22; band += 1) {
+      const centerY = (band + 0.5) * (surface.height / 22) + (random() - 0.5) * 10;
+      const thickness = 5 + random() * 19;
+      const amplitude = 2 + random() * 7;
+      const phase = random() * Math.PI * 2;
+      const frequency = 0.009 + random() * 0.012;
+      const bandColor = band % 4 === 0 || band % 7 === 0 ? hot : accent;
+      context.fillStyle = this.hexToRgba(bandColor, 0.14 + random() * 0.22);
+      context.beginPath();
+      for (let x = -24; x <= surface.width + 24; x += 18) {
+        const wave =
+          Math.sin(x * frequency + phase) * amplitude +
+          Math.sin(x * frequency * 2.7 + phase) * amplitude * 0.28;
+        const y = centerY - thickness * 0.5 + wave;
+        if (x === -24) {
+          context.moveTo(x, y);
+        } else {
+          context.lineTo(x, y);
+        }
+      }
+      for (let x = surface.width + 24; x >= -24; x -= 18) {
+        const wave =
+          Math.sin(x * frequency + phase + 0.55) * amplitude +
+          Math.sin(x * frequency * 2.3 + phase) * amplitude * 0.24;
+        context.lineTo(x, centerY + thickness * 0.5 + wave);
+      }
+      context.closePath();
+      context.fill();
+
+      if (band % 3 === 0) {
+        context.strokeStyle = this.hexToRgba(hot, 0.12 + random() * 0.14);
+        context.lineWidth = 0.8 + random() * 2.2;
+        context.beginPath();
+        for (let x = -24; x <= surface.width + 24; x += 18) {
+          const wave = Math.sin(x * frequency + phase + 0.22) * amplitude;
+          if (x === -24) {
+            context.moveTo(x, centerY + wave);
+          } else {
+            context.lineTo(x, centerY + wave);
+          }
+        }
+        context.stroke();
+      }
+    }
+
+    [0.16, 0.34, 0.55, 0.76].forEach((latitude, jetIndex) => {
+      const centerY = surface.height * latitude;
+      const thickness = 7 + (jetIndex % 2) * 6;
+      const phase = random() * Math.PI * 2;
+      context.fillStyle = this.hexToRgba(
+        jetIndex % 2 === 0 ? hot : accent,
+        jetIndex % 2 === 0 ? 0.3 : 0.38,
+      );
+      context.beginPath();
+      for (let x = -20; x <= surface.width + 20; x += 14) {
+        const wave =
+          Math.sin(x * 0.016 + phase) * 4 + Math.sin(x * 0.043 + phase) * 1.6;
+        if (x === -20) {
+          context.moveTo(x, centerY - thickness * 0.5 + wave);
+        } else {
+          context.lineTo(x, centerY - thickness * 0.5 + wave);
+        }
+      }
+      for (let x = surface.width + 20; x >= -20; x -= 14) {
+        const wave =
+          Math.sin(x * 0.016 + phase + 0.4) * 4 +
+          Math.sin(x * 0.039 + phase) * 1.4;
+        context.lineTo(x, centerY + thickness * 0.5 + wave);
+      }
+      context.closePath();
+      context.fill();
+    });
+
+    for (let filament = 0; filament < 68; filament += 1) {
+      const y = random() * surface.height;
+      const amplitude = 2 + random() * 10;
+      const phase = random() * Math.PI * 2;
+      const frequency = 0.01 + random() * 0.002;
+      context.strokeStyle = this.hexToRgba(
+        filament % 5 === 0 ? hot : accent,
+        0.06 + random() * 0.14,
+      );
+      context.lineWidth = 0.5 + random() * 2.6;
+      context.beginPath();
+      for (let x = -12; x <= surface.width + 12; x += 16) {
+        const flow = Math.sin(x * frequency + phase) * amplitude;
+        if (x === -12) {
+          context.moveTo(x, y + flow);
+        } else {
+          context.lineTo(x, y + flow);
+        }
+      }
+      context.stroke();
+    }
+
+    [0.08, 0.46, 0.83].forEach((longitude, stormIndex) => {
+      const stormX = surface.width * longitude;
+      const stormY = surface.height * (stormIndex === 1 ? 0.66 : 0.36 + stormIndex * 0.12);
+      const stormWidth =
+        (stormIndex === 1 ? 56 : 28) + random() * (stormIndex === 1 ? 28 : 16);
+      const stormHeight = stormWidth * (0.32 + random() * 0.1);
+      context.save();
+      context.translate(stormX, stormY);
+      context.rotate(-0.08 + random() * 0.16);
+      for (let ring = 0; ring < 7; ring += 1) {
+        const scale = 1 - ring * 0.12;
+        context.fillStyle = this.hexToRgba(
+          ring % 2 === 0 ? hot : accent,
+          0.24 + ring * 0.04,
+        );
+        context.beginPath();
+        context.ellipse(0, 0, stormWidth * scale, stormHeight * scale, 0, 0, Math.PI * 2);
+        context.fill();
+      }
+      context.fillStyle = this.hexToRgba(base, 0.48);
+      context.beginPath();
+      context.ellipse(
+        stormWidth * 0.1,
+        0,
+        stormWidth * 0.24,
+        stormHeight * 0.3,
+        0,
+        0,
+        Math.PI * 2,
+      );
+      context.fill();
+      context.restore();
+    });
+
+    for (let eddy = 0; eddy < 34; eddy += 1) {
+      const x = random() * surface.width;
+      const y = random() * surface.height;
+      const radiusX = 3 + random() * 13;
+      const radiusY = radiusX * (0.28 + random() * 0.36);
+      const gradient = context.createRadialGradient(x, y, 0, x, y, radiusX);
+      gradient.addColorStop(
+        0,
+        this.hexToRgba(eddy % 3 === 0 ? hot : accent, 0.12 + random() * 0.2),
+      );
+      gradient.addColorStop(1, this.hexToRgba(accent, 0));
+      context.fillStyle = gradient;
+      context.save();
+      context.translate(x, y);
+      context.scale(1, radiusY / radiusX);
+      context.beginPath();
+      context.arc(0, 0, radiusX, 0, Math.PI * 2);
+      context.fill();
+      context.restore();
+    }
+
+    const texture = new THREE.CanvasTexture(surface);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.anisotropy = Math.min(8, this.renderer?.capabilities.getMaxAnisotropy() ?? 1);
+    this.textures.push(texture);
+    return texture;
+  }
+
   private createGlowTexture(accent: string, hot: string): THREE.CanvasTexture {
     const glow = document.createElement('canvas');
     glow.width = glow.height = 256;
@@ -557,7 +749,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
 
     this.bodies.forEach((body, index) => {
       const accent = palette.planetColors[index % palette.planetColors.length];
-      const texture = this.createSurfaceTexture(
+      const texture = this.createPlanetTexture(
         this.experiences[index]?.id ?? `planet-${index}`,
         palette.space,
         accent,
@@ -565,6 +757,8 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
       );
       body.planet.material.map = texture;
       body.planet.material.bumpMap = texture;
+      body.planet.material.emissive.set(accent);
+      body.planet.material.emissiveIntensity = 0.11;
       body.planet.material.needsUpdate = true;
       (body.ring.material as THREE.LineBasicMaterial).color.set(
         index % 2 === 0 ? palette.accent : palette.secondary,
@@ -601,7 +795,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
           Math.sin(body.angle) * body.radius,
         );
         const active = body.index === this.hoveredIndex || body.index === this.selectedIndex;
-        const targetScale = body.size * (active ? 1.38 : 1);
+        const targetScale = body.size * (active ? 1.28 : 1);
         body.planet.scale.lerp(
           new THREE.Vector3(targetScale, targetScale, targetScale),
           reducedMotion ? 1 : 0.14,
@@ -615,8 +809,8 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
         this.sun!.rotation.x = Math.sin(clock.elapsedTime * 0.21) * 0.08;
         this.world!.rotation.y += delta * 0.018;
       }
-      this.updateLabels();
       this.renderer!.render(this.scene!, this.camera!);
+      this.updateLabels();
     };
     renderFrame();
   }
@@ -664,24 +858,78 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
       return;
     }
     const viewport = this.viewportRef.nativeElement;
-    const vector = new THREE.Vector3();
+    const center = new THREE.Vector3();
+    const edge = new THREE.Vector3();
+    const cameraRight = new THREE.Vector3()
+      .setFromMatrixColumn(this.camera.matrixWorld, 0)
+      .normalize();
+    const planetCenters = this.bodies.map((body) =>
+      body.planet.getWorldPosition(new THREE.Vector3()),
+    );
+    const planetRadii = this.bodies.map(
+      (body) => body.planet.getWorldScale(new THREE.Vector3()).x,
+    );
+    const sunCenter = this.sun?.getWorldPosition(new THREE.Vector3());
+    const sunRadius = this.sun?.getWorldScale(new THREE.Vector3()).x ?? 0;
     this.bodies.forEach((body, index) => {
       const label = this.labelNodes[index];
       if (!label) {
         return;
       }
-      body.planet.getWorldPosition(vector);
-      vector.project(this.camera!);
-      const rawX = (vector.x * 0.5 + 0.5) * viewport.clientWidth;
-      const rawY = (-vector.y * 0.5 + 0.5) * viewport.clientHeight;
-      const halfWidth = Math.max(34, label.offsetWidth / 2);
-      const halfHeight = Math.max(18, label.offsetHeight / 2);
-      const x = THREE.MathUtils.clamp(rawX, halfWidth + 8, viewport.clientWidth - halfWidth - 8);
-      const y = THREE.MathUtils.clamp(rawY, halfHeight + 8, viewport.clientHeight - halfHeight - 8);
+      center.copy(planetCenters[index]);
+      edge.copy(center).addScaledVector(cameraRight, planetRadii[index]);
+      const direction = center.clone().sub(this.camera!.position);
+      const targetDistance = direction.length();
+      direction.normalize();
+      const isCloserSphere = (sphereCenter: THREE.Vector3, radius: number): boolean => {
+        const offset = sphereCenter.clone().sub(this.camera!.position);
+        const distanceAlongRay = offset.dot(direction);
+        if (distanceAlongRay <= 0 || distanceAlongRay >= targetDistance) {
+          return false;
+        }
+        const perpendicularDistanceSquared =
+          offset.lengthSq() - distanceAlongRay * distanceAlongRay;
+        if (perpendicularDistanceSquared >= radius * radius) {
+          return false;
+        }
+        const nearIntersection =
+          distanceAlongRay - Math.sqrt(radius * radius - perpendicularDistanceSquared);
+        return nearIntersection < targetDistance - planetRadii[index] * 0.72;
+      };
+      const occludedBySun = sunCenter ? isCloserSphere(sunCenter, sunRadius) : false;
+      const occludedByPlanet = planetCenters.some(
+        (otherCenter, otherIndex) =>
+          otherIndex !== index && isCloserSphere(otherCenter, planetRadii[otherIndex]),
+      );
+      center.project(this.camera!);
+      edge.project(this.camera!);
+
+      const radiusPixels = Math.abs(edge.x - center.x) * viewport.clientWidth * 0.5;
+      const x = (center.x * 0.5 + 0.5) * viewport.clientWidth;
+      const y = (-center.y * 0.5 + 0.5) * viewport.clientHeight;
+      const visible =
+        center.z > -1 &&
+        center.z < 1 &&
+        x + radiusPixels > 0 &&
+        x - radiusPixels < viewport.clientWidth &&
+        y + radiusPixels > 0 &&
+        y - radiusPixels < viewport.clientHeight &&
+        !occludedBySun &&
+        !occludedByPlanet;
+      const diameter = Math.max(44, radiusPixels * 2);
+      const textLength = this.experiences[index]?.shortLabel.length ?? 0;
+      const fontFactor = textLength > 18 ? 0.2 : textLength > 11 ? 0.23 : 0.27;
+      const fontSize = THREE.MathUtils.clamp(radiusPixels * fontFactor, 8, 14);
+
       label.style.left = `${x}px`;
       label.style.top = `${y}px`;
-      label.style.opacity = vector.z > 1 ? '0' : '1';
-      label.style.zIndex = `${Math.max(1, Math.round((1 - vector.z) * 10))}`;
+      label.style.width = `${diameter}px`;
+      label.style.height = `${diameter}px`;
+      label.style.fontSize = `${fontSize}px`;
+      label.style.opacity = visible ? '1' : '0';
+      label.style.pointerEvents = visible ? 'auto' : 'none';
+      label.style.zIndex = `${Math.max(1, Math.round((1 - center.z) * 10))}`;
+      label.tabIndex = visible ? 0 : -1;
     });
   }
 
