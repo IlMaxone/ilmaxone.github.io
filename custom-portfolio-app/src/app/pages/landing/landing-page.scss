@@ -14,8 +14,7 @@
   align-items: end;
 }
 
-.eyebrow,
-.atlas-hero__back {
+.eyebrow {
   grid-column: 1 / -1;
 }
 
@@ -36,15 +35,6 @@
   height: 1px;
   background: currentColor;
   box-shadow: 0 0 12px currentColor;
-}
-
-.atlas-hero__back {
-  width: fit-content;
-  margin-bottom: 1rem;
-  color: var(--text-muted);
-  font-size: 0.68rem;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
 }
 
 h1 {

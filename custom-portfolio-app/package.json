@@ -5,7 +5,7 @@
     "ng": "ng",
     "generate:experiences": "node scripts/generate-experiences.mjs",
     "prestart": "npm run generate:experiences",
-    "start": "ng serve",
+    "start": "node scripts/serve-with-content-watch.mjs",
     "prebuild": "npm run generate:experiences",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

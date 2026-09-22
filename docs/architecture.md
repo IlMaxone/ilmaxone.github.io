@@ -43,6 +43,8 @@ npm start
 
 Il server di sviluppo è normalmente disponibile su `http://localhost:4200/`.
 
+Lo script di avvio include il watcher dei contenuti. Salvare un JSON sotto `content/landing/` rigenera il catalogo TypeScript; il server Angular rileva la modifica e aggiorna la pagina locale. Questa rigenerazione in tempo reale riguarda lo sviluppo locale, mentre GitHub Pages richiede sempre una nuova build e pubblicazione degli artefatti statici.
+
 ## Verifica e rilascio
 
 ```bash

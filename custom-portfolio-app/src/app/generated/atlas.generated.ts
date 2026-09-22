@@ -1,6 +1,19 @@
 // File generato automaticamente da scripts/generate-experiences.mjs.
 // Non modificarlo a mano: gestire cartelle e JSON in content/landing/.
-import type { AtlasSection } from '../content/experience.model';
+import type { AtlasSection, PageHeadContent } from '../content/experience.model';
+
+export const GENERATED_LANDING_HEAD: PageHeadContent = {
+  "id": 0,
+  "name": "landing",
+  "label": "Landing Page",
+  "headTitle": "Portfolio Orbitale · WebGL",
+  "headDescriptionRow1": "Benvenuto nel mio",
+  "headDescriptionRow2": "Universo Lavorativo",
+  "sideTitle": "La raccolta definitiva delle abilità professionali e non.",
+  "sideDescription": "Ogni pianeta è una sezione. Selezionane uno per entrare nella sua costellazione.",
+  "route": "/",
+  "routeLabel": "Benvenuto nel mio Universo Lavorativo"
+};
 
 export const GENERATED_ATLAS: AtlasSection[] = [
   {
@@ -10,34 +23,26 @@ export const GENERATED_ATLAS: AtlasSection[] = [
     "glyph": "A",
     "eyebrow": "Settore dell’universo",
     "title": "Abilità acquisiste",
-    "period": "1 pianeta",
-    "description": "Le competenze maturate nel tempo, tra pratica, studio e curiosità.",
-    "tags": [
-      "Profilo"
-    ],
+    "period": "0 pianeti",
+    "description": "Competenze maturate nel tempo, tra pratica, studio e curiosità.",
+    "tags": [],
     "route": "/universo/abilita-acquisiste",
-    "routeLabel": "Entra in Abilità acquisiste",
+    "routeLabel": "Microcosmo delle abilità acquisite",
     "slug": "abilita-acquisiste",
     "folderName": "Abilità acquisiste",
-    "items": [
-      {
-        "id": "profile",
-        "order": 10,
-        "shortLabel": "Profilo",
-        "glyph": "P",
-        "eyebrow": "Nucleo personale",
-        "title": "Capire prima di costruire",
-        "period": "Il punto di partenza",
-        "description": "Sviluppo prodotti mettendo insieme codice, contesto e obiettivi. Cerco il perché dietro ogni richiesta e trasformo la complessità in un percorso leggibile.",
-        "tags": [
-          "Problem solving",
-          "Architettura",
-          "Curiosità"
-        ],
-        "route": "/story",
-        "routeLabel": "Leggi la mia storia"
-      }
-    ]
+    "head": {
+      "id": 4,
+      "name": "abilita-acquisiste",
+      "label": "Skills Page",
+      "headTitle": "Microcosmo delle abilità acquisite",
+      "headDescriptionRow1": "Qui trovi le mie",
+      "headDescriptionRow2": "Abilità acquisite",
+      "sideTitle": "Competenze maturate nel tempo, tra pratica, studio e curiosità.",
+      "sideDescription": "Ogni pianeta racconta un'abilità. Selezionane uno per scoprire come si è sviluppata e dove la applico.",
+      "route": "/universo/abilita-acquisiste",
+      "routeLabel": "Microcosmo delle abilità acquisite"
+    },
+    "items": []
   },
   {
     "id": "capacita",
@@ -46,156 +51,26 @@ export const GENERATED_ATLAS: AtlasSection[] = [
     "glyph": "C",
     "eyebrow": "Settore dell’universo",
     "title": "Capacità",
-    "period": "8 pianeti",
+    "period": "0 pianeti",
     "description": "Tecnologie, metodo e capacità che porto nel lavoro quotidiano.",
-    "tags": [
-      "Profilo",
-      "Angular",
-      "NestJS",
-      "GCP"
-    ],
+    "tags": [],
     "route": "/universo/capacita",
-    "routeLabel": "Entra in Capacità",
+    "routeLabel": "Microcosmo delle capacità professionali",
     "slug": "capacita",
     "folderName": "Capacità",
-    "items": [
-      {
-        "id": "profile",
-        "order": 10,
-        "shortLabel": "Profilo",
-        "glyph": "P",
-        "eyebrow": "Nucleo personale",
-        "title": "Capire prima di costruire",
-        "period": "Il punto di partenza",
-        "description": "Sviluppo prodotti mettendo insieme codice, contesto e obiettivi. Cerco il perché dietro ogni richiesta e trasformo la complessità in un percorso leggibile.",
-        "tags": [
-          "Problem solving",
-          "Architettura",
-          "Curiosità"
-        ],
-        "route": "/story",
-        "routeLabel": "Leggi la mia storia"
-      },
-      {
-        "id": "angular",
-        "order": 20,
-        "shortLabel": "Angular",
-        "glyph": "A",
-        "eyebrow": "Frontend",
-        "title": "Interfacce che spiegano il prodotto",
-        "period": "Esperienza recente",
-        "description": "Componenti riutilizzabili, routing e attenzione ai dettagli per costruire esperienze solide, accessibili e facili da far evolvere.",
-        "tags": [
-          "Angular 21",
-          "TypeScript",
-          "UX"
-        ],
-        "route": "/works",
-        "routeLabel": "Vedi i progetti"
-      },
-      {
-        "id": "nestjs",
-        "order": 30,
-        "shortLabel": "NestJS",
-        "glyph": "N",
-        "eyebrow": "Backend",
-        "title": "Servizi con confini chiari",
-        "period": "API e integrazioni",
-        "description": "Uso NestJS per modellare servizi leggibili, isolare le responsabilità e integrare sistemi esterni senza nascondere la complessità sotto il tappeto.",
-        "tags": [
-          "NestJS",
-          "Node.js",
-          "API"
-        ],
-        "route": "/works",
-        "routeLabel": "Esplora i lavori"
-      },
-      {
-        "id": "gcp",
-        "order": 40,
-        "shortLabel": "GCP",
-        "glyph": "G",
-        "eyebrow": "Cloud",
-        "title": "Infrastruttura al servizio dei dati",
-        "period": "Google Cloud",
-        "description": "Progetto flussi su servizi gestiti scegliendo l’infrastruttura necessaria, osservabile e proporzionata al problema reale.",
-        "tags": [
-          "GCP",
-          "BigQuery",
-          "Dataflow"
-        ],
-        "route": "/works",
-        "routeLabel": "Apri i progetti cloud"
-      },
-      {
-        "id": "pipeline",
-        "order": 50,
-        "shortLabel": "Pipeline",
-        "glyph": "D",
-        "eyebrow": "Data engineering",
-        "title": "Da MongoDB a BigQuery",
-        "period": "Dataflow · Apache Beam · 2024",
-        "description": "Una pipeline dati con logging dedicato e orchestrazione progressivamente semplificata: meno parti mobili, più controllo sul flusso.",
-        "tags": [
-          "MongoDB",
-          "Apache Beam",
-          "BigQuery"
-        ],
-        "route": "/works",
-        "routeLabel": "Leggi il progetto"
-      },
-      {
-        "id": "bitcoin",
-        "order": 60,
-        "shortLabel": "Bitcoin",
-        "glyph": "₿",
-        "eyebrow": "Progetto personale",
-        "title": "Trading vicino al full node",
-        "period": "NestJS · Raspberry Pi 5",
-        "description": "Un bot che riceve segnali da TradingView, dialoga con un nodo Bitcoin locale e coordina operazioni con latenza ridotta.",
-        "tags": [
-          "Bitcoin",
-          "TradingView",
-          "Raspberry Pi"
-        ],
-        "route": "/works",
-        "routeLabel": "Scopri il progetto"
-      },
-      {
-        "id": "method",
-        "order": 70,
-        "shortLabel": "Metodo",
-        "glyph": "M",
-        "eyebrow": "Come lavoro",
-        "title": "Iterare, misurare, semplificare",
-        "period": "Processo continuo",
-        "description": "Preferisco cicli brevi e feedback reali al grande rilascio finale. Il modello Time & Material rende visibili le decisioni mentre il prodotto prende forma.",
-        "tags": [
-          "Iterazione",
-          "T&M",
-          "Semplicità"
-        ],
-        "route": "/story",
-        "routeLabel": "Approfondisci il metodo"
-      },
-      {
-        "id": "portfolio",
-        "order": 80,
-        "shortLabel": "Portfolio",
-        "glyph": "✦",
-        "eyebrow": "Laboratorio",
-        "title": "Questo sito è parte del lavoro",
-        "period": "Angular 21 · GitHub Pages",
-        "description": "Non una vetrina statica, ma un esperimento navigabile: il portfolio diventa una mappa di connessioni tra esperienze, tecnologie e modo di pensare.",
-        "tags": [
-          "Interaction",
-          "Design system",
-          "GitHub Pages"
-        ],
-        "route": "/works",
-        "routeLabel": "Vedi tutti i lavori"
-      }
-    ]
+    "head": {
+      "id": 3,
+      "name": "capacita",
+      "label": "Capabilities Page",
+      "headTitle": "Microcosmo delle capacità professionali",
+      "headDescriptionRow1": "Qui trovi le mie",
+      "headDescriptionRow2": "Capacità professionali",
+      "sideTitle": "Tecnologie, metodo e capacità che porto nel lavoro quotidiano.",
+      "sideDescription": "Ogni pianeta approfondisce una capacità. Selezionane uno per esplorare strumenti, approccio e applicazioni.",
+      "route": "/universo/capacita",
+      "routeLabel": "Microcosmo delle capacità professionali"
+    },
+    "items": []
   },
   {
     "id": "lavori",
@@ -207,29 +82,43 @@ export const GENERATED_ATLAS: AtlasSection[] = [
     "period": "1 pianeta",
     "description": "Esperienze professionali, risultati e contesti in cui ho lavorato.",
     "tags": [
-      "Profilo"
+      "CDP"
     ],
     "route": "/universo/lavori",
-    "routeLabel": "Entra in Lavori",
+    "routeLabel": "Microcosmo delle esperienze lavorative",
     "slug": "lavori",
     "folderName": "Lavori",
+    "head": {
+      "id": 1,
+      "name": "lavori",
+      "label": "Works Page",
+      "headTitle": "Microcosmo delle esperienze lavorative",
+      "headDescriptionRow1": "Qui trovi le mie",
+      "headDescriptionRow2": "Esperienze lavorative",
+      "sideTitle": "Esperienze professionali, risultati e contesti in cui ho lavorato.",
+      "sideDescription": "Ogni pianeta racconta un'esperienza. Selezionane uno per conoscere ruolo, percorso e risultati raggiunti.",
+      "route": "/universo/lavori",
+      "routeLabel": "Microcosmo delle esperienze lavorative"
+    },
     "items": [
       {
-        "id": "profile",
-        "order": 10,
-        "shortLabel": "Profilo",
-        "glyph": "P",
-        "eyebrow": "Nucleo personale",
-        "title": "Capire prima di costruire",
-        "period": "Il punto di partenza",
-        "description": "Sviluppo prodotti mettendo insieme codice, contesto e obiettivi. Cerco il perché dietro ogni richiesta e trasformo la complessità in un percorso leggibile.",
+        "id": "01",
+        "order": 1,
+        "shortLabel": "CDP",
+        "glyph": "C",
+        "eyebrow": "Customer Data Plaform",
+        "title": "Sviluppo da zero di una Data Platform",
+        "period": "Soddisfazione del cliente",
+        "description": "Sviluppo prodotti mettendo insieme codice, contesto e obiettivi.\nCerco il perché dietro ogni richiesta e trasformo la complessità in un percorso leggibile.",
         "tags": [
+          "Progetto Lavorativo",
+          "Gestione del cleinte",
           "Problem solving",
           "Architettura",
-          "Curiosità"
+          "Data Platform",
+          "Riservatezza dei dati"
         ],
-        "route": "/story",
-        "routeLabel": "Leggi la mia storia"
+        "link": ""
       }
     ]
   },
@@ -241,31 +130,43 @@ export const GENERATED_ATLAS: AtlasSection[] = [
     "eyebrow": "Settore dell’universo",
     "title": "Progetti",
     "period": "1 pianeta",
-    "description": "Prodotti, esperimenti e idee trasformate in qualcosa di concreto.",
+    "description": "La raccolta di tutti i progetti pubblici e privati realizzati nel tempo fino ad ora.",
     "tags": [
-      "Profilo"
+      "Portfolio Planet"
     ],
     "route": "/universo/progetti",
-    "routeLabel": "Entra in Progetti",
+    "routeLabel": "Microcosmo dei progetti lavorativi GitHub personali",
     "slug": "progetti",
     "folderName": "Progetti",
+    "head": {
+      "id": 2,
+      "name": "progetti",
+      "label": "Projects Page",
+      "headTitle": "Microcosmo dei progetti lavorativi GitHub personali",
+      "headDescriptionRow1": "Qui trovi i miei",
+      "headDescriptionRow2": "Progetti personali GitHub",
+      "sideTitle": "La raccolta di tutti i progetti pubblici e privati realizzati nel tempo fino ad ora.",
+      "sideDescription": "Ogni pianeta è una sezione. Selezionane uno per maggiori dettagli sul suo micro cosmo.",
+      "route": "/universo/progetti",
+      "routeLabel": "Microcosmo dei progetti lavorativi GitHub personali"
+    },
     "items": [
       {
-        "id": "profile",
-        "order": 10,
-        "shortLabel": "Profilo",
+        "id": "01",
+        "order": 1,
+        "shortLabel": "Portfolio Planet",
         "glyph": "P",
-        "eyebrow": "Nucleo personale",
-        "title": "Capire prima di costruire",
+        "eyebrow": "portfolio",
+        "title": "Il pilastro portante del Portfolio",
         "period": "Il punto di partenza",
-        "description": "Sviluppo prodotti mettendo insieme codice, contesto e obiettivi. Cerco il perché dietro ogni richiesta e trasformo la complessità in un percorso leggibile.",
+        "description": "Questo progetto è partito da un'idea di costruire un portfolio originale che rispecchia al meglio la mia personalità. Sono sempre stato affascinato dall'universo, dai pianeti e le stelle, questo progetto possiede esattamente tutti gli elementi che cercavo per una facciata su cosa sono capace di fare e cosa mi piace fare. Ho scelto di sviluppare tramite supporto di Codex questo progetto per velocizzare il flusso di lavoro nella creazione del sito. Lo stack scelto è un Frontend Angular 21 per il sito e webGL per le animazioni 3D dei pianeti. Ho scelto degli stack familiari per avere un maggiore controllo sul codice scritto dall'Intelligenza Artificiale. Per maggiori info sul utilizzo dell'intelligenza artificiale guardare la sezione Capacità.",
         "tags": [
-          "Problem solving",
+          "Progetto personale",
+          "AI",
           "Architettura",
           "Curiosità"
         ],
-        "route": "/story",
-        "routeLabel": "Leggi la mia storia"
+        "link": "https://github.com/IlMaxone/ilmaxone.github.io"
       }
     ]
   }

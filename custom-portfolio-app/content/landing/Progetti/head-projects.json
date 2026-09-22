@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "name": "progetti",
+  "label": "Projects Page",
+  "headTitle": "Microcosmo dei progetti lavorativi GitHub personali",
+  "headDescriptionRow1": "Qui trovi i miei",
+  "headDescriptionRow2": "Progetti personali GitHub",
+  "sideTitle": "La raccolta di tutti i progetti pubblici e privati realizzati nel tempo fino ad ora.",
+  "sideDescription": "Ogni pianeta è una sezione. Selezionane uno per maggiori dettagli sul suo micro cosmo.",
+  "route": "/universo/progetti",
+  "routeLabel": "Microcosmo dei progetti lavorativi GitHub personali"
+}

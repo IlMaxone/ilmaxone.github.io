@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "lavori",
+  "label": "Works Page",
+  "headTitle": "Microcosmo delle esperienze lavorative",
+  "headDescriptionRow1": "Qui trovi le mie",
+  "headDescriptionRow2": "Esperienze lavorative",
+  "sideTitle": "Esperienze professionali, risultati e contesti in cui ho lavorato.",
+  "sideDescription": "Ogni pianeta racconta un'esperienza. Selezionane uno per conoscere ruolo, percorso e risultati raggiunti.",
+  "route": "/universo/lavori",
+  "routeLabel": "Microcosmo delle esperienze lavorative"
+}

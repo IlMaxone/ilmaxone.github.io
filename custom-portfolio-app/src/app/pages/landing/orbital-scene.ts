@@ -34,6 +34,37 @@ interface OrbitBody {
   speed: number;
 }
 
+export interface OrbitShell {
+  maxRadius: number;
+  radius: number;
+  size: number;
+}
+
+const BASE_PLANET_RADIUS = 0.43;
+const PLANET_RADIUS_STEP = 0.055;
+const PLANET_RADIUS_VARIANTS = 4;
+const PLANET_ACTIVE_SCALE = 1.28;
+const PLANET_CLEARANCE = BASE_PLANET_RADIUS * 2;
+const SUN_CLEARANCE_RADIUS = 1.53;
+
+export function createOrbitShells(count: number): OrbitShell[] {
+  const shells: OrbitShell[] = [];
+  for (let index = 0; index < count; index += 1) {
+    const size = BASE_PLANET_RADIUS + (index % PLANET_RADIUS_VARIANTS) * PLANET_RADIUS_STEP;
+    const maxRadius = size * PLANET_ACTIVE_SCALE;
+    const previous = shells[index - 1];
+    const radius = previous
+      ? previous.radius + previous.maxRadius + maxRadius + PLANET_CLEARANCE
+      : SUN_CLEARANCE_RADIUS + maxRadius + PLANET_CLEARANCE;
+    shells.push({ maxRadius, radius, size });
+  }
+  return shells;
+}
+
+export function isPlanetExpanded(bodyIndex: number, hoveredIndex: number | null): boolean {
+  return bodyIndex === hoveredIndex;
+}
+
 @Component({
   selector: 'app-orbital-scene',
   standalone: true,
@@ -75,9 +106,11 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
     y: number;
     yaw: number;
   } | null = null;
+  private defaultDistance = 13.8;
   private glow?: THREE.Sprite;
   private hoveredIndex: number | null = null;
   private labelNodes: HTMLButtonElement[] = [];
+  private maxCameraDistance = 20;
   private raycaster = new THREE.Raycaster();
   private renderer?: THREE.WebGLRenderer;
   private resizeObserver?: ResizeObserver;
@@ -99,6 +132,12 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
     if (changes['paletteId'] && !changes['paletteId'].firstChange && this.sun) {
       this.updateScenePalette();
     }
+    if (changes['experiences'] && !changes['experiences'].firstChange && this.world) {
+      this.disposeOrbitBodies();
+      this.createOrbitBodies(this.world);
+      this.updateCameraLimits();
+      this.changeDetector.markForCheck();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -119,6 +158,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
 
     try {
       this.createScene();
+      this.changeDetector.markForCheck();
       this.zone.runOutsideAngular(() => this.animate());
     } catch {
       this.fallbackVisible = true;
@@ -131,11 +171,8 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
       cancelAnimationFrame(this.animationFrame);
     }
     this.resizeObserver?.disconnect();
+    this.disposeOrbitBodies();
     this.textures.forEach((texture) => texture.dispose());
-    this.bodies.forEach(({ planet, ring }) => {
-      planet.material.dispose();
-      ring.geometry.dispose();
-    });
     this.renderer?.dispose();
   }
 
@@ -151,7 +188,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
   resetView(): void {
     this.yaw = -0.48;
     this.pitch = 0.28;
-    this.distance = 13.8;
+    this.distance = this.defaultDistance;
     this.updateCamera();
   }
 
@@ -161,7 +198,11 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
 
   onWheel(event: WheelEvent): void {
     event.preventDefault();
-    this.distance = THREE.MathUtils.clamp(this.distance + event.deltaY * 0.012, 8, 20);
+    this.distance = THREE.MathUtils.clamp(
+      this.distance + event.deltaY * 0.012,
+      8,
+      this.maxCameraDistance,
+    );
     this.updateCamera();
   }
 
@@ -186,7 +227,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
       this.updateCamera();
     } else if (event.key === '-') {
       event.preventDefault();
-      this.distance = Math.min(20, this.distance + 0.8);
+      this.distance = Math.min(this.maxCameraDistance, this.distance + 0.8);
       this.updateCamera();
     } else if (event.key === 'Home') {
       event.preventDefault();
@@ -294,7 +335,7 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
     this.createSun(world);
     this.createOrbitBodies(world);
     this.createStarfield(scene);
-    this.updateCamera();
+    this.updateCameraLimits();
 
     const resize = () => {
       const width = Math.max(1, viewport.clientWidth);
@@ -355,16 +396,18 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
     const palette = this.palette;
     const sphereGeometry = new THREE.SphereGeometry(1, 56, 40);
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+    const shells = createOrbitShells(this.experiences.length);
 
     this.bodies = this.experiences.map((experience, index) => {
-      const radius = 2.55 + index * 0.52;
-      const size = 0.43 + (index % 4) * 0.055;
+      const { radius, size } = shells[index];
       const speed = (0.19 + (index % 3) * 0.055) * (index % 2 === 0 ? 1 : -1);
       const tilt = index * goldenAngle;
+      const ascendingNode = (index * goldenAngle) % (Math.PI * 2);
+      const inclination = 0.3 + ((index * 0.37) % 1.08);
       const rotation = new THREE.Euler(
-        0.28 + ((index * 0.31) % 1.08),
-        -0.52 + ((index * 0.47) % 1.12),
-        -0.42 + ((index * 0.23) % 0.84),
+        inclination,
+        ascendingNode,
+        (index % 2 === 0 ? 1 : -1) * (0.18 + ((index * 0.19) % 0.46)),
       );
       const group = new THREE.Group();
       group.rotation.copy(rotation);
@@ -422,6 +465,43 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
         speed,
       };
     });
+  }
+
+  private disposeOrbitBodies(): void {
+    const planetTextures = new Set<THREE.Texture>();
+    const geometries = new Set<THREE.BufferGeometry>();
+
+    this.bodies.forEach(({ group, planet, ring }) => {
+      this.world?.remove(group);
+      geometries.add(planet.geometry);
+      geometries.add(ring.geometry);
+      if (planet.material.map) {
+        planetTextures.add(planet.material.map);
+      }
+      if (planet.material.bumpMap) {
+        planetTextures.add(planet.material.bumpMap);
+      }
+      planet.material.dispose();
+      if (Array.isArray(ring.material)) {
+        ring.material.forEach(material => material.dispose());
+      } else {
+        ring.material.dispose();
+      }
+    });
+
+    geometries.forEach(geometry => geometry.dispose());
+    planetTextures.forEach(texture => texture.dispose());
+    this.textures = this.textures.filter(texture => !planetTextures.has(texture));
+    this.bodies = [];
+  }
+
+  private updateCameraLimits(): void {
+    const outerBody = this.bodies.at(-1);
+    const outerEdge = outerBody ? outerBody.radius + outerBody.size * PLANET_ACTIVE_SCALE : 0;
+    this.defaultDistance = 13.8 + Math.max(0, this.bodies.length - 4) * 1.2;
+    this.maxCameraDistance = Math.max(20, outerEdge * 2.5);
+    this.distance = this.defaultDistance;
+    this.updateCamera();
   }
 
   private createStarfield(scene: THREE.Scene): void {
@@ -794,8 +874,8 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
           0,
           Math.sin(body.angle) * body.radius,
         );
-        const active = body.index === this.hoveredIndex || body.index === this.selectedIndex;
-        const targetScale = body.size * (active ? 1.28 : 1);
+        const active = isPlanetExpanded(body.index, this.hoveredIndex);
+        const targetScale = body.size * (active ? PLANET_ACTIVE_SCALE : 1);
         body.planet.scale.lerp(
           new THREE.Vector3(targetScale, targetScale, targetScale),
           reducedMotion ? 1 : 0.14,
@@ -918,8 +998,8 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
         !occludedByPlanet;
       const diameter = Math.max(44, radiusPixels * 2);
       const textLength = this.experiences[index]?.shortLabel.length ?? 0;
-      const fontFactor = textLength > 18 ? 0.2 : textLength > 11 ? 0.23 : 0.27;
-      const fontSize = THREE.MathUtils.clamp(radiusPixels * fontFactor, 8, 14);
+      const fontFactor = textLength > 18 ? 0.15 : textLength > 11 ? 0.18 : 0.24;
+      const fontSize = THREE.MathUtils.clamp(radiusPixels * fontFactor, 6, 14);
 
       label.style.left = `${x}px`;
       label.style.top = `${y}px`;

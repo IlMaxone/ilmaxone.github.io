@@ -1,0 +1,12 @@
+{
+  "id": 0,
+  "name": "landing",
+  "label": "Landing Page",
+  "headTitle": "Portfolio Orbitale · WebGL",
+  "headDescriptionRow1": "Benvenuto nel mio",
+  "headDescriptionRow2": "Universo Lavorativo",
+  "sideTitle": "La raccolta definitiva delle abilità professionali e non.",
+  "sideDescription": "Ogni pianeta è una sezione. Selezionane uno per entrare nella sua costellazione.",
+  "route": "/",
+  "routeLabel": "Benvenuto nel mio Universo Lavorativo"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "01",
+  "name": "Nome completo del pianeta",
+  "label": "Etichetta breve",
+  "period": "Periodo o tecnologie principali",
+  "title": "Titolo completo dell’esperienza",
+  "description": "Descrizione sintetica dell’esperienza e del suo valore.",
+  "tags": ["Tag uno", "Tag due", "Tag tre"],
+  "link": ""
+}

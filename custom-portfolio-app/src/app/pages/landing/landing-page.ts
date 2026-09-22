@@ -6,16 +6,21 @@ import {
   OnDestroy,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import type { AtlasSection, ExperienceContent } from '../../content/experience.model';
-import { GENERATED_ATLAS } from '../../generated/atlas.generated';
+import { ActivatedRoute, Router } from '@angular/router';
+import type { Subscription } from 'rxjs';
+import type {
+  AtlasSection,
+  ExperienceContent,
+  PageHeadContent,
+} from '../../content/experience.model';
+import { GENERATED_ATLAS, GENERATED_LANDING_HEAD } from '../../generated/atlas.generated';
 import { PaletteService } from '../../theme/palette';
 import { OrbitalSceneComponent } from './orbital-scene';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [RouterLink, OrbitalSceneComponent],
+  imports: [OrbitalSceneComponent],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',
 })
@@ -23,15 +28,17 @@ export class HomePageComponent implements OnDestroy {
   @ViewChild('modalClose') private modalClose?: ElementRef<HTMLButtonElement>;
 
   readonly atlas = GENERATED_ATLAS;
-  readonly section: AtlasSection | undefined;
-  readonly experiences: ExperienceContent[];
+  section: AtlasSection | undefined;
+  experiences: ExperienceContent[] = this.atlas;
+  pageHead: PageHeadContent = GENERATED_LANDING_HEAD;
   detailOpen = false;
   manualPaused = false;
   resumeSeconds = 0;
   selectedIndex = 0;
   private previouslyFocused?: HTMLElement;
   private resumeTimers: ReturnType<typeof setTimeout>[] = [];
-  private wasPausedBeforeDetail = false;
+  private readonly routeSubscription: Subscription;
+  private wasManuallyPausedBeforeDetail = false;
 
   constructor(
     route: ActivatedRoute,
@@ -39,13 +46,9 @@ export class HomePageComponent implements OnDestroy {
     private readonly changeDetector: ChangeDetectorRef,
     readonly paletteService: PaletteService,
   ) {
-    const slug = route.snapshot.paramMap.get('section');
-    this.section = slug ? this.atlas.find(section => section.slug === slug) : undefined;
-    this.experiences = slug ? (this.section?.items ?? []) : this.atlas;
-
-    if (slug && !this.section) {
-      void this.router.navigateByUrl('/');
-    }
+    this.routeSubscription = route.paramMap.subscribe(params => {
+      this.loadSection(params.get('section'));
+    });
   }
 
   get isLanding(): boolean {
@@ -75,6 +78,7 @@ export class HomePageComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.cancelResume();
+    this.routeSubscription.unsubscribe();
   }
 
   @HostListener('document:keydown.escape')
@@ -97,7 +101,7 @@ export class HomePageComponent implements OnDestroy {
   }
 
   openDetail(): void {
-    this.wasPausedBeforeDetail = this.motionPaused;
+    this.wasManuallyPausedBeforeDetail = this.manualPaused;
     this.cancelResume();
     this.detailOpen = true;
     this.resumeSeconds = 0;
@@ -116,7 +120,7 @@ export class HomePageComponent implements OnDestroy {
     const previous = this.previouslyFocused;
     this.resumeTimers.push(setTimeout(() => previous?.focus()));
 
-    if (this.wasPausedBeforeDetail) {
+    if (this.wasManuallyPausedBeforeDetail) {
       this.resumeSeconds = 0;
       return;
     }
@@ -160,8 +164,30 @@ export class HomePageComponent implements OnDestroy {
     return value.toString().padStart(2, '0');
   }
 
+  isExternalLink(link: string): boolean {
+    return /^https?:\/\//i.test(link);
+  }
+
   private normalizeIndex(index: number): number {
     return ((index % this.experiences.length) + this.experiences.length) % this.experiences.length;
+  }
+
+  private loadSection(slug: string | null): void {
+    const section = slug ? this.atlas.find(candidate => candidate.slug === slug) : undefined;
+
+    this.cancelResume();
+    this.detailOpen = false;
+    this.resumeSeconds = 0;
+    this.selectedIndex = 0;
+    this.previouslyFocused = undefined;
+    this.section = section;
+    this.experiences = slug ? (section?.items ?? []) : this.atlas;
+    this.pageHead = section?.head ?? GENERATED_LANDING_HEAD;
+    this.changeDetector.markForCheck();
+
+    if (slug && !section) {
+      void this.router.navigateByUrl('/');
+    }
   }
 
   private cancelResume(): void {

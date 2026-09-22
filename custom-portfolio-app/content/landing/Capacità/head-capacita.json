@@ -1,0 +1,12 @@
+{
+  "id": 3,
+  "name": "capacita",
+  "label": "Capabilities Page",
+  "headTitle": "Microcosmo delle capacità professionali",
+  "headDescriptionRow1": "Qui trovi le mie",
+  "headDescriptionRow2": "Capacità professionali",
+  "sideTitle": "Tecnologie, metodo e capacità che porto nel lavoro quotidiano.",
+  "sideDescription": "Ogni pianeta approfondisce una capacità. Selezionane uno per esplorare strumenti, approccio e applicazioni.",
+  "route": "/universo/capacita",
+  "routeLabel": "Microcosmo delle capacità professionali"
+}

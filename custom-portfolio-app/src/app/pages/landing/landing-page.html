@@ -1,23 +1,9 @@
 <section class="atlas-page" [class.atlas-page--landing]="isLanding">
   <header class="atlas-hero">
-    @if (isLanding) {
-      <p class="eyebrow"><span></span> Portfolio orbitale · WebGL</p>
-      <h1>Benvenuto nel mio <em>Universo Lavorativo.</em></h1>
-      <p class="atlas-hero__intro">
-        La raccolta definitiva delle abilità professionali e non.
-      </p>
-      <p class="atlas-hero__guide">
-        Ogni pianeta è una sezione. Selezionane uno per entrare nella sua costellazione.
-      </p>
-    } @else {
-      <a class="atlas-hero__back" routerLink="/">← Torna alla landing</a>
-      <p class="eyebrow"><span></span> Settore {{ section?.period }}</p>
-      <h1>{{ section?.title }}</h1>
-      <p class="atlas-hero__intro">{{ section?.description }}</p>
-      <p class="atlas-hero__guide">
-        I pianeti di questa pagina corrispondono ai JSON nella cartella “{{ section?.folderName }}”.
-      </p>
-    }
+    <p class="eyebrow"><span></span> {{ pageHead.headTitle }}</p>
+    <h1>{{ pageHead.headDescriptionRow1 }} <em>{{ pageHead.headDescriptionRow2 }}</em></h1>
+    <p class="atlas-hero__intro">{{ pageHead.sideTitle }}</p>
+    <p class="atlas-hero__guide">{{ pageHead.sideDescription }}</p>
   </header>
 
   @if (experiences.length > 0) {
@@ -67,10 +53,17 @@
               }
             </ul>
 
-            <a class="experience-detail__link" [routerLink]="selected.route">
-              {{ selected.routeLabel }}
-              <span aria-hidden="true">↗</span>
-            </a>
+            @if (selected.link) {
+              <a
+                class="experience-detail__link"
+                [href]="selected.link"
+                [attr.target]="isExternalLink(selected.link) ? '_blank' : null"
+                [attr.rel]="isExternalLink(selected.link) ? 'noopener noreferrer' : null"
+              >
+                Apri il collegamento
+                <span aria-hidden="true">↗</span>
+              </a>
+            }
 
             <div class="experience-detail__navigation">
               <button type="button" (click)="previousExperience()" aria-label="Pianeta precedente">←</button>

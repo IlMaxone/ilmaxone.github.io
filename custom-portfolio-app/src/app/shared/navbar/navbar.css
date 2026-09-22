@@ -203,7 +203,7 @@
 
 .universe-nav__link {
   display: grid;
-  grid-template-columns: 1.7rem minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   min-height: 2.75rem;
   padding: 0.65rem 0.72rem;
   align-items: center;
@@ -238,28 +238,12 @@
   content: '';
 }
 
-.universe-nav__index {
-  color: var(--accent);
-  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.57rem;
-}
-
-.universe-nav__link > span:nth-child(2) {
+.universe-nav__link > span {
   overflow: hidden;
   font-size: 0.73rem;
   font-weight: 650;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.universe-nav__link small {
-  display: grid;
-  min-width: 1.35rem;
-  height: 1.35rem;
-  place-items: center;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--secondary) 14%, transparent);
-  font-size: 0.58rem;
 }
 
 .sidebar__footer {
@@ -338,8 +322,7 @@
     flex: 0 0 auto;
   }
 
-  .universe-nav__link.active::before,
-  .universe-nav__link small {
+  .universe-nav__link.active::before {
     display: none;
   }
 }

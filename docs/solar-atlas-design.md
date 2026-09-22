@@ -10,14 +10,16 @@
 
 ## Navigazione gerarchica
 
-La landing è la mappa dell’universo. Ogni cartella in `content/landing/` produce un pianeta; premendo il pianeta si apre la pagina della sezione corrispondente. Dentro quella pagina, ogni JSON della cartella produce un nuovo pianeta selezionabile con titolo, descrizione, tag e collegamento di approfondimento.
+La landing è la mappa dell’universo. Ogni cartella in `content/landing/` produce un pianeta; premendo il pianeta si apre la pagina della sezione corrispondente. Dentro quella pagina, ogni JSON con prefisso numerico produce un nuovo pianeta selezionabile con titolo, descrizione, tag e collegamento di approfondimento. I file `head-*` guidano la testata della pagina e quelli con `-` iniziale vengono ignorati.
+
+Ogni pianeta parte alla propria dimensione base, incluso il primo con indice `0`, e si espande soltanto durante hover o focus. Nelle pagine interne, la chiusura del popup avvia sempre un nuovo countdown completo di due secondi; se il popup viene riaperto prima della fine, i timer precedenti vengono annullati. La pausa manuale resta l’unica condizione che impedisce il countdown alla chiusura.
 
 Il menu laterale rende sempre visibili:
 
 1. selettore della palette;
 2. collegamento alla Landing;
 3. una voce per ogni cartella generata;
-4. numero di JSON presenti nella sezione.
+4. numero di JSON-pianeta attivi presenti nella sezione.
 
 Su schermi piccoli palette e navigazione diventano due righe orizzontali controllate da frecce. Il trascinamento laterale è disabilitato per evitare conflitti con lo scorrimento della pagina e con la scena WebGL.
 
@@ -48,6 +50,12 @@ Con **Ametista solare** vengono quindi mantenuti il fondo `#12091b` e i colori p
 L'immagine è stata fornita dall'utente come riferimento della direzione grafica. La resa finale non la usa come texture: viene generata proceduralmente nel canvas WebGL, così può essere ricolorata automaticamente per tutte le palette e avvolta sulle sfere a 360°.
 
 I pianeti usano una scala maggiore rispetto alla prima versione. Il nome è proiettato sul centro della sfera in giallo caldo, va a capo e si ridimensiona in base al diametro visibile; non sono presenti numero progressivo, bordo o pannello di sfondo. Il pianeta stesso resta quindi lo sfondo dell'etichetta. Ombra scura e alone molto contenuto mantengono il testo leggibile sulle zone chiare e su quelle in ombra.
+
+### Distanza di sicurezza delle orbite
+
+Ogni pianeta occupa una shell sferica concentrica distinta. Tra due shell adiacenti la distanza radiale è calcolata come somma dei raggi massimi dei pianeti, includendo l'ingrandimento da selezione, più il diametro completo di un pianeta base. Rimane quindi sempre almeno “un pianeta vuoto” tra le due superfici, qualunque siano inclinazione, fase e direzione delle orbite.
+
+Gli assi orbitali vengono distribuiti usando l'angolo aureo, un nodo ascendente distinto e inclinazioni alternate. L'apertura iniziale della camera, il reset e il limite massimo dello zoom si adattano al numero di contenuti, così l'aumento delle distanze non blocca l'esplorazione delle shell più esterne.
 
 Interazioni disponibili:
 

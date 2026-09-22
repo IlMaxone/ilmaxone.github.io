@@ -81,16 +81,17 @@
 }
 
 .orbit-label strong {
-  width: 78%;
-  max-width: 78%;
+  width: 88%;
+  max-width: 88%;
   font-size: inherit;
   font-weight: 650;
   letter-spacing: 0.015em;
   line-height: 1.04;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   text-wrap: balance;
   text-transform: uppercase;
   white-space: normal;
+  word-break: normal;
 }
 
 .orbit-label--hovered,

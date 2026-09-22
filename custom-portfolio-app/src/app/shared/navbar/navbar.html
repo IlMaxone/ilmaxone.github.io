@@ -85,19 +85,16 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
         >
-          <span class="universe-nav__index">00</span>
           <span>Landing</span>
         </a>
 
-        @for (section of sections; track section.slug; let index = $index) {
+        @for (section of sections; track section.slug) {
           <a
             class="universe-nav__link"
             [routerLink]="section.route"
             routerLinkActive="active"
           >
-            <span class="universe-nav__index">{{ (index + 1).toString().padStart(2, '0') }}</span>
             <span>{{ section.folderName }}</span>
-            <small>{{ section.items.length }}</small>
           </a>
         }
       </div>

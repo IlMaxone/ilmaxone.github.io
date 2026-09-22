@@ -48,6 +48,15 @@ describe('Navbar', () => {
     expect(comet?.getAttribute('aria-label')).toContain('landing');
   });
 
+  it('shows navigation labels without numeric prefixes', () => {
+    const root = fixture.nativeElement as HTMLElement;
+    const links = Array.from(root.querySelectorAll<HTMLElement>('.universe-nav__link'));
+
+    expect(root.querySelector('.universe-nav__index')).toBeNull();
+    expect(root.querySelector('.universe-nav__link')?.textContent?.trim()).toBe('Landing');
+    expect(links.every(link => !/\d/.test(link.textContent ?? ''))).toBe(true);
+  });
+
   it('hides the directional arrow at each end of a mobile menu', () => {
     const palette = fixture.nativeElement.querySelector('.palette-list') as HTMLElement;
     Object.defineProperty(palette, 'clientWidth', { configurable: true, value: 200 });
