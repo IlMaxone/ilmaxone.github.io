@@ -1,0 +1,12 @@
+{
+  "id": 4,
+  "name": "abilita-acquisite",
+  "label": "Pagina Abilità Acquisite",
+  "headTitle": "Microcosmo delle abilità acquisite",
+  "headDescriptionRow1": "Qui trovi le mie",
+  "headDescriptionRow2": "Abilità acquisite",
+  "sideTitle": "Competenze maturate nel tempo, tra pratica, studio e curiosità.",
+  "sideDescription": "Ogni pianeta racconta un'abilità acquisita. Selezionane uno per scoprire come si è sviluppata e dove la applico.",
+  "route": "/universo/abilita-acquisite",
+  "routeLabel": "Microcosmo delle abilità acquisite"
+}

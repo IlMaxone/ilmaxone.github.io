@@ -1,0 +1,50 @@
+{
+  "id": "customer-data-platform",
+  "path": "/approfondimenti/customer-data-platform",
+  "eyebrow": "Competenza lavorativa · Customer Data Platform",
+  "title": "Dal dato grezzo a una visione affidabile del cliente",
+  "lead": "Un approfondimento sul metodo, sulle decisioni e sulle competenze necessarie per progettare una piattaforma dati partendo da obiettivi concreti.",
+  "paragraphs": [
+    {
+      "text": "Una Customer Data Platform mette in relazione informazioni provenienti da sistemi differenti per costruire una lettura coerente del cliente. Il valore non nasce dalla semplice raccolta dei dati, ma dalla capacità di renderli comprensibili, verificabili e realmente utilizzabili.",
+      "image": {
+        "file": "Rack 4.webp",
+        "alt": "Rack di infrastruttura dati utilizzato come riferimento visivo per la piattaforma",
+        "position": "right",
+        "caption": "Infrastruttura, flussi e affidabilità: il livello fisico dietro il dato."
+      }
+    },
+    "Il lavoro richiede di tenere insieme architettura, qualità, sicurezza e confronto continuo con chi utilizzerà il prodotto. Ogni decisione tecnica deve quindi essere collegata a un bisogno leggibile e a un risultato misurabile."
+  ],
+  "sections": [
+    {
+      "title": "Comprendere il contesto",
+      "paragraphs": [
+        "La prima fase consiste nel ricostruire fonti, processi e responsabilità. Prima di scegliere strumenti o tecnologie è necessario capire quali informazioni esistono, chi le produce e quali problemi devono risolvere.",
+        "Questo passaggio trasforma richieste inizialmente generiche in requisiti verificabili e permette di distinguere ciò che è essenziale da ciò che può essere introdotto in una fase successiva."
+      ]
+    },
+    {
+      "title": "Progettare il flusso dei dati",
+      "paragraphs": [
+        "L'architettura deve accompagnare il dato dalla sorgente alla sua destinazione mantenendo tracciabilità, significato e possibilità di controllo. Ingestione, trasformazione e consultazione diventano parti di un unico percorso osservabile.",
+        "La modularità aiuta a evolvere il sistema senza ricostruirlo ogni volta. Componenti con responsabilità chiare rendono più semplice aggiungere nuove fonti, correggere anomalie e adattarsi a necessità future."
+      ]
+    },
+    {
+      "title": "Qualità, sicurezza e riservatezza",
+      "paragraphs": [
+        "Una piattaforma dati deve rendere evidenti errori, duplicazioni e informazioni incomplete. Controlli automatici, log e metriche permettono di individuare rapidamente i problemi e di comprenderne l'origine.",
+        "La gestione degli accessi e la protezione delle informazioni personali vengono considerate fin dalla progettazione. La riservatezza non è un'aggiunta finale, ma una proprietà strutturale dell'intero flusso."
+      ]
+    },
+    {
+      "title": "Dal problema al risultato",
+      "paragraphs": [
+        "Il confronto con il cliente accompagna tutte le fasi: chiarisce le priorità, riduce le interpretazioni errate e rende visibile l'avanzamento. Le scelte vengono spiegate in termini di benefici, limiti e costi di manutenzione.",
+        "Il risultato atteso è una base affidabile che renda più semplice osservare i dati, prendere decisioni e costruire servizi successivi senza perdere il controllo della complessità."
+      ]
+    }
+  ],
+  "tags": ["Data Platform", "Architettura", "Qualità del dato", "Privacy", "Gestione del cliente", "Problem solving"]
+}

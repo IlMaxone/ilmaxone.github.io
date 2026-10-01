@@ -6,7 +6,7 @@ import {
   OnDestroy,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import type { Subscription } from 'rxjs';
 import type {
   AtlasSection,
@@ -20,7 +20,7 @@ import { OrbitalSceneComponent } from './orbital-scene';
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [OrbitalSceneComponent],
+  imports: [OrbitalSceneComponent, RouterLink],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',
 })

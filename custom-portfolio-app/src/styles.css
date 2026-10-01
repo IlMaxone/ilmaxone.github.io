@@ -1,3 +1,10 @@
+:root {
+  --sidebar-width: 292px;
+  --content-max-width: 1480px;
+  --orbital-min-height: 690px;
+  --landing-orbital-min-height: min(720px, 72vh);
+}
+
 :root,
 :root[data-palette='amethyst'] {
   color-scheme: dark;
@@ -136,6 +143,16 @@ a:hover {
 
 main {
   min-height: 100vh;
+}
+
+@media (min-width: 2560px) and (min-height: 1300px) {
+  :root {
+    --sidebar-width: clamp(330px, 10vw, 390px);
+    --content-max-width: 2800px;
+    --orbital-min-height: clamp(920px, 62vh, 1320px);
+    --landing-orbital-min-height: clamp(920px, 62vh, 1320px);
+    font-size: clamp(18px, 0.5vw, 20px);
+  }
 }
 
 ::selection {

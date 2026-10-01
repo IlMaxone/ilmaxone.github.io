@@ -1,0 +1,49 @@
+{
+  "id": "identificatore-univoco",
+  "path": "/approfondimenti/percorso-univoco",
+  "eyebrow": "Categoria · Contesto",
+  "title": "Titolo completo dell'approfondimento",
+  "lead": "Una breve introduzione che anticipa il contenuto della pagina e invita a proseguire la lettura.",
+  "paragraphs": [
+    {
+      "text": "Primo testo introduttivo. La proprietà image è facoltativa: quando presente, testo e immagine occupano ciascuno metà della riga.",
+      "image": {
+        "file": "Rack 4.webp",
+        "alt": "Descrizione accessibile dell'immagine",
+        "position": "right",
+        "caption": "Didascalia facoltativa mostrata sotto l'immagine."
+      }
+    },
+    {
+      "text": "Secondo testo introduttivo con immagine a sinistra. Puoi usare qualsiasi nome file supportato presente in content/img.",
+      "image": {
+        "file": "Rack 4.webp",
+        "alt": "Secondo esempio di immagine affiancata al testo",
+        "position": "left"
+      }
+    }
+  ],
+  "sections": [
+    {
+      "title": "Titolo della prima sezione",
+      "paragraphs": [
+        {
+          "text": "Anche i paragrafi delle sezioni possono contenere un'immagine affiancata.",
+          "image": {
+            "file": "Rack 4.webp",
+            "alt": "Esempio di immagine all'interno di una sezione",
+            "position": "right"
+          }
+        },
+        "Secondo testo della sezione. Aggiungi o rimuovi elementi liberamente."
+      ]
+    },
+    {
+      "title": "Titolo della seconda sezione",
+      "paragraphs": [
+        "Ogni sezione deve avere un titolo e almeno un testo. Puoi duplicare questo blocco per creare una pagina più lunga."
+      ]
+    }
+  ],
+  "tags": ["Tema uno", "Tema due", "Tema tre"]
+}

@@ -498,8 +498,10 @@ export class OrbitalSceneComponent implements AfterViewInit, OnChanges, OnDestro
   private updateCameraLimits(): void {
     const outerBody = this.bodies.at(-1);
     const outerEdge = outerBody ? outerBody.radius + outerBody.size * PLANET_ACTIVE_SCALE : 0;
-    this.defaultDistance = 13.8 + Math.max(0, this.bodies.length - 4) * 1.2;
-    this.maxCameraDistance = Math.max(20, outerEdge * 2.5);
+    const baseDistance = 13.8 + Math.max(0, this.bodies.length - 4) * 1.2;
+    const mobileDistanceFactor = window.matchMedia('(max-width: 680px)').matches ? 1.45 : 1;
+    this.defaultDistance = baseDistance * mobileDistanceFactor;
+    this.maxCameraDistance = Math.max(this.defaultDistance + 6, 20, outerEdge * 2.5);
     this.distance = this.defaultDistance;
     this.updateCamera();
   }

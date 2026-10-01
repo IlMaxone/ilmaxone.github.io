@@ -1,14 +1,14 @@
 :host {
   display: block;
   height: 100%;
-  min-height: 690px;
+  min-height: 0;
 }
 
 .orbital-viewport {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 690px;
+  min-height: 0;
   overflow: hidden;
   cursor: grab;
   touch-action: none;
@@ -120,7 +120,7 @@
 }
 
 .scene-status {
-  top: 1.1rem;
+  top: var(--orbital-ui-top, 1.1rem);
   left: 1.15rem;
   display: flex;
   gap: 0.45rem;
@@ -164,7 +164,7 @@
 
 .scene-controls {
   right: 1.2rem;
-  bottom: 1rem;
+  bottom: var(--orbital-controls-bottom, 1rem);
   left: 1.2rem;
   display: flex;
   align-items: center;
@@ -349,7 +349,7 @@
 }
 
 .scene-hint {
-  top: 1.15rem;
+  top: var(--orbital-ui-top, 1.15rem);
   right: 1.2rem;
   display: flex;
   align-items: center;
@@ -385,19 +385,7 @@
   font-size: 0.82rem;
 }
 
-@media (max-width: 1080px) {
-  :host,
-  .orbital-viewport {
-    min-height: 680px;
-  }
-}
-
 @media (max-width: 680px) {
-  :host,
-  .orbital-viewport {
-    min-height: 560px;
-  }
-
   .scene-status span:nth-child(2),
   .scene-status span:nth-child(3),
   .scene-status span:nth-child(4) {

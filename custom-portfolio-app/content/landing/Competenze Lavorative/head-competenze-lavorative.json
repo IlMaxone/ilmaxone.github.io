@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "competenze-lavorative",
+  "label": "Pagina Competenze Lavorative",
+  "headTitle": "Microcosmo delle competenze lavorative",
+  "headDescriptionRow1": "Qui trovi le mie",
+  "headDescriptionRow2": "Competenze lavorative",
+  "sideTitle": "Competenze, responsabilità e risultati maturati nei contesti professionali.",
+  "sideDescription": "Ogni pianeta racconta una competenza sviluppata sul lavoro. Selezionane uno per esplorare approccio, responsabilità e risultati.",
+  "route": "/universo/competenze-lavorative",
+  "routeLabel": "Microcosmo delle competenze lavorative"
+}

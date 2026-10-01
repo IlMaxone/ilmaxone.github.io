@@ -1,0 +1,12 @@
+{
+  "id": 2,
+  "name": "progetti-personali",
+  "label": "Pagina Progetti Personali",
+  "headTitle": "Microcosmo dei progetti personali",
+  "headDescriptionRow1": "Esplora i miei",
+  "headDescriptionRow2": "Progetti personali",
+  "sideTitle": "Idee, esperimenti e prodotti personali trasformati in esperienze concrete.",
+  "sideDescription": "Ogni pianeta racconta un progetto personale. Selezionane uno per scoprirne obiettivi, scelte tecniche e percorso.",
+  "route": "/universo/progetti-personali",
+  "routeLabel": "Microcosmo dei progetti personali"
+}

@@ -9,7 +9,7 @@ describe('HomePageComponent planet detail', () => {
   let routeParams: BehaviorSubject<ReturnType<typeof convertToParamMap>>;
 
   beforeEach(async () => {
-    routeParams = new BehaviorSubject(convertToParamMap({ section: 'progetti' }));
+    routeParams = new BehaviorSubject(convertToParamMap({ section: 'progetti-personali' }));
     await TestBed.configureTestingModule({
       imports: [HomePageComponent],
       providers: [
@@ -33,20 +33,20 @@ describe('HomePageComponent planet detail', () => {
   it('renders the section header from its head JSON', () => {
     const text = fixture.nativeElement.textContent;
 
-    expect(component.pageHead.name).toBe('progetti');
-    expect(text).toContain('Microcosmo dei progetti lavorativi GitHub personali');
-    expect(text).toContain('Qui trovi i miei Progetti personali GitHub');
+    expect(component.pageHead.name).toBe('progetti-personali');
+    expect(text).toContain('Microcosmo dei progetti personali');
+    expect(text).toContain('Esplora i miei Progetti personali');
     expect(fixture.nativeElement.querySelector('.atlas-hero__back')).toBeNull();
   });
 
   it('updates the section immediately when navigation changes only the route parameter', () => {
-    routeParams.next(convertToParamMap({ section: 'lavori' }));
+    routeParams.next(convertToParamMap({ section: 'competenze-lavorative' }));
     fixture.detectChanges();
 
-    expect(component.pageHead.name).toBe('lavori');
+    expect(component.pageHead.name).toBe('competenze-lavorative');
     expect(component.experiences).toHaveLength(1);
     expect(component.selectedExperience?.shortLabel).toBe('CDP');
-    expect(fixture.nativeElement.textContent).toContain('Esperienze lavorative');
+    expect(fixture.nativeElement.textContent).toContain('Competenze lavorative');
   });
 
   it('opens the selected planet in a modal and pauses cosmic motion', async () => {
@@ -64,6 +64,21 @@ describe('HomePageComponent planet detail', () => {
     expect(component.cosmosStatus).toBe('Cosmo in pausa');
     expect(dialog.textContent).toContain('Il pilastro portante del Portfolio');
     expect(dialog.querySelector<HTMLAnchorElement>('.experience-detail__link')?.target).toBe('_blank');
+  });
+
+  it('shows the orange details action only when the planet declares a details path', async () => {
+    routeParams.next(convertToParamMap({ section: 'competenze-lavorative' }));
+    fixture.detectChanges();
+
+    const labels = fixture.nativeElement.querySelectorAll('.orbit-label') as NodeListOf<HTMLButtonElement>;
+    labels[0].click();
+    await fixture.whenStable();
+
+    const detailsLink = fixture.nativeElement.querySelector(
+      '.experience-detail__more',
+    ) as HTMLAnchorElement;
+    expect(detailsLink.textContent).toContain('Maggiori informazioni');
+    expect(detailsLink.getAttribute('href')).toBe('/approfondimenti/customer-data-platform');
   });
 
   it('keeps motion paused for two seconds after closing the modal', async () => {

@@ -12,6 +12,11 @@ export const routes: Routes = [
       import('./pages/landing/landing-page').then(m => m.HomePageComponent),
   },
   {
+    path: 'approfondimenti/:detail',
+    loadComponent: () =>
+      import('./pages/details/detail-page').then(m => m.DetailPageComponent),
+  },
+  {
     path: 'story',
     loadComponent: () =>
       import('./pages/story/story-page').then(m => m.StoryPageComponent),

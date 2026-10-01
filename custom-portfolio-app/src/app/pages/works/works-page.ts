@@ -39,7 +39,7 @@ export class WorksPageComponent {
     {
       title: 'Portfolio personale',
       subtitle: 'Angular 21',
-      body: 'Questo sito: un portfolio pensato come vetrina del mio modo di lavorare, non solo dei progetti.',
+      body: 'Questo sito: un portfolio pensato come vetrina del mio modo di lavorare, non solo dei progetti personali.',
       tags: ['Angular', 'Frontend'],
     },
   ];

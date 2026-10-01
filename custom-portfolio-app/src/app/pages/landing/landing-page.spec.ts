@@ -30,15 +30,16 @@ describe('HomePageComponent', () => {
   });
 
   it('uses numbered JSON as planets and ignores JSON prefixed with a dash', () => {
-    const projects = component.atlas.find(section => section.slug === 'progetti');
-    const works = component.atlas.find(section => section.slug === 'lavori');
-    const capabilities = component.atlas.find(section => section.slug === 'capacita');
+    const projects = component.atlas.find(section => section.slug === 'progetti-personali');
+    const works = component.atlas.find(section => section.slug === 'competenze-lavorative');
+    const passions = component.atlas.find(section => section.slug === 'passioni');
 
     expect(projects?.items).toHaveLength(1);
     expect(projects?.items[0].id).toBe('01');
     expect(projects?.items[0].shortLabel).toBe('Portfolio Planet');
     expect(works?.items).toHaveLength(1);
-    expect(capabilities?.items).toHaveLength(0);
+    expect(passions?.items).toHaveLength(2);
+    expect(passions?.items.map(item => item.shortLabel)).toEqual(['Gaming', 'Stampa 3D']);
   });
 
   it('shows the requested landing statement', () => {
@@ -47,7 +48,7 @@ describe('HomePageComponent', () => {
     expect(component.pageHead.name).toBe('landing');
     expect(text).toContain('Portfolio Orbitale · WebGL');
     expect(text).toContain('Benvenuto nel mio Universo Lavorativo');
-    expect(text).toContain('La raccolta definitiva delle abilità professionali e non.');
+    expect(text).toContain('Abilità acquisite, passioni, competenze lavorative e progetti personali.');
   });
 
   it('uses the planet itself as the transparent background for its label', () => {
@@ -82,9 +83,10 @@ describe('HomePageComponent', () => {
     const navigation = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
     const labels = fixture.nativeElement.querySelectorAll('.orbit-label') as NodeListOf<HTMLButtonElement>;
 
-    labels[1].click();
+    const passionIndex = component.experiences.findIndex(experience => experience.shortLabel === 'Passioni');
+    labels[passionIndex].click();
 
-    expect(navigation).toHaveBeenCalledWith('/universo/capacita');
+    expect(navigation).toHaveBeenCalledWith('/universo/passioni');
   });
 
   it('uses Ametista solare as the default palette', () => {

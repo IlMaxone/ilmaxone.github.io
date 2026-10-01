@@ -1,0 +1,12 @@
+{
+  "id": 3,
+  "name": "passioni",
+  "label": "Pagina Passioni",
+  "headTitle": "Microcosmo delle passioni",
+  "headDescriptionRow1": "Qui trovi le mie",
+  "headDescriptionRow2": "Passioni",
+  "sideTitle": "Interessi che alimentano curiosità, creatività e crescita personale.",
+  "sideDescription": "Ogni pianeta racconta una passione. Selezionane uno per scoprire cosa mi coinvolge, cosa studio e cosa continua a ispirarmi.",
+  "route": "/universo/passioni",
+  "routeLabel": "Microcosmo delle passioni"
+}

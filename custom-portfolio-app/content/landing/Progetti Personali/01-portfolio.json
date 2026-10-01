@@ -1,0 +1,10 @@
+{
+  "id": "01",
+  "name": "Portfolio",
+  "label": "Portfolio Planet",
+  "period": "Il punto di partenza",
+  "title": "Il pilastro portante del Portfolio",
+  "description": "Questo progetto è partito dall'idea di costruire un portfolio originale che rispecchiasse al meglio la mia personalità. Sono sempre stato affascinato dall'universo, dai pianeti e dalle stelle: questo progetto riunisce gli elementi che cercavo per raccontare cosa so fare e cosa mi appassiona. Ho scelto di svilupparlo con il supporto di Codex per rendere più rapido il flusso di lavoro. Lo stack comprende Angular 21 per il frontend e WebGL per le animazioni 3D dei pianeti. Ho scelto tecnologie familiari per mantenere un maggiore controllo sul codice prodotto con l'Intelligenza Artificiale. Per maggiori informazioni sull'utilizzo dell'Intelligenza Artificiale, consulta la sezione Passioni.",
+  "tags": ["Progetto personale","AI","Architettura", "Curiosità"],
+  "link": "https://github.com/IlMaxone/ilmaxone.github.io"
+}

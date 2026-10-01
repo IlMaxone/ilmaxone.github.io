@@ -1,0 +1,104 @@
+@if (detail; as page) {
+  <canvas
+    #cosmicBackground
+    class="detail-page__cosmos"
+    aria-hidden="true"
+  ></canvas>
+  <article class="detail-page">
+    <a class="detail-page__back" [routerLink]="page.backRoute">
+      <span aria-hidden="true">←</span>
+      Torna a {{ page.sectionLabel }}
+    </a>
+
+    <header class="detail-hero">
+      <p class="detail-hero__eyebrow"><span></span>{{ page.eyebrow }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="detail-hero__lead">{{ page.lead }}</p>
+    </header>
+
+    <div class="detail-content">
+      <div class="detail-content__body">
+        <section class="detail-introduction" aria-label="Introduzione">
+          @for (paragraph of page.paragraphs; track $index) {
+            <div
+              class="detail-paragraph"
+              [class.detail-paragraph--with-image]="paragraph.image"
+              [class.detail-paragraph--image-left]="paragraph.image?.position === 'left'"
+            >
+              <p>{{ paragraph.text }}</p>
+              @if (paragraph.image; as image) {
+                <figure>
+                  <button type="button" (click)="openImage(image)" [attr.aria-label]="'Ingrandisci immagine: ' + image.alt">
+                    <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+                    <span aria-hidden="true">＋</span>
+                  </button>
+                  @if (image.caption) {
+                    <figcaption>{{ image.caption }}</figcaption>
+                  }
+                </figure>
+              }
+            </div>
+          }
+        </section>
+
+        @for (section of page.sections; track $index; let sectionIndex = $index) {
+          <section class="detail-section">
+            <span class="detail-section__index">{{ (sectionIndex + 1).toString().padStart(2, '0') }}</span>
+            <div>
+              <h2>{{ section.title }}</h2>
+              @for (paragraph of section.paragraphs; track $index) {
+                <div
+                  class="detail-paragraph"
+                  [class.detail-paragraph--with-image]="paragraph.image"
+                  [class.detail-paragraph--image-left]="paragraph.image?.position === 'left'"
+                >
+                  <p>{{ paragraph.text }}</p>
+                  @if (paragraph.image; as image) {
+                    <figure>
+                      <button type="button" (click)="openImage(image)" [attr.aria-label]="'Ingrandisci immagine: ' + image.alt">
+                        <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+                        <span aria-hidden="true">＋</span>
+                      </button>
+                      @if (image.caption) {
+                        <figcaption>{{ image.caption }}</figcaption>
+                      }
+                    </figure>
+                  }
+                </div>
+              }
+            </div>
+          </section>
+        }
+      </div>
+
+      <aside class="detail-summary" aria-label="Coordinate dell’approfondimento">
+        <p class="detail-summary__label">Coordinate del pianeta</p>
+        <strong>{{ page.sectionLabel }}</strong>
+        <span>{{ page.paragraphs.length }} testi introduttivi · {{ page.sections.length }} sezioni</span>
+
+        <ul aria-label="Temi dell’approfondimento">
+          @for (tag of page.tags; track tag) {
+            <li>{{ tag }}</li>
+          }
+        </ul>
+
+        <a [routerLink]="page.backRoute">
+          Rientra nell’orbita
+          <span aria-hidden="true">↗</span>
+        </a>
+      </aside>
+    </div>
+  </article>
+}
+
+@if (expandedImage; as image) {
+  <div class="detail-lightbox" role="dialog" aria-modal="true" [attr.aria-label]="image.alt" (click)="closeImage()">
+    <div class="detail-lightbox__content" (click)="$event.stopPropagation()">
+      <button class="detail-lightbox__close" type="button" (click)="closeImage()" aria-label="Chiudi immagine ingrandita">×</button>
+      <img [src]="image.src" [alt]="image.alt" />
+      @if (image.caption) {
+        <p>{{ image.caption }}</p>
+      }
+    </div>
+  </div>
+}

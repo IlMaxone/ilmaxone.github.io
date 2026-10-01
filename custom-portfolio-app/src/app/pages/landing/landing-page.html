@@ -53,6 +53,13 @@
               }
             </ul>
 
+            @if (selected.detailsPath) {
+              <a class="experience-detail__more" [routerLink]="selected.detailsPath">
+                Maggiori informazioni
+                <span aria-hidden="true">→</span>
+              </a>
+            }
+
             @if (selected.link) {
               <a
                 class="experience-detail__link"
