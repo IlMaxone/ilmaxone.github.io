@@ -1,0 +1,77 @@
+{
+  "id": "data-engineering-analytics",
+  "path": "/approfondimenti/data-engineering-analytics",
+  "eyebrow": "Competenza lavorativa · Data Engineering e Analytics",
+  "title": "Dalla sorgente al dato affidabile",
+  "lead": "Progettare, trasformare e rendere consultabili dati eterogenei attraverso pipeline osservabili, modelli efficienti e controlli ripetibili.",
+  "paragraphs": [
+    "Il lavoro copre l'intero percorso del dato: acquisizione, trasformazione, modellazione, controllo qualitativo, pubblicazione e utilizzo analitico.",
+    "Le soluzioni vengono progettate per essere manutenibili, verificabili e sostenibili in termini di prestazioni, costi e sicurezza degli accessi."
+  ],
+  "sections": [
+    {
+      "title": "Pipeline e integrazione",
+      "paragraphs": [
+        "Progettazione, configurazione e manutenzione di pipeline di ingestion, ETL/ELT e Data Integration, definendo sorgenti, trasformazioni e destinazioni.",
+        "Utilizzo operativo di CDAP, Cloud Dataflow e Apache Spark per integrare sistemi eterogenei, riallineare flussi e gestire elaborazioni schedulate.",
+        "Integrazione mediante API REST, gestione di job batch e trattamento di flussi real-time basati su Kafka e architetture ibride cloud.",
+        "Troubleshooting delle pipeline attraverso log, dipendenze, credenziali e controlli sull'effettivo arrivo dei dati."
+      ]
+    },
+    {
+      "title": "SQL, BigQuery e database",
+      "paragraphs": [
+        "Sviluppo di query SQL per estrazione, trasformazione, sincronizzazione e controllo dei dati, incluse funzioni BigQuery come UNNEST e SPLIT.",
+        "Gestione di BigQuery, Data Warehouse, Cloud Storage, database relazionali e documentali come MySQL e MongoDB.",
+        "Progettazione e adeguamento degli schemi, gestione di array e tipi strutturati, compatibilità dei driver e dismissione di strutture legacy.",
+        "Ottimizzazione delle query, delle scansioni e del partizionamento per ridurre tempi di esecuzione e costi."
+      ]
+    },
+    {
+      "title": "Data quality, governance e continuità",
+      "paragraphs": [
+        "Controllo di consistenza, copertura e integrità dei dataset, con individuazione di duplicati, valori inattesi e disallineamenti temporali.",
+        "Normalizzazione dei dati storici, bonifica delle tabelle temporanee e verifica di esportazioni, riconciliazioni e bilanciamenti.",
+        "Gestione di policy di conservazione, log di audit, backup, verifiche di recuperabilità e procedure di disaster recovery.",
+        "Documentazione delle anomalie, delle correzioni e dei criteri di accettazione per garantire tracciabilità."
+      ]
+    },
+    {
+      "title": "Business Intelligence e reporting",
+      "paragraphs": [
+        "Creazione e manutenzione di report e KPI con Looker Studio, incluse aggregazioni periodiche e filtri dinamici.",
+        "Verifica della copertura dei dati e delle discrepanze tra sorgenti, strutture organizzative e viste analitiche.",
+        "Profilazione dei contenuti, coni di visibilità e segregazione delle informazioni secondo ruolo, area e responsabilità.",
+        "Condivisione controllata dei report e manutenzione evolutiva delle viste al cambiare di requisiti e sorgenti."
+      ]
+    },
+    {
+      "title": "Esecuzione e controllo operativo",
+      "paragraphs": [
+        "Schedulazione e verifica delle elaborazioni periodiche, delle code e dei caricamenti batch.",
+        "Configurazione di alert per caricamenti mancanti, ritardi o disallineamenti e analisi degli errori di runtime.",
+        "Manutenzione ordinaria delle piattaforme dati e verifica continuativa del corretto funzionamento dei flussi."
+      ]
+    },
+    {
+      "title": "Continuità operativa di una piattaforma dati",
+      "paragraphs": [
+        "Supporto operativo alle pipeline CDAP di un'organizzazione attiva nei servizi territoriali, con analisi delle esecuzioni e gestione delle anomalie.",
+        "Esecuzione e verifica di backup remoti per proteggere configurazioni e dati necessari alla continuità del servizio.",
+        "Gestione delle attività di ripristino e controllo del corretto ritorno in esercizio della piattaforma."
+      ]
+    },
+    {
+      "title": "Formazione tecnica su Looker Studio e Data Visualization",
+      "paragraphs": [
+        "Preparazione e svolgimento di lezioni rivolte a studenti di un percorso ITS sui principi della Data Analysis, della Data Visualization e sull'utilizzo operativo di Looker Studio.",
+        "Presentazione delle sorgenti dati, dell'impatto delle scelte di modellazione sulle prestazioni e dell'utilizzo di tabelle, tabelle pivot, condivisione e versioning dei report.",
+        "Spiegazione pratica di metriche, dimensioni, KPI, scorecard, campi calcolati, query personalizzate, filtri, formule CASE e funzioni dedicate alle date.",
+        "Costruzione di grafici a barre e a torta, mappe, cruscotti e visualizzazioni interattive con drill-down, cross-filtering, calcoli cumulativi e parametri.",
+        "Confronto tra data blending in Looker Studio e join eseguite in BigQuery, con esempi di pubblicazione e incorporamento delle dashboard in Google Sites.",
+        "Adattamento dei contenuti al livello della classe e gestione del confronto tecnico durante le attività formative."
+      ]
+    }
+  ],
+  "tags": ["Data Engineering", "ETL/ELT", "BigQuery", "SQL", "Data Quality", "Looker Studio", "Kafka", "Apache Spark", "Data Analysis", "Data Visualization", "Technical Training"]
+}

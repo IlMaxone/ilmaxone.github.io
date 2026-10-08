@@ -51,10 +51,13 @@ export const GENERATED_ATLAS: AtlasSection[] = [
     "glyph": "C",
     "eyebrow": "Settore dell’universo",
     "title": "Competenze Lavorative",
-    "period": "1 pianeta",
-    "description": "Competenze, responsabilità e risultati maturati nei contesti professionali.",
+    "period": "6 pianeti",
+    "description": "Sei domini professionali maturati tra dati, infrastrutture, sicurezza, supporto e sviluppo software.",
     "tags": [
-      "CDP"
+      "Data & Analytics",
+      "Sistemi & Cloud",
+      "DevOps & Observe",
+      "Network & Security"
     ],
     "route": "/universo/competenze-lavorative",
     "routeLabel": "Microcosmo delle competenze lavorative",
@@ -67,31 +70,135 @@ export const GENERATED_ATLAS: AtlasSection[] = [
       "headTitle": "Microcosmo delle competenze lavorative",
       "headDescriptionRow1": "Qui trovi le mie",
       "headDescriptionRow2": "Competenze lavorative",
-      "sideTitle": "Competenze, responsabilità e risultati maturati nei contesti professionali.",
-      "sideDescription": "Ogni pianeta racconta una competenza sviluppata sul lavoro. Selezionane uno per esplorare approccio, responsabilità e risultati.",
+      "sideTitle": "Sei domini professionali maturati tra dati, infrastrutture, sicurezza, supporto e sviluppo software.",
+      "sideDescription": "Ogni pianeta riunisce competenze strettamente collegate. Selezionane uno per esplorare capacità, tecnologie e progetti applicativi.",
       "route": "/universo/competenze-lavorative",
       "routeLabel": "Microcosmo delle competenze lavorative"
     },
     "items": [
       {
-        "id": "01",
+        "id": "01-data-engineering",
         "order": 1,
-        "shortLabel": "CDP",
-        "glyph": "C",
-        "eyebrow": "Customer Data Platform",
-        "title": "Progettazione e sviluppo di una Data Platform",
-        "period": "Customer Data Platform · soddisfazione del cliente",
-        "description": "Sviluppo prodotti mettendo insieme codice, contesto e obiettivi.\nCerco il perché dietro ogni richiesta e trasformo la complessità in un percorso leggibile, dalla progettazione tecnica alla gestione del cliente.",
+        "shortLabel": "Data & Analytics",
+        "glyph": "D",
+        "eyebrow": "Data Engineering e Analytics",
+        "title": "Data Engineering e Analytics",
+        "period": "Pipeline · SQL · BigQuery · Data Quality · BI",
+        "description": "Progettazione e supporto di piattaforme dati, pipeline ETL/ELT, modelli SQL, continuità operativa, analisi e visualizzazione per trasformare sorgenti eterogenee in informazioni affidabili.",
         "tags": [
-          "Competenza lavorativa",
-          "Gestione del cliente",
-          "Problem solving",
-          "Architettura",
-          "Data Platform",
-          "Riservatezza dei dati"
+          "Data Engineering",
+          "ETL/ELT",
+          "BigQuery",
+          "SQL",
+          "Data Quality",
+          "Data Analysis",
+          "Data Visualization"
         ],
         "link": "",
-        "detailsPath": "/approfondimenti/customer-data-platform"
+        "detailsPath": "/approfondimenti/data-engineering-analytics"
+      },
+      {
+        "id": "02-sistemistica-cloud",
+        "order": 2,
+        "shortLabel": "Sistemi & Cloud",
+        "glyph": "S",
+        "eyebrow": "Sistemistica, Cloud e Virtualizzazione",
+        "title": "Sistemistica, Cloud e Virtualizzazione",
+        "period": "Proxmox · Linux · Windows Server · Storage · Backup",
+        "description": "Amministrazione di infrastrutture on-premise, virtualizzate e cloud, dalla creazione delle macchine al monitoraggio, alla manutenzione e al ripristino.",
+        "tags": [
+          "Proxmox VE",
+          "Linux",
+          "Windows Server",
+          "Virtualization",
+          "Storage",
+          "Cloud"
+        ],
+        "link": "",
+        "detailsPath": "/approfondimenti/sistemistica-cloud-virtualizzazione"
+      },
+      {
+        "id": "03-devops-observability",
+        "order": 3,
+        "shortLabel": "DevOps & Observe",
+        "glyph": "D",
+        "eyebrow": "DevOps, Automazione e Observability",
+        "title": "DevOps, Automazione e Observability",
+        "period": "Jenkins · Docker · Deployment · Monitoring · Logging",
+        "description": "Automazione di build e deployment, gestione di container e ambienti applicativi, monitoraggio continuo e centralizzazione dei log.",
+        "tags": [
+          "DevOps",
+          "Jenkins",
+          "Docker",
+          "CI/CD",
+          "PRTG",
+          "ELK",
+          "Grafana Loki"
+        ],
+        "link": "",
+        "detailsPath": "/approfondimenti/devops-automazione-observability"
+      },
+      {
+        "id": "04-networking-cybersecurity",
+        "order": 4,
+        "shortLabel": "Network & Security",
+        "glyph": "N",
+        "eyebrow": "Networking, Cybersecurity e Identity",
+        "title": "Networking, Cybersecurity e Identity",
+        "period": "Routing · VPN · Firewall · IAM · SSO · ISO 27001",
+        "description": "Gestione di reti e accessi sicuri, protezione di sistemi e credenziali, federazione delle identità e applicazione operativa dei controlli di sicurezza.",
+        "tags": [
+          "Networking",
+          "VPN",
+          "Firewall",
+          "Cybersecurity",
+          "IAM",
+          "SSO",
+          "ISO 27001"
+        ],
+        "link": "",
+        "detailsPath": "/approfondimenti/networking-cybersecurity-identity"
+      },
+      {
+        "id": "05-digital-workplace-supporto",
+        "order": 5,
+        "shortLabel": "Workplace & Support",
+        "glyph": "W",
+        "eyebrow": "Digital Workplace e Supporto IT",
+        "title": "Digital Workplace e Supporto IT",
+        "period": "Google Workspace · Helpdesk · Utenti · Documentazione",
+        "description": "Amministrazione dei servizi digitali aziendali, supporto tecnico multilivello, gestione del ciclo di vita degli utenti e documentazione operativa.",
+        "tags": [
+          "Google Workspace",
+          "Helpdesk",
+          "Incident management",
+          "Provisioning",
+          "Documentazione"
+        ],
+        "link": "",
+        "detailsPath": "/approfondimenti/digital-workplace-supporto-it"
+      },
+      {
+        "id": "06-software-soluzioni-clienti",
+        "order": 6,
+        "shortLabel": "Software & Solutions",
+        "glyph": "S",
+        "eyebrow": "Software Engineering e Soluzioni Clienti",
+        "title": "Software Engineering e Soluzioni Clienti",
+        "period": "Java · NestJS · Angular · API · Cloud · Progetti",
+        "description": "Sviluppo e manutenzione di applicazioni, API, integrazioni cloud e assistenti conversazionali costruiti sulle esigenze operative del cliente, con casi progettuali presentati in forma anonima.",
+        "tags": [
+          "Java",
+          "NestJS",
+          "Node.js",
+          "REST API",
+          "GCP",
+          "BigQuery",
+          "Angular",
+          "Agile"
+        ],
+        "link": "",
+        "detailsPath": "/approfondimenti/software-engineering-soluzioni-clienti"
       }
     ]
   },
@@ -213,80 +320,697 @@ export const GENERATED_ATLAS: AtlasSection[] = [
 
 export const GENERATED_DETAILS: DetailPageContent[] = [
   {
-    "id": "customer-data-platform",
-    "slug": "customer-data-platform",
-    "path": "/approfondimenti/customer-data-platform",
-    "eyebrow": "Competenza lavorativa · Customer Data Platform",
-    "title": "Dal dato grezzo a una visione affidabile del cliente",
-    "lead": "Un approfondimento sul metodo, sulle decisioni e sulle competenze necessarie per progettare una piattaforma dati partendo da obiettivi concreti.",
+    "id": "data-engineering-analytics",
+    "slug": "data-engineering-analytics",
+    "path": "/approfondimenti/data-engineering-analytics",
+    "eyebrow": "Competenza lavorativa · Data Engineering e Analytics",
+    "title": "Dalla sorgente al dato affidabile",
+    "lead": "Progettare, trasformare e rendere consultabili dati eterogenei attraverso pipeline osservabili, modelli efficienti e controlli ripetibili.",
     "paragraphs": [
       {
-        "text": "Una Customer Data Platform mette in relazione informazioni provenienti da sistemi differenti per costruire una lettura coerente del cliente. Il valore non nasce dalla semplice raccolta dei dati, ma dalla capacità di renderli comprensibili, verificabili e realmente utilizzabili.",
-        "image": {
-          "file": "Rack 4.webp",
-          "src": "/img/Rack%204.webp",
-          "alt": "Rack di infrastruttura dati utilizzato come riferimento visivo per la piattaforma",
-          "position": "right",
-          "caption": "Infrastruttura, flussi e affidabilità: il livello fisico dietro il dato."
-        }
+        "text": "Il lavoro copre l'intero percorso del dato: acquisizione, trasformazione, modellazione, controllo qualitativo, pubblicazione e utilizzo analitico."
       },
       {
-        "text": "Il lavoro richiede di tenere insieme architettura, qualità, sicurezza e confronto continuo con chi utilizzerà il prodotto. Ogni decisione tecnica deve quindi essere collegata a un bisogno leggibile e a un risultato misurabile."
+        "text": "Le soluzioni vengono progettate per essere manutenibili, verificabili e sostenibili in termini di prestazioni, costi e sicurezza degli accessi."
       }
     ],
     "sections": [
       {
-        "title": "Comprendere il contesto",
+        "title": "Pipeline e integrazione",
         "paragraphs": [
           {
-            "text": "La prima fase consiste nel ricostruire fonti, processi e responsabilità. Prima di scegliere strumenti o tecnologie è necessario capire quali informazioni esistono, chi le produce e quali problemi devono risolvere."
+            "text": "Progettazione, configurazione e manutenzione di pipeline di ingestion, ETL/ELT e Data Integration, definendo sorgenti, trasformazioni e destinazioni."
           },
           {
-            "text": "Questo passaggio trasforma richieste inizialmente generiche in requisiti verificabili e permette di distinguere ciò che è essenziale da ciò che può essere introdotto in una fase successiva."
+            "text": "Utilizzo operativo di CDAP, Cloud Dataflow e Apache Spark per integrare sistemi eterogenei, riallineare flussi e gestire elaborazioni schedulate."
+          },
+          {
+            "text": "Integrazione mediante API REST, gestione di job batch e trattamento di flussi real-time basati su Kafka e architetture ibride cloud."
+          },
+          {
+            "text": "Troubleshooting delle pipeline attraverso log, dipendenze, credenziali e controlli sull'effettivo arrivo dei dati."
           }
         ]
       },
       {
-        "title": "Progettare il flusso dei dati",
+        "title": "SQL, BigQuery e database",
         "paragraphs": [
           {
-            "text": "L'architettura deve accompagnare il dato dalla sorgente alla sua destinazione mantenendo tracciabilità, significato e possibilità di controllo. Ingestione, trasformazione e consultazione diventano parti di un unico percorso osservabile."
+            "text": "Sviluppo di query SQL per estrazione, trasformazione, sincronizzazione e controllo dei dati, incluse funzioni BigQuery come UNNEST e SPLIT."
           },
           {
-            "text": "La modularità aiuta a evolvere il sistema senza ricostruirlo ogni volta. Componenti con responsabilità chiare rendono più semplice aggiungere nuove fonti, correggere anomalie e adattarsi a necessità future."
+            "text": "Gestione di BigQuery, Data Warehouse, Cloud Storage, database relazionali e documentali come MySQL e MongoDB."
+          },
+          {
+            "text": "Progettazione e adeguamento degli schemi, gestione di array e tipi strutturati, compatibilità dei driver e dismissione di strutture legacy."
+          },
+          {
+            "text": "Ottimizzazione delle query, delle scansioni e del partizionamento per ridurre tempi di esecuzione e costi."
           }
         ]
       },
       {
-        "title": "Qualità, sicurezza e riservatezza",
+        "title": "Data quality, governance e continuità",
         "paragraphs": [
           {
-            "text": "Una piattaforma dati deve rendere evidenti errori, duplicazioni e informazioni incomplete. Controlli automatici, log e metriche permettono di individuare rapidamente i problemi e di comprenderne l'origine."
+            "text": "Controllo di consistenza, copertura e integrità dei dataset, con individuazione di duplicati, valori inattesi e disallineamenti temporali."
           },
           {
-            "text": "La gestione degli accessi e la protezione delle informazioni personali vengono considerate fin dalla progettazione. La riservatezza non è un'aggiunta finale, ma una proprietà strutturale dell'intero flusso."
+            "text": "Normalizzazione dei dati storici, bonifica delle tabelle temporanee e verifica di esportazioni, riconciliazioni e bilanciamenti."
+          },
+          {
+            "text": "Gestione di policy di conservazione, log di audit, backup, verifiche di recuperabilità e procedure di disaster recovery."
+          },
+          {
+            "text": "Documentazione delle anomalie, delle correzioni e dei criteri di accettazione per garantire tracciabilità."
           }
         ]
       },
       {
-        "title": "Dal problema al risultato",
+        "title": "Business Intelligence e reporting",
         "paragraphs": [
           {
-            "text": "Il confronto con il cliente accompagna tutte le fasi: chiarisce le priorità, riduce le interpretazioni errate e rende visibile l'avanzamento. Le scelte vengono spiegate in termini di benefici, limiti e costi di manutenzione."
+            "text": "Creazione e manutenzione di report e KPI con Looker Studio, incluse aggregazioni periodiche e filtri dinamici."
           },
           {
-            "text": "Il risultato atteso è una base affidabile che renda più semplice osservare i dati, prendere decisioni e costruire servizi successivi senza perdere il controllo della complessità."
+            "text": "Verifica della copertura dei dati e delle discrepanze tra sorgenti, strutture organizzative e viste analitiche."
+          },
+          {
+            "text": "Profilazione dei contenuti, coni di visibilità e segregazione delle informazioni secondo ruolo, area e responsabilità."
+          },
+          {
+            "text": "Condivisione controllata dei report e manutenzione evolutiva delle viste al cambiare di requisiti e sorgenti."
+          }
+        ]
+      },
+      {
+        "title": "Esecuzione e controllo operativo",
+        "paragraphs": [
+          {
+            "text": "Schedulazione e verifica delle elaborazioni periodiche, delle code e dei caricamenti batch."
+          },
+          {
+            "text": "Configurazione di alert per caricamenti mancanti, ritardi o disallineamenti e analisi degli errori di runtime."
+          },
+          {
+            "text": "Manutenzione ordinaria delle piattaforme dati e verifica continuativa del corretto funzionamento dei flussi."
+          }
+        ]
+      },
+      {
+        "title": "Continuità operativa di una piattaforma dati",
+        "paragraphs": [
+          {
+            "text": "Supporto operativo alle pipeline CDAP di un'organizzazione attiva nei servizi territoriali, con analisi delle esecuzioni e gestione delle anomalie."
+          },
+          {
+            "text": "Esecuzione e verifica di backup remoti per proteggere configurazioni e dati necessari alla continuità del servizio."
+          },
+          {
+            "text": "Gestione delle attività di ripristino e controllo del corretto ritorno in esercizio della piattaforma."
+          }
+        ]
+      },
+      {
+        "title": "Formazione tecnica su Looker Studio e Data Visualization",
+        "paragraphs": [
+          {
+            "text": "Preparazione e svolgimento di lezioni rivolte a studenti di un percorso ITS sui principi della Data Analysis, della Data Visualization e sull'utilizzo operativo di Looker Studio."
+          },
+          {
+            "text": "Presentazione delle sorgenti dati, dell'impatto delle scelte di modellazione sulle prestazioni e dell'utilizzo di tabelle, tabelle pivot, condivisione e versioning dei report."
+          },
+          {
+            "text": "Spiegazione pratica di metriche, dimensioni, KPI, scorecard, campi calcolati, query personalizzate, filtri, formule CASE e funzioni dedicate alle date."
+          },
+          {
+            "text": "Costruzione di grafici a barre e a torta, mappe, cruscotti e visualizzazioni interattive con drill-down, cross-filtering, calcoli cumulativi e parametri."
+          },
+          {
+            "text": "Confronto tra data blending in Looker Studio e join eseguite in BigQuery, con esempi di pubblicazione e incorporamento delle dashboard in Google Sites."
+          },
+          {
+            "text": "Adattamento dei contenuti al livello della classe e gestione del confronto tecnico durante le attività formative."
           }
         ]
       }
     ],
     "tags": [
-      "Data Platform",
-      "Architettura",
-      "Qualità del dato",
-      "Privacy",
-      "Gestione del cliente",
-      "Problem solving"
+      "Data Engineering",
+      "ETL/ELT",
+      "BigQuery",
+      "SQL",
+      "Data Quality",
+      "Looker Studio",
+      "Kafka",
+      "Apache Spark",
+      "Data Analysis",
+      "Data Visualization",
+      "Technical Training"
+    ],
+    "sectionSlug": "competenze-lavorative",
+    "sectionLabel": "Competenze Lavorative",
+    "backRoute": "/universo/competenze-lavorative"
+  },
+  {
+    "id": "sistemistica-cloud-virtualizzazione",
+    "slug": "sistemistica-cloud-virtualizzazione",
+    "path": "/approfondimenti/sistemistica-cloud-virtualizzazione",
+    "eyebrow": "Competenza lavorativa · Sistemi e infrastrutture",
+    "title": "Infrastrutture affidabili e manutenibili",
+    "lead": "Amministrare ambienti virtualizzati, server, storage e servizi cloud lungo l'intero ciclo di vita operativo.",
+    "paragraphs": [
+      {
+        "text": "La sistemistica collega provisioning, aggiornamento, monitoraggio e ripristino per mantenere disponibili servizi e ambienti di lavoro."
+      },
+      {
+        "text": "Il perimetro comprende infrastrutture on-premise, virtualizzate e cloud, con attenzione alla continuità e alla capacità di diagnosi."
+      }
+    ],
+    "sections": [
+      {
+        "title": "Virtualizzazione e cloud",
+        "paragraphs": [
+          {
+            "text": "Configurazione e amministrazione di ambienti Proxmox VE, VMware ESXi e XenServer."
+          },
+          {
+            "text": "Provisioning e migrazione di macchine virtuali, preparazione delle risorse e verifica della coerenza tra host e storage."
+          },
+          {
+            "text": "Supporto operativo su Google Cloud Platform e ambienti ibridi che integrano servizi Google Cloud e AWS."
+          },
+          {
+            "text": "Monitoraggio di CPU, memoria, spazio disco e stato operativo delle risorse virtualizzate."
+          }
+        ]
+      },
+      {
+        "title": "Sistemi operativi e manutenzione",
+        "paragraphs": [
+          {
+            "text": "Installazione e manutenzione di server Linux e amministrazione di Windows Server."
+          },
+          {
+            "text": "Aggiornamento di sistemi Ubuntu, installazione delle patch di sicurezza e verifica dell'esito degli interventi."
+          },
+          {
+            "text": "Manutenzione ordinaria, ottimizzazione dello spazio disco e gestione degli ambienti di sviluppo aziendali."
+          }
+        ]
+      },
+      {
+        "title": "Storage, backup e ripristino",
+        "paragraphs": [
+          {
+            "text": "Amministrazione di NAS, share e storage virtualizzato con controllo di capacità, disponibilità e accessibilità."
+          },
+          {
+            "text": "Pianificazione e verifica dei backup, gestione delle procedure di ripristino e applicazione di scenari di disaster recovery."
+          },
+          {
+            "text": "Controllo periodico dell'integrità dei dati salvati e dell'effettiva recuperabilità dei servizi."
+          }
+        ]
+      },
+      {
+        "title": "Servizi infrastrutturali",
+        "paragraphs": [
+          {
+            "text": "Analisi dei requisiti necessari al rilascio di nuovi servizi e predisposizione dei relativi ambienti."
+          },
+          {
+            "text": "Installazione e gestione di piattaforme interne come BookStack, Nexus, Open edX e Moodle."
+          },
+          {
+            "text": "Gestione dei server di stampa, delle stampanti di rete e dei test d'integrazione tra sedi e servizi remoti."
+          }
+        ]
+      }
+    ],
+    "tags": [
+      "Proxmox VE",
+      "VMware ESXi",
+      "Linux",
+      "Windows Server",
+      "GCP",
+      "AWS",
+      "NAS",
+      "Backup"
+    ],
+    "sectionSlug": "competenze-lavorative",
+    "sectionLabel": "Competenze Lavorative",
+    "backRoute": "/universo/competenze-lavorative"
+  },
+  {
+    "id": "devops-automazione-observability",
+    "slug": "devops-automazione-observability",
+    "path": "/approfondimenti/devops-automazione-observability",
+    "eyebrow": "Competenza lavorativa · DevOps e Observability",
+    "title": "Automazione e controllo operativo",
+    "lead": "Rendere build, deployment e gestione degli ambienti ripetibili, osservabili e più semplici da diagnosticare.",
+    "paragraphs": [
+      {
+        "text": "Automazione e osservabilità riducono gli interventi manuali e permettono di individuare con rapidità il componente responsabile di un'anomalia."
+      },
+      {
+        "text": "La competenza unisce pipeline CI/CD, container, monitoraggio, logging centralizzato e gestione degli alert."
+      }
+    ],
+    "sections": [
+      {
+        "title": "CI/CD e automazione",
+        "paragraphs": [
+          {
+            "text": "Configurazione e ottimizzazione di Jenkins e dei relativi runner per build, test e rilascio."
+          },
+          {
+            "text": "Gestione delle pipeline CI/CD e verifica della corretta esecuzione delle diverse fasi."
+          },
+          {
+            "text": "Aggiornamento degli ambienti di esecuzione mantenendo compatibilità con job, runtime e dipendenze."
+          },
+          {
+            "text": "Automazione delle attività schedulate per rendere i processi ripetibili e ridurre gli interventi manuali."
+          }
+        ]
+      },
+      {
+        "title": "Container e deployment",
+        "paragraphs": [
+          {
+            "text": "Amministrazione di ambienti Docker e configurazione delle variabili necessarie ai diversi contesti applicativi."
+          },
+          {
+            "text": "Provisioning con Coolify e configurazione di Traefik come reverse proxy per l'esposizione controllata dei servizi."
+          },
+          {
+            "text": "Deployment e collaudo di stack applicativi, con verifica dello stato dei container e delle dipendenze."
+          },
+          {
+            "text": "Analisi degli errori di deployment e runtime tramite configurazioni, log e stato effettivo dei componenti."
+          }
+        ]
+      },
+      {
+        "title": "Monitoraggio e alert",
+        "paragraphs": [
+          {
+            "text": "Utilizzo di PRTG per monitorare infrastrutture, macchine virtuali, servizi di rete e piattaforme dati."
+          },
+          {
+            "text": "Controllo dello stato dei container, delle pipeline e delle elaborazioni batch."
+          },
+          {
+            "text": "Configurazione di alert e notifiche per rendere tempestive le segnalazioni operative."
+          }
+        ]
+      },
+      {
+        "title": "Logging e diagnosi",
+        "paragraphs": [
+          {
+            "text": "Deployment e amministrazione dello stack ELK per aggregare e consultare log di sistemi e applicazioni."
+          },
+          {
+            "text": "Configurazione e hardening di Winlogbeat, Filebeat, Grafana Loki e Promtail."
+          },
+          {
+            "text": "Diagnosi attraverso la correlazione di messaggi, orari, componenti e attività eseguite."
+          },
+          {
+            "text": "Gestione della conservazione dei log e utilizzo operativo di componenti SIEM a supporto della sicurezza."
+          }
+        ]
+      }
+    ],
+    "tags": [
+      "Jenkins",
+      "Docker",
+      "Coolify",
+      "Traefik",
+      "PRTG",
+      "ELK",
+      "Grafana Loki",
+      "SIEM"
+    ],
+    "sectionSlug": "competenze-lavorative",
+    "sectionLabel": "Competenze Lavorative",
+    "backRoute": "/universo/competenze-lavorative"
+  },
+  {
+    "id": "networking-cybersecurity-identity",
+    "slug": "networking-cybersecurity-identity",
+    "path": "/approfondimenti/networking-cybersecurity-identity",
+    "eyebrow": "Competenza lavorativa · Networking e sicurezza",
+    "title": "Connettività, identità e sicurezza",
+    "lead": "Collegare utenti, sedi e servizi proteggendo accessi, comunicazioni e dati secondo responsabilità verificabili.",
+    "paragraphs": [
+      {
+        "text": "La gestione della rete viene affrontata insieme alla sicurezza e all'identità, perché ogni collegamento deve essere disponibile ma anche autorizzato e tracciabile."
+      },
+      {
+        "text": "Le attività comprendono apparati, routing, accesso remoto, cifratura, federazione delle identità e controlli di conformità."
+      }
+    ],
+    "sections": [
+      {
+        "title": "Reti, apparati e routing",
+        "paragraphs": [
+          {
+            "text": "Configurazione di RouterOS e amministrazione di router e firewall MikroTik distribuiti tra sedi differenti."
+          },
+          {
+            "text": "Gestione degli indirizzi IP, delle tabelle di routing, delle sottoreti e delle regole di firewalling."
+          },
+          {
+            "text": "Verifica di DNS, sottodomini, connessioni punto-punto e accesso alle risorse di rete."
+          },
+          {
+            "text": "Troubleshooting tramite ping, confronto delle configurazioni e isolamento del segmento interessato."
+          }
+        ]
+      },
+      {
+        "title": "VPN e accesso remoto",
+        "paragraphs": [
+          {
+            "text": "Configurazione e test di VPN Site-to-Site per collegare reti e servizi."
+          },
+          {
+            "text": "Provisioning e troubleshooting di accessi SSTP, L2TP e GlobalProtect."
+          },
+          {
+            "text": "Gestione di tunneling sicuri e IP whitelisting per integrazioni tra piattaforme e ambienti cloud."
+          }
+        ]
+      },
+      {
+        "title": "Cybersecurity e crittografia",
+        "paragraphs": [
+          {
+            "text": "Hardening di server, agenti e componenti infrastrutturali per ridurre superfici esposte e configurazioni deboli."
+          },
+          {
+            "text": "Installazione e rinnovo di certificati SSL wildcard e gestione del loro ciclo di vita."
+          },
+          {
+            "text": "Applicazione delle policy BitLocker e gestione sicura delle chiavi di ripristino e delle credenziali tramite KeePass."
+          },
+          {
+            "text": "Analisi delle anomalie di accesso e gestione delle procedure di ripristino degli accessi SSH."
+          }
+        ]
+      },
+      {
+        "title": "Identity and Access Management",
+        "paragraphs": [
+          {
+            "text": "Federazione delle identità tra Google Workspace e Microsoft Entra ID e configurazione di sistemi Single Sign-On."
+          },
+          {
+            "text": "Configurazione e test di OpenID Connect tra piattaforme infrastrutturali e servizi cloud."
+          },
+          {
+            "text": "Provisioning e deprovisioning degli utenti, gestione di gruppi, ruoli e permessi su GitLab, YouTrack e servizi interni."
+          },
+          {
+            "text": "Revisione delle autorizzazioni, segregazione degli accessi e bonifica periodica delle utenze inattive."
+          }
+        ]
+      },
+      {
+        "title": "Audit e conformità",
+        "paragraphs": [
+          {
+            "text": "Applicazione operativa dei requisiti ISO 27001 nelle attività quotidiane sull'infrastruttura IT."
+          },
+          {
+            "text": "Collegamento tra controlli tecnici, responsabilità operative, log ed evidenze necessarie agli audit."
+          },
+          {
+            "text": "Documentazione delle configurazioni di sicurezza, delle procedure di backup e dei criteri di accesso."
+          }
+        ]
+      }
+    ],
+    "tags": [
+      "MikroTik",
+      "RouterOS",
+      "VPN",
+      "Firewall",
+      "SSL",
+      "IAM",
+      "SSO",
+      "Entra ID",
+      "ISO 27001"
+    ],
+    "sectionSlug": "competenze-lavorative",
+    "sectionLabel": "Competenze Lavorative",
+    "backRoute": "/universo/competenze-lavorative"
+  },
+  {
+    "id": "digital-workplace-supporto-it",
+    "slug": "digital-workplace-supporto-it",
+    "path": "/approfondimenti/digital-workplace-supporto-it",
+    "eyebrow": "Competenza lavorativa · Digital Workplace e IT Support",
+    "title": "Servizi digitali e supporto agli utenti",
+    "lead": "Amministrare gli strumenti di collaborazione e accompagnare persone e team dalla richiesta iniziale al ripristino del servizio.",
+    "paragraphs": [
+      {
+        "text": "Il Digital Workplace combina amministrazione delle piattaforme, gestione del ciclo di vita degli utenti e supporto tecnico quotidiano."
+      },
+      {
+        "text": "La documentazione rende configurazioni e procedure ripetibili, riducendo dipendenze individuali e tempi di risoluzione."
+      }
+    ],
+    "sections": [
+      {
+        "title": "Google Workspace",
+        "paragraphs": [
+          {
+            "text": "Amministrazione dell'ambiente tramite Google Admin Console e automazione delle operazioni ripetitive con GAM."
+          },
+          {
+            "text": "Gestione di utenti, gruppi, permessi, contenuti e condivisioni su Google Drive."
+          },
+          {
+            "text": "Automazione del provisioning e supporto agli utenti sui servizi Google."
+          }
+        ]
+      },
+      {
+        "title": "Migrazioni e federazione",
+        "paragraphs": [
+          {
+            "text": "Pianificazione ed esecuzione di migrazioni tenant-to-tenant con GWMME e CloudM."
+          },
+          {
+            "text": "Trasferimento di account, dati e configurazioni preservando proprietà e autorizzazioni dove previsto."
+          },
+          {
+            "text": "Integrazione con Microsoft Entra ID e federazione bidirezionale tra Google Workspace e Microsoft 365."
+          }
+        ]
+      },
+      {
+        "title": "Helpdesk e incident management",
+        "paragraphs": [
+          {
+            "text": "Gestione di ticket Helpdesk di livello 1, 2 e 3, dalla raccolta delle evidenze alla verifica finale con l'utente."
+          },
+          {
+            "text": "Diagnosi, risoluzione ed escalation degli incidenti applicativi, sistemistici e di connettività."
+          },
+          {
+            "text": "Supporto su VPN, piattaforme dati e BI, stampanti locali o remote e strumenti di collaborazione."
+          }
+        ]
+      },
+      {
+        "title": "Utenti e postazioni",
+        "paragraphs": [
+          {
+            "text": "Provisioning dei nuovi collaboratori e verifica della disponibilità di account, strumenti e autorizzazioni."
+          },
+          {
+            "text": "Gestione delle richieste di accesso, degli account tecnici e delle attività connesse ai cambi di ruolo o all'uscita dall'organizzazione."
+          },
+          {
+            "text": "Manutenzione ordinaria delle postazioni e degli ambienti di sviluppo aziendali."
+          }
+        ]
+      },
+      {
+        "title": "Documentazione e procedure",
+        "paragraphs": [
+          {
+            "text": "Redazione di documentazione per integrazioni, pipeline, sistemi, architetture e servizi interni."
+          },
+          {
+            "text": "Creazione di runbook per backup, recovery, sicurezza, manutenzione e gestione delle chiavi di cifratura."
+          },
+          {
+            "text": "Registrazione di prerequisiti, passaggi, risultati attesi e criteri di verifica per rendere le attività ripetibili."
+          },
+          {
+            "text": "Produzione di linee guida operative e documentazione coerente con i requisiti ISO 27001."
+          }
+        ]
+      }
+    ],
+    "tags": [
+      "Google Workspace",
+      "GAM",
+      "GWMME",
+      "CloudM",
+      "Helpdesk",
+      "Provisioning",
+      "Documentazione"
+    ],
+    "sectionSlug": "competenze-lavorative",
+    "sectionLabel": "Competenze Lavorative",
+    "backRoute": "/universo/competenze-lavorative"
+  },
+  {
+    "id": "software-engineering-soluzioni-clienti",
+    "slug": "software-engineering-soluzioni-clienti",
+    "path": "/approfondimenti/software-engineering-soluzioni-clienti",
+    "eyebrow": "Competenza lavorativa · Software Engineering",
+    "title": "Applicazioni e soluzioni costruite sui bisogni reali",
+    "lead": "Sviluppare applicazioni, API e integrazioni traducendo necessità operative in soluzioni manutenibili e misurabili.",
+    "paragraphs": [
+      {
+        "text": "Lo sviluppo software comprende disegno, realizzazione, integrazione e manutenzione evolutiva di applicativi web e strumenti aziendali."
+      },
+      {
+        "text": "I casi progettuali sono presentati in forma anonima: descrivono il settore, il problema affrontato e il contributo tecnico senza identificare il cliente."
+      }
+    ],
+    "sections": [
+      {
+        "title": "Sviluppo web e API",
+        "paragraphs": [
+          {
+            "text": "Sviluppo di applicazioni web basate su pattern MVC con Java e JavaScript."
+          },
+          {
+            "text": "Progettazione e implementazione di API REST con Java e Node.js."
+          },
+          {
+            "text": "Utilizzo operativo di Spring Boot, Vue 3, Angular e Apps Script per applicazioni e automazioni aziendali."
+          },
+          {
+            "text": "Integrazione con database MySQL e MongoDB e manutenzione di applicativi per la gestione dei processi interni."
+          }
+        ]
+      },
+      {
+        "title": "Integrazione e metodo di lavoro",
+        "paragraphs": [
+          {
+            "text": "Integrazione tra applicazioni, API, database e piattaforme dati, con gestione degli ambienti di sviluppo e delle dipendenze infrastrutturali."
+          },
+          {
+            "text": "Analisi delle esigenze, realizzazione incrementale e manutenzione delle soluzioni secondo pratiche Agile e Scrum."
+          },
+          {
+            "text": "Gestione delle anomalie tramite ticketing, collaborazione con il team e verifica del livello di servizio concordato."
+          }
+        ]
+      },
+      {
+        "title": "Assistente conversazionale con piattaforma dati dedicata",
+        "paragraphs": [
+          {
+            "text": "Sviluppo di un chatbot interattivo capace di rispondere a domande circoscritte al dominio informativo del cliente e di contestualizzare le risposte sui dati prodotti dall'utente."
+          },
+          {
+            "text": "Progettazione del flusso che, alla registrazione, predispone risorse Google Cloud isolate per ciascun utente: tabella BigQuery, bucket dedicato e identità tecnica con autorizzazioni mirate."
+          },
+          {
+            "text": "Integrazione da backend TypeScript e NestJS tramite librerie Google Cloud per autenticare le chiamate, invocare Cloud Run Functions e scrivere in BigQuery dati già strutturati per le successive analisi."
+          },
+          {
+            "text": "Gestione dell'accesso mediante Service Account, IAM e secret management, separando le credenziali dalla logica applicativa e preparando la protezione degli ambienti di produzione."
+          },
+          {
+            "text": "Realizzazione del frontend in Angular e integrazione tra interfaccia, backend e servizi cloud per offrire una conversazione semplice, pertinente e coerente con il perimetro previsto."
+          }
+        ]
+      },
+      {
+        "title": "Piattaforma CRM e analytics per il settore life sciences",
+        "paragraphs": [
+          {
+            "text": "Progettazione di una piattaforma cloud per centralizzare dati CRM e rendere disponibili reporting e KPI manageriali, organizzativi e contrattuali."
+          },
+          {
+            "text": "Realizzazione di pipeline schedulabili con Apache Spark, trasformazioni su BigQuery e reportistica in Looker Studio."
+          },
+          {
+            "text": "Applicazione di VPN, IP whitelisting, IAM e coni di visibilità need-to-know per proteggere dati ad alto valore e mantenere auditabilità."
+          }
+        ]
+      },
+      {
+        "title": "Piattaforma IoT real-time per dispositivi connessi",
+        "paragraphs": [
+          {
+            "text": "Partecipazione a una data platform ibrida AWS e Google Cloud per raccogliere flussi ad alta frequenza prodotti da dispositivi connessi."
+          },
+          {
+            "text": "Gestione dello streaming tramite Kafka su Amazon MSK, tunneling sicuro e consolidamento dei dati in BigQuery."
+          },
+          {
+            "text": "Preparazione dei dati per analisi, KPI e modelli di explainable AI, con pubblicazione di notifiche personalizzate verso gli utenti finali."
+          }
+        ]
+      },
+      {
+        "title": "Piattaforma dati per mobilità e servizi pubblici",
+        "paragraphs": [
+          {
+            "text": "Sviluppo di una piattaforma per acquisire e riprocessare grandi volumi di dati provenienti da operatori di mobilità tramite API REST."
+          },
+          {
+            "text": "Gestione di formati standard come GTFS, GBFS, NeTEx e SIRI e adattamento dei dati alle esigenze dei sistemi destinatari."
+          },
+          {
+            "text": "Utilizzo di un orchestratore capace di gestire oltre cento pipeline personalizzate con frequenza oraria, giornaliera o settimanale."
+          }
+        ]
+      },
+      {
+        "title": "Piattaforma unificata per dati cliente e KPI retail",
+        "paragraphs": [
+          {
+            "text": "Realizzazione di una piattaforma cloud per unificare dati provenienti da più sorgenti applicative e renderli disponibili per analisi e reporting."
+          },
+          {
+            "text": "Ingestion giornaliera con Cloud Dataflow, BigQuery, notebook e strumenti ETL, con possibilità di esportazione tramite API."
+          },
+          {
+            "text": "Produzione di KPI incorporabili nei pannelli operativi per analizzare campagne, ritorno degli utenti e andamento della fatturazione."
+          }
+        ]
+      }
+    ],
+    "tags": [
+      "Java",
+      "NestJS",
+      "Node.js",
+      "REST API",
+      "Google Cloud",
+      "BigQuery",
+      "Cloud Run Functions",
+      "IAM",
+      "Angular",
+      "Spring Boot",
+      "Vue 3",
+      "MySQL",
+      "MongoDB",
+      "Agile"
     ],
     "sectionSlug": "competenze-lavorative",
     "sectionLabel": "Competenze Lavorative",

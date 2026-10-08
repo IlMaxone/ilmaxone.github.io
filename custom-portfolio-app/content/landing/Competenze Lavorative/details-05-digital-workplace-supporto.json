@@ -1,0 +1,55 @@
+{
+  "id": "digital-workplace-supporto-it",
+  "path": "/approfondimenti/digital-workplace-supporto-it",
+  "eyebrow": "Competenza lavorativa · Digital Workplace e IT Support",
+  "title": "Servizi digitali e supporto agli utenti",
+  "lead": "Amministrare gli strumenti di collaborazione e accompagnare persone e team dalla richiesta iniziale al ripristino del servizio.",
+  "paragraphs": [
+    "Il Digital Workplace combina amministrazione delle piattaforme, gestione del ciclo di vita degli utenti e supporto tecnico quotidiano.",
+    "La documentazione rende configurazioni e procedure ripetibili, riducendo dipendenze individuali e tempi di risoluzione."
+  ],
+  "sections": [
+    {
+      "title": "Google Workspace",
+      "paragraphs": [
+        "Amministrazione dell'ambiente tramite Google Admin Console e automazione delle operazioni ripetitive con GAM.",
+        "Gestione di utenti, gruppi, permessi, contenuti e condivisioni su Google Drive.",
+        "Automazione del provisioning e supporto agli utenti sui servizi Google."
+      ]
+    },
+    {
+      "title": "Migrazioni e federazione",
+      "paragraphs": [
+        "Pianificazione ed esecuzione di migrazioni tenant-to-tenant con GWMME e CloudM.",
+        "Trasferimento di account, dati e configurazioni preservando proprietà e autorizzazioni dove previsto.",
+        "Integrazione con Microsoft Entra ID e federazione bidirezionale tra Google Workspace e Microsoft 365."
+      ]
+    },
+    {
+      "title": "Helpdesk e incident management",
+      "paragraphs": [
+        "Gestione di ticket Helpdesk di livello 1, 2 e 3, dalla raccolta delle evidenze alla verifica finale con l'utente.",
+        "Diagnosi, risoluzione ed escalation degli incidenti applicativi, sistemistici e di connettività.",
+        "Supporto su VPN, piattaforme dati e BI, stampanti locali o remote e strumenti di collaborazione."
+      ]
+    },
+    {
+      "title": "Utenti e postazioni",
+      "paragraphs": [
+        "Provisioning dei nuovi collaboratori e verifica della disponibilità di account, strumenti e autorizzazioni.",
+        "Gestione delle richieste di accesso, degli account tecnici e delle attività connesse ai cambi di ruolo o all'uscita dall'organizzazione.",
+        "Manutenzione ordinaria delle postazioni e degli ambienti di sviluppo aziendali."
+      ]
+    },
+    {
+      "title": "Documentazione e procedure",
+      "paragraphs": [
+        "Redazione di documentazione per integrazioni, pipeline, sistemi, architetture e servizi interni.",
+        "Creazione di runbook per backup, recovery, sicurezza, manutenzione e gestione delle chiavi di cifratura.",
+        "Registrazione di prerequisiti, passaggi, risultati attesi e criteri di verifica per rendere le attività ripetibili.",
+        "Produzione di linee guida operative e documentazione coerente con i requisiti ISO 27001."
+      ]
+    }
+  ],
+  "tags": ["Google Workspace", "GAM", "GWMME", "CloudM", "Helpdesk", "Provisioning", "Documentazione"]
+}

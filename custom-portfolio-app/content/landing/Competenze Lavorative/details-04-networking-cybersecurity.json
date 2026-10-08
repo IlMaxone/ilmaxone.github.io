@@ -1,0 +1,57 @@
+{
+  "id": "networking-cybersecurity-identity",
+  "path": "/approfondimenti/networking-cybersecurity-identity",
+  "eyebrow": "Competenza lavorativa · Networking e sicurezza",
+  "title": "Connettività, identità e sicurezza",
+  "lead": "Collegare utenti, sedi e servizi proteggendo accessi, comunicazioni e dati secondo responsabilità verificabili.",
+  "paragraphs": [
+    "La gestione della rete viene affrontata insieme alla sicurezza e all'identità, perché ogni collegamento deve essere disponibile ma anche autorizzato e tracciabile.",
+    "Le attività comprendono apparati, routing, accesso remoto, cifratura, federazione delle identità e controlli di conformità."
+  ],
+  "sections": [
+    {
+      "title": "Reti, apparati e routing",
+      "paragraphs": [
+        "Configurazione di RouterOS e amministrazione di router e firewall MikroTik distribuiti tra sedi differenti.",
+        "Gestione degli indirizzi IP, delle tabelle di routing, delle sottoreti e delle regole di firewalling.",
+        "Verifica di DNS, sottodomini, connessioni punto-punto e accesso alle risorse di rete.",
+        "Troubleshooting tramite ping, confronto delle configurazioni e isolamento del segmento interessato."
+      ]
+    },
+    {
+      "title": "VPN e accesso remoto",
+      "paragraphs": [
+        "Configurazione e test di VPN Site-to-Site per collegare reti e servizi.",
+        "Provisioning e troubleshooting di accessi SSTP, L2TP e GlobalProtect.",
+        "Gestione di tunneling sicuri e IP whitelisting per integrazioni tra piattaforme e ambienti cloud."
+      ]
+    },
+    {
+      "title": "Cybersecurity e crittografia",
+      "paragraphs": [
+        "Hardening di server, agenti e componenti infrastrutturali per ridurre superfici esposte e configurazioni deboli.",
+        "Installazione e rinnovo di certificati SSL wildcard e gestione del loro ciclo di vita.",
+        "Applicazione delle policy BitLocker e gestione sicura delle chiavi di ripristino e delle credenziali tramite KeePass.",
+        "Analisi delle anomalie di accesso e gestione delle procedure di ripristino degli accessi SSH."
+      ]
+    },
+    {
+      "title": "Identity and Access Management",
+      "paragraphs": [
+        "Federazione delle identità tra Google Workspace e Microsoft Entra ID e configurazione di sistemi Single Sign-On.",
+        "Configurazione e test di OpenID Connect tra piattaforme infrastrutturali e servizi cloud.",
+        "Provisioning e deprovisioning degli utenti, gestione di gruppi, ruoli e permessi su GitLab, YouTrack e servizi interni.",
+        "Revisione delle autorizzazioni, segregazione degli accessi e bonifica periodica delle utenze inattive."
+      ]
+    },
+    {
+      "title": "Audit e conformità",
+      "paragraphs": [
+        "Applicazione operativa dei requisiti ISO 27001 nelle attività quotidiane sull'infrastruttura IT.",
+        "Collegamento tra controlli tecnici, responsabilità operative, log ed evidenze necessarie agli audit.",
+        "Documentazione delle configurazioni di sicurezza, delle procedure di backup e dei criteri di accesso."
+      ]
+    }
+  ],
+  "tags": ["MikroTik", "RouterOS", "VPN", "Firewall", "SSL", "IAM", "SSO", "Entra ID", "ISO 27001"]
+}

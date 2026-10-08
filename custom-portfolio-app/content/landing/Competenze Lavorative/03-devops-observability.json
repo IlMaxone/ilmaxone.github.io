@@ -1,0 +1,11 @@
+{
+  "id": "03-devops-observability",
+  "name": "DevOps, Automazione e Observability",
+  "label": "DevOps & Observe",
+  "period": "Jenkins · Docker · Deployment · Monitoring · Logging",
+  "title": "DevOps, Automazione e Observability",
+  "description": "Automazione di build e deployment, gestione di container e ambienti applicativi, monitoraggio continuo e centralizzazione dei log.",
+  "tags": ["DevOps", "Jenkins", "Docker", "CI/CD", "PRTG", "ELK", "Grafana Loki"],
+  "link": "",
+  "detailsPath": "/approfondimenti/devops-automazione-observability"
+}

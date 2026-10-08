@@ -1,0 +1,11 @@
+{
+  "id": "01-data-engineering",
+  "name": "Data Engineering e Analytics",
+  "label": "Data & Analytics",
+  "period": "Pipeline · SQL · BigQuery · Data Quality · BI",
+  "title": "Data Engineering e Analytics",
+  "description": "Progettazione e supporto di piattaforme dati, pipeline ETL/ELT, modelli SQL, continuità operativa, analisi e visualizzazione per trasformare sorgenti eterogenee in informazioni affidabili.",
+  "tags": ["Data Engineering", "ETL/ELT", "BigQuery", "SQL", "Data Quality", "Data Analysis", "Data Visualization"],
+  "link": "",
+  "detailsPath": "/approfondimenti/data-engineering-analytics"
+}

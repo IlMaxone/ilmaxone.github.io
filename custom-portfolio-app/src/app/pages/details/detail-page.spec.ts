@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { GENERATED_DETAILS } from '../../generated/atlas.generated';
 import { DetailPageComponent } from './detail-page';
 
 describe('DetailPageComponent', () => {
@@ -8,7 +9,7 @@ describe('DetailPageComponent', () => {
 
   beforeEach(async () => {
     const routeParams = new BehaviorSubject(
-      convertToParamMap({ detail: 'customer-data-platform' }),
+      convertToParamMap({ detail: 'data-engineering-analytics' }),
     );
 
     await TestBed.configureTestingModule({
@@ -32,31 +33,33 @@ describe('DetailPageComponent', () => {
     const text = fixture.nativeElement.textContent;
     const sections = fixture.nativeElement.querySelectorAll('.detail-section');
 
-    expect(text).toContain('Dal dato grezzo a una visione affidabile del cliente');
-    expect(text).toContain('Comprendere il contesto');
+    expect(text).toContain('Dalla sorgente al dato affidabile');
+    expect(text).toContain('Pipeline e integrazione');
     expect(text).toContain('Rientra nell’orbita');
-    expect(sections).toHaveLength(4);
+    expect(sections).toHaveLength(7);
     expect(fixture.nativeElement.querySelector('.detail-page__cosmos')).toBeTruthy();
   });
 
-  it('renders a half-width image and expands it in a lightbox', () => {
-    const imageButton = fixture.nativeElement.querySelector(
-      'button[aria-label^="Ingrandisci immagine"]',
-    ) as HTMLButtonElement;
-    const image = imageButton.querySelector('img') as HTMLImageElement;
+  it('renders the specific data-engineering capabilities', () => {
+    const text = fixture.nativeElement.textContent;
 
-    expect(image.getAttribute('src')).toBe('/img/Rack%204.webp');
-    expect(imageButton.closest('.detail-paragraph--with-image')).toBeTruthy();
-
-    imageButton.click();
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.detail-lightbox')).toBeTruthy();
-
-    const closeButton = fixture.nativeElement.querySelector(
-      '.detail-lightbox__close',
-    ) as HTMLButtonElement;
-    closeButton.click();
-    fixture.detectChanges();
+    expect(text).toContain('Utilizzo operativo di CDAP');
+    expect(text).toContain('Schedulazione e verifica delle elaborazioni periodiche');
+    expect(text).toContain('verifica di esportazioni, riconciliazioni e bilanciamenti');
+    expect(text).toContain('backup remoti');
+    expect(text).toContain('Looker Studio e Data Visualization');
+    expect(text).toContain('cross-filtering');
     expect(fixture.nativeElement.querySelector('.detail-lightbox')).toBeFalsy();
+  });
+
+  it('publishes the new case studies without project or client names', () => {
+    const details = JSON.stringify(GENERATED_DETAILS);
+
+    expect(details).toContain('backend TypeScript e NestJS');
+    expect(details).toContain('Cloud Run Functions');
+    expect(details).toContain('tabella BigQuery, bucket dedicato');
+    expect(details).toContain('studenti di un percorso ITS');
+    expect(details).toContain('incorporamento delle dashboard in Google Sites');
+    expect(details).not.toMatch(/SVA|EVA|Contarina|IMI Academy/i);
   });
 });

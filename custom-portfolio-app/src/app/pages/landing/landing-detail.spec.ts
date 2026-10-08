@@ -44,8 +44,8 @@ describe('HomePageComponent planet detail', () => {
     fixture.detectChanges();
 
     expect(component.pageHead.name).toBe('competenze-lavorative');
-    expect(component.experiences).toHaveLength(1);
-    expect(component.selectedExperience?.shortLabel).toBe('CDP');
+    expect(component.experiences).toHaveLength(6);
+    expect(component.selectedExperience?.shortLabel).toBe('Data & Analytics');
     expect(fixture.nativeElement.textContent).toContain('Competenze lavorative');
   });
 
@@ -78,7 +78,9 @@ describe('HomePageComponent planet detail', () => {
       '.experience-detail__more',
     ) as HTMLAnchorElement;
     expect(detailsLink.textContent).toContain('Maggiori informazioni');
-    expect(detailsLink.getAttribute('href')).toBe('/approfondimenti/customer-data-platform');
+    expect(detailsLink.getAttribute('href')).toBe(
+      '/approfondimenti/data-engineering-analytics',
+    );
   });
 
   it('keeps motion paused for two seconds after closing the modal', async () => {

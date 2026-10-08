@@ -37,7 +37,9 @@ describe('HomePageComponent', () => {
     expect(projects?.items).toHaveLength(1);
     expect(projects?.items[0].id).toBe('01');
     expect(projects?.items[0].shortLabel).toBe('Portfolio Planet');
-    expect(works?.items).toHaveLength(1);
+    expect(works?.items).toHaveLength(6);
+    expect(works?.items[0].shortLabel).toBe('Data & Analytics');
+    expect(works?.items.at(-1)?.shortLabel).toBe('Software & Solutions');
     expect(passions?.items).toHaveLength(2);
     expect(passions?.items.map(item => item.shortLabel)).toEqual(['Gaming', 'Stampa 3D']);
   });

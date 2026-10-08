@@ -22,6 +22,7 @@ content/img/                  → immagini utilizzabili negli approfondimenti
 - Il nome normalizzato senza accenti diventa la rotta `/universo/<nome-cartella>`.
 - Ogni altro JSON con prefisso numerico (`01-`, `02-`, `10-`, `28-`...) genera un pianeta nella pagina della sezione.
 - Ogni JSON `details-*.json` genera una pagina descrittiva raggiungibile dal popup del pianeta collegato.
+- Ogni microcosmo può contenere al massimo 6 pianeti. Argomenti tecnicamente collegati devono essere consolidati nello stesso pianeta; la granularità completa viene mantenuta nelle pagine di approfondimento.
 - `details-template.json` è un modello editoriale e viene ignorato fino a quando non viene duplicato e rinominato.
 - I file `head-*.json` sono metadati di pagina e non diventano pianeti.
 - Qualsiasi JSON che inizia con `-`, per esempio `-02-angular.json` o `-template.json`, viene ignorato completamente: non genera né una pagina né un pianeta e non viene validato come contenuto.
@@ -164,3 +165,31 @@ Il refactoring editoriale del 28 settembre 2026 ha definito quattro sezioni stab
 | Progetti Personali | `Progetti Personali/head-progetti-personali.json` | `/universo/progetti-personali` |
 
 I nomi delle cartelle, il campo `name`, il campo `route` e il nome del relativo `head-*.json` devono restare coerenti. La generazione blocca build e test se rileva una divergenza.
+
+### Competenze Lavorative
+
+La sezione `Competenze Lavorative` contiene 6 pianeti attivi, ciascuno collegato a un approfondimento `details-*` che conserva la granularità delle competenze originarie:
+
+1. Data Engineering e Analytics
+2. Sistemistica, Cloud e Virtualizzazione
+3. DevOps, Automazione e Observability
+4. Networking, Cybersecurity e Identity
+5. Digital Workplace e Supporto IT
+6. Software Engineering e Soluzioni Clienti
+
+I progetti realizzati per clienti vengono descritti esclusivamente attraverso settore, problema, soluzione e contributo tecnico. Nomi, marchi e altri elementi identificativi del cliente non devono comparire nei contenuti pubblici.
+
+Lo studio individuale finalizzato a certificazioni non viene presentato come competenza lavorativa. Le tecnologie oggetto di certificazione possono comparire soltanto quando supportate da esperienza pratica documentata.
+
+Il precedente contenuto Customer Data Platform è conservato, ma temporaneamente disabilitato tramite i file `-01-CDP.json` e `-details-01-cdp.json`. Il prefisso `-` impedisce sia la generazione del pianeta sia quella della rotta di approfondimento, senza eliminare il contenuto editoriale originale.
+
+### Passioni
+
+La sezione `Passioni` contiene 4 pianeti attivi:
+
+1. Gaming
+2. Stampa 3D
+3. Modding Minecraft
+4. Percorso Java
+
+I contenuti raccontano interessi, esperienze personali e percorsi formativi al di fuori della tassonomia delle competenze lavorative. La mod Minecraft resta un pianeta sintetico finché non saranno disponibili i dettagli per un eventuale approfondimento dedicato.

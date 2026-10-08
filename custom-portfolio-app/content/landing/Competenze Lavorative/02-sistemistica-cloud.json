@@ -1,0 +1,11 @@
+{
+  "id": "02-sistemistica-cloud",
+  "name": "Sistemistica, Cloud e Virtualizzazione",
+  "label": "Sistemi & Cloud",
+  "period": "Proxmox · Linux · Windows Server · Storage · Backup",
+  "title": "Sistemistica, Cloud e Virtualizzazione",
+  "description": "Amministrazione di infrastrutture on-premise, virtualizzate e cloud, dalla creazione delle macchine al monitoraggio, alla manutenzione e al ripristino.",
+  "tags": ["Proxmox VE", "Linux", "Windows Server", "Virtualization", "Storage", "Cloud"],
+  "link": "",
+  "detailsPath": "/approfondimenti/sistemistica-cloud-virtualizzazione"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "04-networking-cybersecurity",
+  "name": "Networking, Cybersecurity e Identity",
+  "label": "Network & Security",
+  "period": "Routing · VPN · Firewall · IAM · SSO · ISO 27001",
+  "title": "Networking, Cybersecurity e Identity",
+  "description": "Gestione di reti e accessi sicuri, protezione di sistemi e credenziali, federazione delle identità e applicazione operativa dei controlli di sicurezza.",
+  "tags": ["Networking", "VPN", "Firewall", "Cybersecurity", "IAM", "SSO", "ISO 27001"],
+  "link": "",
+  "detailsPath": "/approfondimenti/networking-cybersecurity-identity"
+}

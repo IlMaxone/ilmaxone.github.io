@@ -1,0 +1,47 @@
+{
+  "id": "sistemistica-cloud-virtualizzazione",
+  "path": "/approfondimenti/sistemistica-cloud-virtualizzazione",
+  "eyebrow": "Competenza lavorativa · Sistemi e infrastrutture",
+  "title": "Infrastrutture affidabili e manutenibili",
+  "lead": "Amministrare ambienti virtualizzati, server, storage e servizi cloud lungo l'intero ciclo di vita operativo.",
+  "paragraphs": [
+    "La sistemistica collega provisioning, aggiornamento, monitoraggio e ripristino per mantenere disponibili servizi e ambienti di lavoro.",
+    "Il perimetro comprende infrastrutture on-premise, virtualizzate e cloud, con attenzione alla continuità e alla capacità di diagnosi."
+  ],
+  "sections": [
+    {
+      "title": "Virtualizzazione e cloud",
+      "paragraphs": [
+        "Configurazione e amministrazione di ambienti Proxmox VE, VMware ESXi e XenServer.",
+        "Provisioning e migrazione di macchine virtuali, preparazione delle risorse e verifica della coerenza tra host e storage.",
+        "Supporto operativo su Google Cloud Platform e ambienti ibridi che integrano servizi Google Cloud e AWS.",
+        "Monitoraggio di CPU, memoria, spazio disco e stato operativo delle risorse virtualizzate."
+      ]
+    },
+    {
+      "title": "Sistemi operativi e manutenzione",
+      "paragraphs": [
+        "Installazione e manutenzione di server Linux e amministrazione di Windows Server.",
+        "Aggiornamento di sistemi Ubuntu, installazione delle patch di sicurezza e verifica dell'esito degli interventi.",
+        "Manutenzione ordinaria, ottimizzazione dello spazio disco e gestione degli ambienti di sviluppo aziendali."
+      ]
+    },
+    {
+      "title": "Storage, backup e ripristino",
+      "paragraphs": [
+        "Amministrazione di NAS, share e storage virtualizzato con controllo di capacità, disponibilità e accessibilità.",
+        "Pianificazione e verifica dei backup, gestione delle procedure di ripristino e applicazione di scenari di disaster recovery.",
+        "Controllo periodico dell'integrità dei dati salvati e dell'effettiva recuperabilità dei servizi."
+      ]
+    },
+    {
+      "title": "Servizi infrastrutturali",
+      "paragraphs": [
+        "Analisi dei requisiti necessari al rilascio di nuovi servizi e predisposizione dei relativi ambienti.",
+        "Installazione e gestione di piattaforme interne come BookStack, Nexus, Open edX e Moodle.",
+        "Gestione dei server di stampa, delle stampanti di rete e dei test d'integrazione tra sedi e servizi remoti."
+      ]
+    }
+  ],
+  "tags": ["Proxmox VE", "VMware ESXi", "Linux", "Windows Server", "GCP", "AWS", "NAS", "Backup"]
+}
