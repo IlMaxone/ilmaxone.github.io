@@ -209,11 +209,13 @@ export const GENERATED_ATLAS: AtlasSection[] = [
     "glyph": "P",
     "eyebrow": "Settore dell’universo",
     "title": "Passioni",
-    "period": "2 pianeti",
+    "period": "4 pianeti",
     "description": "Interessi che alimentano curiosità, creatività e crescita personale.",
     "tags": [
       "Gaming",
-      "Stampa 3D"
+      "Stampa 3D",
+      "Minecraft Mod",
+      "Java"
     ],
     "route": "/universo/passioni",
     "routeLabel": "Microcosmo delle passioni",
@@ -240,11 +242,11 @@ export const GENERATED_ATLAS: AtlasSection[] = [
         "eyebrow": "Gaming",
         "title": "Videogiochi, strategia e mondi interattivi",
         "period": "Passione di lunga data",
-        "description": "Il gaming alimenta la mia curiosità per sistemi, narrazione e sfide complesse. Mi interessa capire le regole che costruiscono un'esperienza, sperimentare strategie diverse e osservare come tecnologia e creatività possano dare vita a mondi coinvolgenti.",
+        "description": "Il gaming è una passione che coltivo da tempo. Mi attirano i mondi interattivi, le loro regole e le possibilità che offrono: esplorare, sperimentare strategie e osservare come tecnologia, narrazione e creatività si combinano per costruire esperienze coinvolgenti.",
         "tags": [
           "Gaming",
+          "Esplorazione",
           "Strategia",
-          "Tecnologia",
           "Creatività"
         ],
         "link": ""
@@ -255,14 +257,48 @@ export const GENERATED_ATLAS: AtlasSection[] = [
         "shortLabel": "Stampa 3D",
         "glyph": "S",
         "eyebrow": "Stampa 3D",
-        "title": "Progettazione e stampa 3D",
-        "period": "Dall'idea all'oggetto",
-        "description": "La stampa 3D unisce progettazione, sperimentazione e manualità. Mi permette di trasformare un'idea digitale in un oggetto concreto, affinando ogni risultato attraverso prototipi, misurazioni e miglioramenti successivi.",
+        "title": "Dall'idea digitale all'oggetto reale",
+        "period": "Una passione coltivata nel tempo",
+        "description": "Per un periodo mi sono dedicato alla stampa 3D, sperimentando il percorso che porta da un modello digitale a un oggetto concreto. È un'attività che unisce curiosità tecnica e manualità, fatta di prove, calibrazione e miglioramenti successivi.",
         "tags": [
           "Stampa 3D",
           "Prototipazione",
-          "Progettazione",
+          "Calibrazione",
           "Sperimentazione"
+        ],
+        "link": ""
+      },
+      {
+        "id": "03",
+        "order": 3,
+        "shortLabel": "Minecraft Mod",
+        "glyph": "M",
+        "eyebrow": "Modding Minecraft",
+        "title": "Un mondo Minecraft ampliato attraverso il codice",
+        "period": "Sviluppo Java e game design",
+        "description": "Ho sviluppato una mod per Minecraft Java che amplia la generazione del mondo con nuovi materiali e introduce strumenti, armature, dimensioni e numerose dinamiche di gioco. È stato un progetto in cui programmazione, creatività e passione per il gaming si sono incontrate; i dettagli arriveranno in un approfondimento dedicato.",
+        "tags": [
+          "Minecraft Java",
+          "Modding",
+          "Java",
+          "Game Design"
+        ],
+        "link": ""
+      },
+      {
+        "id": "04",
+        "order": 4,
+        "shortLabel": "Java",
+        "glyph": "J",
+        "eyebrow": "Percorso Java",
+        "title": "Dalle basi di programmazione a Java SE e Spring",
+        "period": "Corso intensivo di quattro mesi",
+        "description": "Ho seguito un corso di quattro mesi dedicato a Java: dai concetti fondamentali della programmazione fino a Java SE, con una prima introduzione a Spring. Un percorso strutturato che ha consolidato le basi e mi ha dato nuovi strumenti per affrontare lo sviluppo software.",
+        "tags": [
+          "Java",
+          "Java SE",
+          "Spring",
+          "Formazione"
         ],
         "link": ""
       }

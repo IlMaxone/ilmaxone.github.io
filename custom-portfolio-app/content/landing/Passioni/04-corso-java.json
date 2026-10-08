@@ -1,0 +1,10 @@
+{
+  "id": "04",
+  "name": "Percorso Java",
+  "label": "Java",
+  "period": "Corso intensivo di quattro mesi",
+  "title": "Dalle basi di programmazione a Java SE e Spring",
+  "description": "Ho seguito un corso di quattro mesi dedicato a Java: dai concetti fondamentali della programmazione fino a Java SE, con una prima introduzione a Spring. Un percorso strutturato che ha consolidato le basi e mi ha dato nuovi strumenti per affrontare lo sviluppo software.",
+  "tags": ["Java", "Java SE", "Spring", "Formazione"],
+  "link": ""
+}
