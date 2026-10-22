@@ -1,5 +1,6 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
-import { GENERATED_ATLAS, GENERATED_DETAILS } from './generated/atlas.generated';
+import { GENERATED_ATLAS } from './generated/atlas.generated';
+import { GENERATED_DETAILS } from './generated/details.generated';
 
 export const serverRoutes: ServerRoute[] = [
   {

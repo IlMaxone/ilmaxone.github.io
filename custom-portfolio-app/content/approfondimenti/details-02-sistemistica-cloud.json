@@ -13,7 +13,7 @@
       "title": "Virtualizzazione e cloud",
       "paragraphs": [
         "Configurazione e amministrazione di ambienti Proxmox VE, VMware ESXi e XenServer.",
-        "Provisioning e migrazione di macchine virtuali, preparazione delle risorse e verifica della coerenza tra host e storage.",
+        "Provisioning e migrazione di macchine virtuali, incluse istanze Ubuntu su Proxmox, preparazione delle risorse e verifica della coerenza tra host e storage.",
         "Supporto operativo su Google Cloud Platform e ambienti ibridi che integrano servizi Google Cloud e AWS.",
         "Monitoraggio di CPU, memoria, spazio disco e stato operativo delle risorse virtualizzate."
       ]
@@ -22,8 +22,10 @@
       "title": "Sistemi operativi e manutenzione",
       "paragraphs": [
         "Installazione e manutenzione di server Linux e amministrazione di Windows Server.",
-        "Aggiornamento di sistemi Ubuntu, installazione delle patch di sicurezza e verifica dell'esito degli interventi.",
-        "Manutenzione ordinaria, ottimizzazione dello spazio disco e gestione degli ambienti di sviluppo aziendali."
+        "Aggiornamento di sistemi Ubuntu, incluso il passaggio da Ubuntu 18 a 24 LTS, installazione delle patch di sicurezza e verifica dell'esito degli interventi.",
+        "Manutenzione ordinaria, ottimizzazione dello spazio disco e gestione degli ambienti di sviluppo aziendali.",
+        "Manutenzione ordinaria dei database applicativi a supporto della continuità dei servizi.",
+        "Installazione e verifica di agenti Filebeat su endpoint macOS, con gestione del servizio launchd, dei permessi di accesso ai log e dello stato operativo dell'agente."
       ]
     },
     {
@@ -43,5 +45,5 @@
       ]
     }
   ],
-  "tags": ["Proxmox VE", "VMware ESXi", "Linux", "Windows Server", "GCP", "AWS", "NAS", "Backup"]
+  "tags": ["Proxmox VE", "VMware ESXi", "Linux", "Windows Server", "macOS", "GCP", "AWS", "NAS", "Backup"]
 }

@@ -23,7 +23,8 @@
       "paragraphs": [
         "Integrazione tra applicazioni, API, database e piattaforme dati, con gestione degli ambienti di sviluppo e delle dipendenze infrastrutturali.",
         "Analisi delle esigenze, realizzazione incrementale e manutenzione delle soluzioni secondo pratiche Agile e Scrum.",
-        "Gestione delle anomalie tramite ticketing, collaborazione con il team e verifica del livello di servizio concordato."
+        "Gestione delle anomalie tramite ticketing, collaborazione con il team e verifica del livello di servizio concordato.",
+        "Analisi di integrazioni ETL in Node.js tra MongoDB e BigQuery, con mapping degli schemi, conversione dei tipi e trasformazioni dei dati operativi per l'utilizzo analitico."
       ]
     },
     {
@@ -57,7 +58,8 @@
       "paragraphs": [
         "Sviluppo di una piattaforma per acquisire e riprocessare grandi volumi di dati provenienti da operatori di mobilità tramite API REST.",
         "Gestione di formati standard come GTFS, GBFS, NeTEx e SIRI e adattamento dei dati alle esigenze dei sistemi destinatari.",
-        "Utilizzo di un orchestratore capace di gestire oltre cento pipeline personalizzate con frequenza oraria, giornaliera o settimanale."
+        "Utilizzo di un orchestratore per gestire pipeline personalizzate con frequenza oraria, giornaliera o settimanale.",
+        "Il materiale progettuale di riferimento include uno schema di parsing SAX per file NeTEx XML voluminosi, suddivisione in JSON e CSV e successivo import in Hive. Lo schema descrive una soluzione progettuale e non attesta, da solo, una messa in produzione."
       ]
     },
     {

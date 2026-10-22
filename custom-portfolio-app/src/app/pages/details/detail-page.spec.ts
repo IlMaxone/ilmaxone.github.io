@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { GENERATED_DETAILS } from '../../generated/atlas.generated';
+import { GENERATED_DETAILS } from '../../generated/details.generated';
+import { GENERATED_ATLAS } from '../../generated/atlas.generated';
 import { DetailPageComponent } from './detail-page';
 
 describe('DetailPageComponent', () => {
@@ -36,7 +37,7 @@ describe('DetailPageComponent', () => {
     expect(text).toContain('Dalla sorgente al dato affidabile');
     expect(text).toContain('Pipeline e integrazione');
     expect(text).toContain('Rientra nell’orbita');
-    expect(sections).toHaveLength(7);
+    expect(sections).toHaveLength(9);
     expect(fixture.nativeElement.querySelector('.detail-page__cosmos')).toBeTruthy();
   });
 
@@ -60,6 +61,17 @@ describe('DetailPageComponent', () => {
     expect(details).toContain('tabella BigQuery, bucket dedicato');
     expect(details).toContain('studenti di un percorso ITS');
     expect(details).toContain('incorporamento delle dashboard in Google Sites');
-    expect(details).not.toMatch(/SVA|EVA|Contarina|IMI Academy/i);
+    expect(details).not.toMatch(/\b(?:SVA|EVA|Contarina|IMI Academy)\b/i);
+  });
+
+  it('keeps public competency content free of contact details, network addresses, secrets and financial amounts', () => {
+    const competencies = GENERATED_ATLAS.find(section => section.slug === 'competenze-lavorative');
+    const publicContent = JSON.stringify({ planets: competencies?.items, details: GENERATED_DETAILS });
+
+    expect(publicContent).not.toMatch(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i);
+    expect(publicContent).not.toMatch(/\b(?:\d{1,3}\.){3}\d{1,3}\b/);
+    expect(publicContent).not.toMatch(/-----BEGIN[^-]*PRIVATE KEY-----/);
+    expect(publicContent).not.toMatch(/(?:€|\$|EUR|USD)\s*\d|\d[\d.,]*\s*(?:€|EUR|USD)/i);
+    expect(publicContent).not.toMatch(/\b(?:password|secret|sharedSecret|api_key)\s*[:=]\s*["'][^"']+["']/i);
   });
 });

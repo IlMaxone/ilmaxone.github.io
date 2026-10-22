@@ -14,7 +14,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import type { Subscription } from 'rxjs';
 import type { DetailImageContent, DetailPageContent } from '../../content/experience.model';
-import { GENERATED_DETAILS } from '../../generated/atlas.generated';
+import { GENERATED_DETAILS } from '../../generated/details.generated';
 
 interface MilkyWayBackgroundHandle {
   destroy(): void;

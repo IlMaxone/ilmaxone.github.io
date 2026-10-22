@@ -40,8 +40,10 @@ describe('HomePageComponent', () => {
     expect(works?.items).toHaveLength(6);
     expect(works?.items[0].shortLabel).toBe('Data & Analytics');
     expect(works?.items.at(-1)?.shortLabel).toBe('Software & Solutions');
-    expect(passions?.items).toHaveLength(2);
-    expect(passions?.items.map(item => item.shortLabel)).toEqual(['Gaming', 'Stampa 3D']);
+    expect(passions?.items).toHaveLength(4);
+    expect(passions?.items.map(item => item.shortLabel)).toEqual([
+      'Gaming', 'Stampa 3D', 'Minecraft Mod', 'Java',
+    ]);
   });
 
   it('shows the requested landing statement', () => {

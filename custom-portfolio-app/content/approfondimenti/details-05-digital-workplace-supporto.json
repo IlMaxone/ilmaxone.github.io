@@ -14,7 +14,8 @@
       "paragraphs": [
         "Amministrazione dell'ambiente tramite Google Admin Console e automazione delle operazioni ripetitive con GAM.",
         "Gestione di utenti, gruppi, permessi, contenuti e condivisioni su Google Drive.",
-        "Automazione del provisioning e supporto agli utenti sui servizi Google."
+        "Automazione del provisioning e supporto agli utenti sui servizi Google.",
+        "Utilizzo della CLI GAM per automatizzare provisioning, gestione dei permessi e attività di migrazione su Google Drive."
       ]
     },
     {
@@ -30,7 +31,9 @@
       "paragraphs": [
         "Gestione di ticket Helpdesk di livello 1, 2 e 3, dalla raccolta delle evidenze alla verifica finale con l'utente.",
         "Diagnosi, risoluzione ed escalation degli incidenti applicativi, sistemistici e di connettività.",
-        "Supporto su VPN, piattaforme dati e BI, stampanti locali o remote e strumenti di collaborazione."
+        "Supporto su VPN, piattaforme dati e BI, stampanti locali o remote e strumenti di collaborazione.",
+        "Triage delle segnalazioni VPN distinguendo problemi di rete locale, DNS, routing, autenticazione e servizio applicativo.",
+        "Raccolta automatizzata delle evidenze con PowerShell e preparazione di un pacchetto diagnostico per l'escalation, selezionando i dati necessari e oscurando gli identificativi non pertinenti."
       ]
     },
     {
@@ -38,6 +41,7 @@
       "paragraphs": [
         "Provisioning dei nuovi collaboratori e verifica della disponibilità di account, strumenti e autorizzazioni.",
         "Gestione delle richieste di accesso, degli account tecnici e delle attività connesse ai cambi di ruolo o all'uscita dall'organizzazione.",
+        "Amministrazione delle licenze e dei ruoli utente su YouTrack e configurazione delle board a supporto dei flussi di lavoro.",
         "Manutenzione ordinaria delle postazioni e degli ambienti di sviluppo aziendali."
       ]
     },
@@ -45,11 +49,32 @@
       "title": "Documentazione e procedure",
       "paragraphs": [
         "Redazione di documentazione per integrazioni, pipeline, sistemi, architetture e servizi interni.",
+        "Stesura di linee guida operative per l'utilizzo di YouTrack e per la presa in carico dei ticket Helpdesk.",
         "Creazione di runbook per backup, recovery, sicurezza, manutenzione e gestione delle chiavi di cifratura.",
         "Registrazione di prerequisiti, passaggi, risultati attesi e criteri di verifica per rendere le attività ripetibili.",
         "Produzione di linee guida operative e documentazione coerente con i requisiti ISO 27001."
       ]
+    },
+    {
+      "title": "Materiale formativo per amministratori Google Workspace",
+      "paragraphs": [
+        "Il materiale formativo disponibile organizza l'amministrazione Workspace in un percorso guidato con esercitazioni, checklist e casi ricorrenti. La disponibilità del materiale non viene equiparata all'erogazione di un corso.",
+        "I contenuti approfondiscono unità organizzative, gruppi, onboarding, sospensione e dismissione degli account, trasferimento della proprietà dei file e governo dei Drive condivisi.",
+        "La parte di sicurezza tratta autenticazione a più fattori, ruoli con privilegi minimi, autorizzazioni OAuth, controlli sulle applicazioni, classificazione dei dati e Data Loss Prevention.",
+        "Sono inclusi temi di amministrazione della posta come SPF, DKIM e DMARC, consultazione dei log amministrativi e Drive, oltre a conservazione e ricerca tramite Vault.",
+        "Il metodo didattico prevede un ambito pilota, verifica degli effetti delle policy, possibilità di rollback e uso dei log per controllare le modifiche, con casi pratici di recupero account e gestione delle condivisioni."
+      ]
     }
   ],
-  "tags": ["Google Workspace", "GAM", "GWMME", "CloudM", "Helpdesk", "Provisioning", "Documentazione"]
+  "tags": [
+    "Google Workspace",
+    "GAM",
+    "GWMME",
+    "CloudM",
+    "Helpdesk",
+    "Provisioning",
+    "Documentazione",
+    "Workspace Security",
+    "Materiale formativo"
+  ]
 }

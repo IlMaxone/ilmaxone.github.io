@@ -4,8 +4,19 @@
   "label": "DevOps & Observe",
   "period": "Jenkins · Docker · Deployment · Monitoring · Logging",
   "title": "DevOps, Automazione e Observability",
-  "description": "Automazione di build e deployment, gestione di container e ambienti applicativi, monitoraggio continuo e centralizzazione dei log.",
-  "tags": ["DevOps", "Jenkins", "Docker", "CI/CD", "PRTG", "ELK", "Grafana Loki"],
+  "description": "Automazione di build e deployment, runner Jenkins e ambienti Docker, monitoraggio e raccolta log Windows e macOS, con arricchimento delle identità GCPW e consultazione in Elastic e Kibana.",
+  "tags": [
+    "DevOps",
+    "Jenkins",
+    "Docker",
+    "CI/CD",
+    "PRTG",
+    "ELK",
+    "Grafana Loki",
+    "Winlogbeat",
+    "Filebeat",
+    "GCPW"
+  ],
   "link": "",
   "detailsPath": "/approfondimenti/devops-automazione-observability"
 }

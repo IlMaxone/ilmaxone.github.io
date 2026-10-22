@@ -1,0 +1,87 @@
+{
+  "id": "devops-automazione-observability",
+  "path": "/approfondimenti/devops-automazione-observability",
+  "eyebrow": "Competenza lavorativa · DevOps e Observability",
+  "title": "Automazione e controllo operativo",
+  "lead": "Rendere build, deployment e gestione degli ambienti ripetibili, osservabili e più semplici da diagnosticare.",
+  "paragraphs": [
+    "Automazione e osservabilità riducono gli interventi manuali e permettono di individuare con rapidità il componente responsabile di un'anomalia.",
+    "La competenza unisce pipeline CI/CD, container, monitoraggio, logging centralizzato e gestione degli alert."
+  ],
+  "sections": [
+    {
+      "title": "CI/CD e automazione",
+      "paragraphs": [
+        "Configurazione e ottimizzazione di Jenkins e dei relativi runner per build, test e rilascio.",
+        "Gestione delle pipeline CI/CD e verifica della corretta esecuzione delle diverse fasi.",
+        "Aggiornamento degli ambienti di esecuzione mantenendo compatibilità con job, runtime e dipendenze, incluso l'aggiornamento dei runner Jenkins a Node.js 24.",
+        "Ottimizzazione dello spazio disco dei runner e gestione delle variabili Docker necessarie all'esecuzione dei job.",
+        "Automazione delle attività schedulate per rendere i processi ripetibili e ridurre gli interventi manuali."
+      ]
+    },
+    {
+      "title": "Container e deployment",
+      "paragraphs": [
+        "Amministrazione di ambienti Docker e configurazione delle variabili necessarie ai diversi contesti applicativi.",
+        "Provisioning con Coolify e configurazione di Traefik come reverse proxy per l'esposizione controllata dei servizi.",
+        "Deployment e collaudo di stack applicativi, con verifica dello stato dei container e delle dipendenze.",
+        "Analisi degli errori di deployment e runtime tramite configurazioni, log e stato effettivo dei componenti."
+      ]
+    },
+    {
+      "title": "Monitoraggio e alert",
+      "paragraphs": [
+        "Utilizzo di PRTG per monitorare infrastrutture, macchine virtuali, servizi di rete e piattaforme dati.",
+        "Controllo dello stato dei container, delle pipeline e delle elaborazioni batch.",
+        "Configurazione di alert e notifiche per rendere tempestive le segnalazioni operative."
+      ]
+    },
+    {
+      "title": "Logging e diagnosi",
+      "paragraphs": [
+        "Deployment e amministrazione dello stack ELK per aggregare e consultare log di sistemi e applicazioni.",
+        "Configurazione e hardening di Winlogbeat, Filebeat, Grafana Loki e Promtail.",
+        "Configurazione di Winlogbeat su Windows con attenzione alla cifratura e alla trasmissione sicura dei log di sistema.",
+        "Setup di Grafana Loki su piattaforma Proxmox per aggregare e analizzare i log.",
+        "Diagnosi attraverso la correlazione di messaggi, orari, componenti e attività eseguite.",
+        "Gestione della conservazione dei log e utilizzo operativo di componenti SIEM a supporto della sicurezza."
+      ]
+    },
+    {
+      "title": "Audit Windows e identità Google Workspace",
+      "paragraphs": [
+        "Arricchimento dei log Windows raccolti da Winlogbeat con il contesto delle identità Google Workspace tramite Google Credential Provider for Windows, GCPW.",
+        "Associazione tra SID Windows e identità Workspace mediante mappe aggiornate automaticamente, con task pianificati all'avvio, al login e a intervalli definiti.",
+        "Pipeline di ingest Elasticsearch e viste Kibana che aiutano a distinguere il contesto dell'utente interattivo dall'account amministrativo o esecutore registrato da Windows.",
+        "Conservazione dei campi originali degli eventi e aggiunta di campi di contesto separati. Su postazioni multiutente il contesto console resta un arricchimento interpretativo da verificare insieme all'evento originale.",
+        "Script PowerShell per verifica, aggiornamento e distribuzione delle configurazioni, accompagnati da test sintetici e controlli sul corretto arrivo degli eventi."
+      ]
+    },
+    {
+      "title": "Raccolta log macOS e continuità della raccolta",
+      "paragraphs": [
+        "Configurazione di Filebeat su macOS come servizio launchd, con input Unified Logs e filestream per raccogliere eventi di autenticazione, elevazione dei privilegi e installazione software.",
+        "Utilizzo di una coda su disco per mantenere gli eventi già acquisiti durante le interruzioni di connettività e riprendere l'invio a Elasticsearch quando il collegamento torna disponibile, nei limiti della capacità della coda e della disponibilità dei log.",
+        "Hardening dei permessi di file e configurazioni, verifica dello stato del servizio e controllo dei permessi di accesso ai log del sistema.",
+        "Generazione di eventi sintetici, query Kibana e pipeline di ingest per verificare acquisizione, classificazione e consultazione. Il perimetro riguarda log e audit operativo e non viene presentato come copertura EDR completa."
+      ]
+    }
+  ],
+  "tags": [
+    "Jenkins",
+    "Docker",
+    "Coolify",
+    "Traefik",
+    "PRTG",
+    "ELK",
+    "Grafana Loki",
+    "SIEM",
+    "Winlogbeat",
+    "Filebeat",
+    "macOS",
+    "GCPW",
+    "Elasticsearch",
+    "Kibana",
+    "PowerShell"
+  ]
+}

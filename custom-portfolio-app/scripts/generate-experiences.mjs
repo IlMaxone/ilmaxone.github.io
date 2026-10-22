@@ -4,13 +4,14 @@ import { fileURLToPath } from 'node:url';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const landingDirectory = path.join(projectRoot, 'content', 'landing');
+const detailsDirectory = path.join(projectRoot, 'content', 'approfondimenti');
 const imagesDirectory = path.join(projectRoot, 'content', 'img');
 const outputFile = path.join(projectRoot, 'src', 'app', 'generated', 'atlas.generated.ts');
+const detailsOutputFile = path.join(projectRoot, 'src', 'app', 'generated', 'details.generated.ts');
 const landingHeadFile = path.join(landingDirectory, 'head-landing.json');
 
 const HEAD_FILE_PATTERN = /^head-.+\.json$/i;
 const PLANET_FILE_PATTERN = /^(\d+)-.+\.json$/i;
-const DETAILS_FILE_PATTERN = /^details-.+\.json$/i;
 const DETAILS_TEMPLATE_FILE = 'details-template.json';
 const IGNORED_FILE_PATTERN = /^-/;
 const SUPPORTED_IMAGE_EXTENSIONS = new Set(['.gif', '.webp', '.jpeg', '.jpg', '.png']);
@@ -282,11 +283,32 @@ if (sectionDirectories.length === 0) {
 }
 
 const sections = [];
-const details = [];
 const sectionSlugs = new Set();
 const detailIds = new Set();
-const detailPaths = new Set();
+const detailsByPath = new Map();
 let ignoredFilesCount = 0;
+
+const detailEntries = await fs.readdir(detailsDirectory, { withFileTypes: true });
+const detailFiles = detailEntries
+  .filter(entry => entry.isFile() && entry.name.toLowerCase().endsWith('.json'))
+  .map(entry => entry.name)
+  .sort((left, right) => left.localeCompare(right, 'it'));
+
+for (const fileName of detailFiles) {
+  if (IGNORED_FILE_PATTERN.test(fileName) || fileName.toLowerCase() === DETAILS_TEMPLATE_FILE) {
+    ignoredFilesCount += 1;
+    continue;
+  }
+  const detail = await readDetail(detailsDirectory, 'approfondimenti', fileName);
+  if (detailIds.has(detail.id)) {
+    throw new Error(`approfondimenti/${fileName}: id dettaglio duplicato "${detail.id}"`);
+  }
+  if (detailsByPath.has(detail.path)) {
+    throw new Error(`approfondimenti/${fileName}: path dettaglio duplicato "${detail.path}"`);
+  }
+  detailIds.add(detail.id);
+  detailsByPath.set(detail.path, detail);
+}
 
 for (const [sectionIndex, directory] of sectionDirectories.entries()) {
   const directoryPath = path.join(landingDirectory, directory.name);
@@ -308,29 +330,19 @@ for (const [sectionIndex, directory] of sectionDirectories.entries()) {
       const rightOrder = Number.parseInt(right.match(PLANET_FILE_PATTERN)?.[1] ?? '', 10);
       return leftOrder - rightOrder || left.localeCompare(right, 'it');
     });
-  const detailFiles = jsonFiles
-    .filter(
-      fileName =>
-        DETAILS_FILE_PATTERN.test(fileName) && fileName.toLowerCase() !== DETAILS_TEMPLATE_FILE,
-    )
-    .sort((left, right) => left.localeCompare(right, 'it'));
-  const detailTemplateFiles = jsonFiles.filter(
-    fileName => fileName.toLowerCase() === DETAILS_TEMPLATE_FILE,
-  );
   const ignoredFiles = jsonFiles.filter(fileName => IGNORED_FILE_PATTERN.test(fileName));
   const unsupportedFiles = jsonFiles.filter(
     fileName =>
       !HEAD_FILE_PATTERN.test(fileName) &&
       !PLANET_FILE_PATTERN.test(fileName) &&
-      !DETAILS_FILE_PATTERN.test(fileName) &&
       !IGNORED_FILE_PATTERN.test(fileName),
   );
 
-  ignoredFilesCount += ignoredFiles.length + detailTemplateFiles.length;
+  ignoredFilesCount += ignoredFiles.length;
 
   if (unsupportedFiles.length > 0) {
     throw new Error(
-      `${directory.name}: JSON non classificati (${unsupportedFiles.join(', ')}). Usa head-*, un prefisso numerico, details-* oppure - per ignorarli.`,
+      `${directory.name}: JSON non classificati (${unsupportedFiles.join(', ')}). Usa head-*, un prefisso numerico oppure - per ignorarli. I JSON degli approfondimenti vanno in content/approfondimenti/.`,
     );
   }
   if (headFiles.length !== 1) {
@@ -356,25 +368,6 @@ for (const [sectionIndex, directory] of sectionDirectories.entries()) {
     );
   }
 
-  const sectionDetails = [];
-  for (const fileName of detailFiles) {
-    const detail = await readDetail(directoryPath, directory.name, fileName);
-    if (detailIds.has(detail.id)) {
-      throw new Error(`${directory.name}: id dettaglio duplicato "${detail.id}"`);
-    }
-    if (detailPaths.has(detail.path)) {
-      throw new Error(`${directory.name}: path dettaglio duplicato "${detail.path}"`);
-    }
-    detailIds.add(detail.id);
-    detailPaths.add(detail.path);
-    sectionDetails.push({
-      ...detail,
-      sectionSlug: slug,
-      sectionLabel: directory.name,
-      backRoute: head.route,
-    });
-  }
-
   const items = [];
   const ids = new Set();
   for (const fileName of planetFiles) {
@@ -385,23 +378,6 @@ for (const [sectionIndex, directory] of sectionDirectories.entries()) {
     ids.add(item.id);
     items.push(item);
   }
-
-  const localDetailPaths = new Set(sectionDetails.map(detail => detail.path));
-  for (const item of items) {
-    if (item.detailsPath && !localDetailPaths.has(item.detailsPath)) {
-      throw new Error(
-        `${directory.name}: il pianeta "${item.id}" punta a "${item.detailsPath}", ma non esiste un details-*.json corrispondente nella stessa cartella`,
-      );
-    }
-  }
-  for (const detail of sectionDetails) {
-    if (!items.some(item => item.detailsPath === detail.path)) {
-      throw new Error(
-        `${directory.name}: il dettaglio "${detail.path}" non è collegato da nessun pianeta numerato`,
-      );
-    }
-  }
-  details.push(...sectionDetails);
 
   const itemCount = items.length;
   sections.push({
@@ -423,19 +399,60 @@ for (const [sectionIndex, directory] of sectionDirectories.entries()) {
   });
 }
 
+const detailSections = new Map();
+for (const section of sections) {
+  for (const item of section.items) {
+    if (!item.detailsPath) {
+      continue;
+    }
+    if (!detailsByPath.has(item.detailsPath)) {
+      throw new Error(
+        `${section.folderName}: il pianeta "${item.id}" punta a "${item.detailsPath}", ma non esiste un JSON corrispondente in content/approfondimenti/`,
+      );
+    }
+    const previousSection = detailSections.get(item.detailsPath);
+    if (previousSection && previousSection.slug !== section.slug) {
+      throw new Error(
+        `Il dettaglio "${item.detailsPath}" è collegato da sezioni diverse: "${previousSection.folderName}" e "${section.folderName}". Il collegamento di ritorno deve identificare una sola sezione.`,
+      );
+    }
+    detailSections.set(item.detailsPath, section);
+  }
+}
+
+const details = [...detailsByPath.values()].map(detail => {
+  const section = detailSections.get(detail.path);
+  if (!section) {
+    throw new Error(`Il dettaglio "${detail.path}" non è collegato da nessun pianeta numerato`);
+  }
+  return {
+    ...detail,
+    sectionSlug: section.slug,
+    sectionLabel: section.folderName,
+    backRoute: section.head.route,
+  };
+});
+
 const generatedSource = `// File generato automaticamente da scripts/generate-experiences.mjs.
 // Non modificarlo a mano: gestire cartelle e JSON in content/landing/.
-import type { AtlasSection, DetailPageContent, PageHeadContent } from '../content/experience.model';
+import type { AtlasSection, PageHeadContent } from '../content/experience.model';
 
 export const GENERATED_LANDING_HEAD: PageHeadContent = ${JSON.stringify(landingHead, null, 2)};
 
 export const GENERATED_ATLAS: AtlasSection[] = ${JSON.stringify(sections, null, 2)};
+`;
+
+const generatedDetailsSource = `// File generato automaticamente da scripts/generate-experiences.mjs.
+// Non modificarlo a mano: modificare i JSON in content/approfondimenti/.
+// Il template HTML condiviso si trova in src/app/pages/details/detail-page.html.
+import type { DetailPageContent } from '../content/experience.model';
 
 export const GENERATED_DETAILS: DetailPageContent[] = ${JSON.stringify(details, null, 2)};
 `;
 
 await fs.mkdir(path.dirname(outputFile), { recursive: true });
 await fs.writeFile(outputFile, generatedSource, 'utf8');
+await fs.writeFile(detailsOutputFile, generatedDetailsSource, 'utf8');
 
 console.log(
   `Generate ${sections.length} sezioni, ${sections.reduce((total, section) => total + section.items.length, 0)} pianeti, ${details.length} ${details.length === 1 ? 'approfondimento' : 'approfondimenti'} e ignorati ${ignoredFilesCount} template o JSON con prefisso -.`,

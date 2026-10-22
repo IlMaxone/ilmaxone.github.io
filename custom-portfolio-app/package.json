@@ -9,7 +9,8 @@
     "prebuild": "npm run generate:experiences",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "pretest": "npm run generate:experiences",
+    "pretest": "npm run generate:experiences && npm run test:content",
+    "test:content": "node --test scripts/generate-experiences.test.mjs",
     "test": "ng test",
     "serve:ssr:custom-portfolio-app": "node dist/custom-portfolio-app/server/server.mjs"
   },

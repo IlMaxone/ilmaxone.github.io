@@ -4,8 +4,18 @@
   "label": "Data & Analytics",
   "period": "Pipeline · SQL · BigQuery · Data Quality · BI",
   "title": "Data Engineering e Analytics",
-  "description": "Progettazione e supporto di piattaforme dati, pipeline ETL/ELT, modelli SQL, continuità operativa, analisi e visualizzazione per trasformare sorgenti eterogenee in informazioni affidabili.",
-  "tags": ["Data Engineering", "ETL/ELT", "BigQuery", "SQL", "Data Quality", "Data Analysis", "Data Visualization"],
+  "description": "Progettazione e supporto di pipeline ETL/ELT, integrazioni MongoDB e BigQuery, modelli SQL, test e controlli di qualità, continuità operativa, analisi e visualizzazione dei dati.",
+  "tags": [
+    "Data Engineering",
+    "ETL/ELT",
+    "BigQuery",
+    "SQL",
+    "Data Quality",
+    "Data Analysis",
+    "Data Visualization",
+    "MongoDB",
+    "Node.js"
+  ],
   "link": "",
   "detailsPath": "/approfondimenti/data-engineering-analytics"
 }

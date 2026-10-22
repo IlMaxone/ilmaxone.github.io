@@ -1,0 +1,14 @@
+name: portfolio-orbitale
+
+services:
+  portfolio:
+    build:
+      context: ./custom-portfolio-app
+    ports:
+      - "127.0.0.1:4200:80"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 3s
+      start_period: 5s
+      retries: 3

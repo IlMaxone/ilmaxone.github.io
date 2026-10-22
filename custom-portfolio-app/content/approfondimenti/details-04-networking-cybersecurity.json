@@ -32,6 +32,9 @@
         "Hardening di server, agenti e componenti infrastrutturali per ridurre superfici esposte e configurazioni deboli.",
         "Installazione e rinnovo di certificati SSL wildcard e gestione del loro ciclo di vita.",
         "Applicazione delle policy BitLocker e gestione sicura delle chiavi di ripristino e delle credenziali tramite KeePass.",
+        "Definizione delle policy per ambienti Dual Boot e stesura delle procedure per il salvataggio delle chiavi di ripristino BitLocker.",
+        "Procedure per la copia offline delle chiavi BitLocker su supporto USB dedicato, verifica della corrispondenza con dispositivo e volume e controllo dell'eventuale backup centralizzato in Entra ID, Active Directory o MDM.",
+        "Gestione della custodia del supporto, della perdita e della rotazione delle chiavi, registrando nei ticket l'esito delle attività senza riportare il segreto di ripristino.",
         "Analisi delle anomalie di accesso e gestione delle procedure di ripristino degli accessi SSH."
       ]
     },
@@ -39,7 +42,7 @@
       "title": "Identity and Access Management",
       "paragraphs": [
         "Federazione delle identità tra Google Workspace e Microsoft Entra ID e configurazione di sistemi Single Sign-On.",
-        "Configurazione e test di OpenID Connect tra piattaforme infrastrutturali e servizi cloud.",
+        "Configurazione e test di OpenID Connect tra Proxmox VE e Google Cloud Platform.",
         "Provisioning e deprovisioning degli utenti, gestione di gruppi, ruoli e permessi su GitLab, YouTrack e servizi interni.",
         "Revisione delle autorizzazioni, segregazione degli accessi e bonifica periodica delle utenze inattive."
       ]
@@ -51,7 +54,41 @@
         "Collegamento tra controlli tecnici, responsabilità operative, log ed evidenze necessarie agli audit.",
         "Documentazione delle configurazioni di sicurezza, delle procedure di backup e dei criteri di accesso."
       ]
+    },
+    {
+      "title": "Collegamenti ibridi tra Google Cloud e MikroTik",
+      "paragraphs": [
+        "Configurazione e diagnosi documentata di collegamenti tra reti on-premise e VPC Google Cloud mediante Cloud VPN, Cloud Router e apparati MikroTik.",
+        "Gestione di sessioni BGP e dei parametri IPsec e IKE, con controlli su tunnel, rotte annunciate e raggiungibilità delle reti coinvolte.",
+        "Analisi di problemi NAT traversal, regole firewall e negoziazione delle fasi IPsec, distinguendo lo stato del tunnel dal corretto transito del traffico applicativo.",
+        "Backup delle configurazioni prima degli interventi e verifiche tramite RouterOS e strumenti Google Cloud, descrivendo il metodo senza pubblicare indirizzi, chiavi, nomi di progetto o topologie interne."
+      ]
+    },
+    {
+      "title": "Diagnostica VPN e raccolta automatica delle evidenze",
+      "paragraphs": [
+        "Diagnosi del caso VPN connessa ma risorse interne irraggiungibili tramite confronto di DNS, suffissi, rotte, gateway, metriche delle interfacce e possibili sovrapposizioni tra sottoreti.",
+        "Script PowerShell per acquisire stato della rete, profili VPN, risoluzione dei nomi, test di connettività e log Windows pertinenti, producendo un pacchetto diagnostico per l'analisi e l'escalation.",
+        "Utilizzo di Test-NetConnection, Get-NetRoute, Get-NetIPInterface e dei log RasClient per isolare il punto di interruzione e distinguere problemi di autenticazione, tunnel e servizio di destinazione.",
+        "Gestione dei casi di instabilità e riconnessione con verifiche su rete locale, client concorrenti, MTU e policy di accesso, applicando correzioni proporzionate alle evidenze raccolte."
+      ]
     }
   ],
-  "tags": ["MikroTik", "RouterOS", "VPN", "Firewall", "SSL", "IAM", "SSO", "Entra ID", "ISO 27001"]
+  "tags": [
+    "MikroTik",
+    "RouterOS",
+    "VPN",
+    "Firewall",
+    "SSL",
+    "IAM",
+    "SSO",
+    "Entra ID",
+    "ISO 27001",
+    "Cloud VPN",
+    "Cloud Router",
+    "BGP",
+    "IPsec",
+    "PowerShell",
+    "BitLocker"
+  ]
 }

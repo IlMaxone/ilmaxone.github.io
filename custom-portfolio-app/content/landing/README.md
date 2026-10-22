@@ -8,13 +8,12 @@ La classificazione dipende esclusivamente dal nome del file:
 
 - `head-*.json` controlla la pagina e non genera un pianeta;
 - `01-*.json`, `02-*.json`, `10-*.json`, `28-*.json` e in generale ogni JSON con prefisso numerico genera un pianeta; il numero ne stabilisce l’ordine;
-- `details-*.json` genera una pagina descrittiva collegabile dal popup di un pianeta;
-- `details-template.json` è il modello riutilizzabile e viene ignorato finché non viene rinominato;
+- i JSON degli approfondimenti si trovano separatamente in `../approfondimenti/` e sono collegati dal campo `detailsPath` del pianeta;
 - `-*.json`, come `-02-angular.json` o `-template.json`, viene ignorato completamente e non genera né pagine né pianeti.
 
 Durante `npm start`, ogni salvataggio di un JSON rigenera automaticamente il catalogo e aggiorna il server di sviluppo.
 
-Le pagine `details-*` possono affiancare immagini ai paragrafi. I file vanno inseriti in `../img/`, nei formati gif, webp, jpeg, jpg o png; `details-template.json` mostra il formato completo per posizionarle a destra o a sinistra e renderle espandibili.
+I contenuti degli approfondimenti si modificano a mano nei JSON di `../approfondimenti/`; il template HTML condiviso resta in `../../src/app/pages/details/detail-page.html`. I paragrafi possono affiancare immagini da `../img/`, nei formati gif, webp, jpeg, jpg o png. `../approfondimenti/details-template.json` mostra il formato completo e [la guida della cartella](../approfondimenti/README.md) descrive come modificare o aggiungere una pagina.
 
 La guida completa è in `../../../docs/content-system.md`.
 

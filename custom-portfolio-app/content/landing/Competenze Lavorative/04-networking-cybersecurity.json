@@ -4,8 +4,19 @@
   "label": "Network & Security",
   "period": "Routing · VPN · Firewall · IAM · SSO · ISO 27001",
   "title": "Networking, Cybersecurity e Identity",
-  "description": "Gestione di reti e accessi sicuri, protezione di sistemi e credenziali, federazione delle identità e applicazione operativa dei controlli di sicurezza.",
-  "tags": ["Networking", "VPN", "Firewall", "Cybersecurity", "IAM", "SSO", "ISO 27001"],
+  "description": "Gestione di reti e VPN, collegamenti Google Cloud e MikroTik con BGP e IPsec, diagnostica PowerShell, protezione BitLocker e federazione delle identità.",
+  "tags": [
+    "Networking",
+    "VPN",
+    "Firewall",
+    "Cybersecurity",
+    "IAM",
+    "SSO",
+    "ISO 27001",
+    "BGP",
+    "IPsec",
+    "PowerShell"
+  ],
   "link": "",
   "detailsPath": "/approfondimenti/networking-cybersecurity-identity"
 }

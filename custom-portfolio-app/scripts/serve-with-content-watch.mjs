@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const contentDirectory = path.join(projectRoot, 'content', 'landing');
+const contentDirectory = path.join(projectRoot, 'content');
 const generatorScript = path.join(projectRoot, 'scripts', 'generate-experiences.mjs');
 const angularCli = path.join(projectRoot, 'node_modules', '@angular', 'cli', 'bin', 'ng.js');
 

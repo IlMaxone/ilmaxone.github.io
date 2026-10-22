@@ -15,7 +15,8 @@
         "Progettazione, configurazione e manutenzione di pipeline di ingestion, ETL/ELT e Data Integration, definendo sorgenti, trasformazioni e destinazioni.",
         "Utilizzo operativo di CDAP, Cloud Dataflow e Apache Spark per integrare sistemi eterogenei, riallineare flussi e gestire elaborazioni schedulate.",
         "Integrazione mediante API REST, gestione di job batch e trattamento di flussi real-time basati su Kafka e architetture ibride cloud.",
-        "Troubleshooting delle pipeline attraverso log, dipendenze, credenziali e controlli sull'effettivo arrivo dei dati."
+        "Troubleshooting delle pipeline attraverso log, dipendenze, credenziali e controlli sull'effettivo arrivo dei dati.",
+        "Migrazione e riconfigurazione delle credenziali API e delle connessioni sicure tra sistemi CRM esterni e ambienti di Analytics."
       ]
     },
     {
@@ -32,6 +33,8 @@
       "paragraphs": [
         "Controllo di consistenza, copertura e integrità dei dataset, con individuazione di duplicati, valori inattesi e disallineamenti temporali.",
         "Normalizzazione dei dati storici, bonifica delle tabelle temporanee e verifica di esportazioni, riconciliazioni e bilanciamenti.",
+        "Test di carico e validazione dell'integrità dei dati dopo l'aggiornamento delle viste logiche su BigQuery.",
+        "Bonifica e archiviazione di dataset e tabelle temporanee utilizzati nelle sessioni di test e UAT.",
         "Gestione di policy di conservazione, log di audit, backup, verifiche di recuperabilità e procedure di disaster recovery.",
         "Documentazione delle anomalie, delle correzioni e dei criteri di accettazione per garantire tracciabilità."
       ]
@@ -71,7 +74,38 @@
         "Confronto tra data blending in Looker Studio e join eseguite in BigQuery, con esempi di pubblicazione e incorporamento delle dashboard in Google Sites.",
         "Adattamento dei contenuti al livello della classe e gestione del confronto tecnico durante le attività formative."
       ]
+    },
+    {
+      "title": "Caso tecnico: integrazione MongoDB e BigQuery",
+      "paragraphs": [
+        "Analisi di una pipeline ETL in Node.js per trasferire dati operativi da MongoDB a BigQuery, con mapping guidato dagli schemi, rinomina dei campi e conversione dei tipi.",
+        "Trattamento di ObjectId, date, valori numerici, record annidati e array, con filtraggio dei campi non previsti dallo schema di destinazione.",
+        "Il caso documentato comprende denormalizzazione dei dati per analisi di progetto, associazioni temporali, caricamenti suddivisi in blocchi e controlli di riconciliazione.",
+        "La revisione del codice distingue i flussi di caricamento attivi dalle varianti storiche o di test e individua i punti da verificare prima di un rilascio."
+      ]
+    },
+    {
+      "title": "Schema progettuale: elaborazione di flussi NeTEx",
+      "paragraphs": [
+        "Schema progettuale di riferimento per elaborare file XML NeTEx voluminosi tramite parser SAX e suddividere il flusso in parti più gestibili.",
+        "Il flusso rappresentato prevede passaggi intermedi in JSON e CSV e un successivo import SQL in Hive, separando acquisizione, trasformazione e caricamento.",
+        "Il materiale documenta una soluzione progettuale; la presenza dello schema non viene presentata come prova di una specifica implementazione in produzione."
+      ]
     }
   ],
-  "tags": ["Data Engineering", "ETL/ELT", "BigQuery", "SQL", "Data Quality", "Looker Studio", "Kafka", "Apache Spark", "Data Analysis", "Data Visualization", "Technical Training"]
+  "tags": [
+    "Data Engineering",
+    "ETL/ELT",
+    "BigQuery",
+    "SQL",
+    "MongoDB",
+    "Node.js",
+    "Data Quality",
+    "Looker Studio",
+    "Kafka",
+    "Apache Spark",
+    "Data Analysis",
+    "Data Visualization",
+    "Technical Training"
+  ]
 }
