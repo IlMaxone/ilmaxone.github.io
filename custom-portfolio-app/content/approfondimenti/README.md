@@ -44,6 +44,6 @@ Non modificare `src/app/generated/details.generated.ts` o gli `index.html` gener
 
 I testi pubblici possono citare software e tecnologie; devono escludere clienti e persone identificabili, importi e budget, indirizzi di rete, hostname, credenziali e altri parametri riservati. Materiali didattici e schemi progettuali devono essere descritti come tali.
 
-Il PDF completo legge gli stessi JSON. Dopo una modifica, dalla cartella `custom-portfolio-app/` eseguire `python scripts/export-competencies-pdf.py` con Python e ReportLab disponibili. Il documento viene salvato in `output/pdf/Report_completo_pianeti_competenze.pdf` alla radice del repository. L'esportazione è separata dalla build del sito e dalla ricostruzione del container.
+Il PDF completo legge gli stessi JSON. Dopo una modifica, dalla cartella `custom-portfolio-app/` eseguire `python scripts/export-competencies-pdf.py` con Python e ReportLab disponibili. Il documento viene salvato in `pdf/Report_completo_pianeti_competenze.pdf` sotto `C:/Users/maxim/OneDrive/Documenti/Personale/Universo Lavorativo/`, fuori dal repository. La destinazione è configurabile tramite `UNIVERSO_LAVORATIVO_DIR`; `--output` deve comunque indicare un percorso esterno. CV e report non vanno aggiunti a Git. L'esportazione è separata dalla build del sito e dalla ricostruzione del container.
 
 La guida completa al formato è in [Sistema di contenuti](../../../docs/content-system.md).

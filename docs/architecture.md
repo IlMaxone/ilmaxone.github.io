@@ -33,6 +33,8 @@ ilmaxone.github.io/
 
 La radice del repository contiene l'output servito da GitHub Pages. I bundle con hash non si modificano a mano: vengono rigenerati dai sorgenti.
 
+CV, report PDF e documenti personali non fanno parte degli artefatti di pubblicazione. Si conservano nella cartella esterna `Universo Lavorativo`, secondo la [procedura dedicata](content-system.md#documenti-professionali-fuori-dal-repository). Il `.gitignore` esclude PDF, la vecchia directory `output/` e file temporanei; i documenti già versionati vengono rimossi dal tracciamento, senza riscrivere la cronologia dei commit precedenti.
+
 Gli approfondimenti hanno i propri sorgenti nella webapp: testi modificabili manualmente in `custom-portfolio-app/content/approfondimenti/*.json` e un unico template HTML in `custom-portfolio-app/src/app/pages/details/detail-page.html`. La generazione tiene separati anche i cataloghi TypeScript di navigazione (`atlas.generated.ts`) e contenuto (`details.generated.ts`). Le directory `approfondimenti/` alla radice sono solo output di pubblicazione; gli URL `/approfondimenti/...` restano indipendenti dalla collocazione fisica dei sorgenti.
 
 ## Sviluppo

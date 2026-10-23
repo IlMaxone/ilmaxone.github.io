@@ -6,6 +6,7 @@ from html import escape
 from pathlib import Path
 import json
 import math
+import os
 import re
 
 from reportlab.lib import colors
@@ -21,6 +22,10 @@ from reportlab.platypus.tableofcontents import TableOfContents
 
 APP = Path(__file__).resolve().parents[1]
 REPO = APP.parent
+DOCUMENTS_DIR = Path(os.environ.get(
+    'UNIVERSO_LAVORATIVO_DIR',
+    str(Path.home() / 'OneDrive/Documenti/Personale/Universo Lavorativo'),
+)).expanduser()
 NAVY = colors.HexColor('#14263D')
 INK = colors.HexColor('#26384B')
 MUTED = colors.HexColor('#586C80')
@@ -251,8 +256,11 @@ def make_pdf(output, edition, planets):
 def main():
     parser = ArgumentParser()
     parser.add_argument('--date', default=date.today().isoformat())
-    parser.add_argument('--output', type=Path, default=REPO / 'output/pdf/Report_completo_pianeti_competenze.pdf')
+    parser.add_argument('--output', type=Path, default=DOCUMENTS_DIR / 'pdf/Report_completo_pianeti_competenze.pdf')
     args = parser.parse_args()
+    args.output = args.output.expanduser().resolve()
+    if args.output.is_relative_to(REPO.resolve()):
+        parser.error('I documenti vanno esportati fuori dal repository, nella cartella Universo Lavorativo.')
     edition_date = date.fromisoformat(args.date)
     months = ['', 'gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre']
     edition = f'{edition_date.day} {months[edition_date.month]} {edition_date.year}'

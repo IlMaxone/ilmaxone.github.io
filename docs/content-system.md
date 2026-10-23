@@ -200,7 +200,7 @@ L'arricchimento successivo aggiunge audit Windows con contesto GCPW, raccolta Fi
 
 ### Esportazione del PDF completo
 
-`scripts/export-competencies-pdf.py` legge i sei pianeti attivi e tutti i loro approfondimenti direttamente dai JSON della webapp e crea `output/pdf/Report_completo_pianeti_competenze.pdf` nella radice del repository. Il documento contiene panoramica, indice, descrizioni, paragrafi, sezioni e tag completi. Il testo non viene mantenuto in una seconda copia editoriale.
+`scripts/export-competencies-pdf.py` legge i sei pianeti attivi e tutti i loro approfondimenti direttamente dai JSON della webapp e crea `pdf/Report_completo_pianeti_competenze.pdf` nella cartella personale esterna `Universo Lavorativo`. Il documento contiene panoramica, indice, descrizioni, paragrafi, sezioni e tag completi. Il testo non viene mantenuto in una seconda copia editoriale.
 
 Eseguire lo script dalla cartella `custom-portfolio-app/`, con Python e ReportLab disponibili. I font vengono scelti fra Segoe UI su Windows, DejaVu Sans su Linux e i font inclusi in ReportLab:
 
@@ -208,9 +208,21 @@ Eseguire lo script dalla cartella `custom-portfolio-app/`, con Python e ReportLa
 python scripts/export-competencies-pdf.py
 ```
 
-Per fissare la data di edizione o scegliere una destinazione diversa, usare rispettivamente `--date YYYY-MM-DD` e `--output <percorso.pdf>`. Il file completo è distinto dal precedente riepilogo sintetico, conservato in `output/pdf/Report_pianeti_competenze_lavorative.pdf`.
+Per fissare la data di edizione o scegliere una destinazione diversa, usare rispettivamente `--date YYYY-MM-DD` e `--output <percorso.pdf>`. La destinazione deve essere esterna al repository: lo script rifiuta percorsi interni. Il file completo è distinto dal precedente riepilogo sintetico, conservato in `pdf/Report_pianeti_competenze_lavorative.pdf` nella stessa cartella personale.
 
 L'esportazione include soltanto contenuti pubblici anonimizzati. Appunti, schermate, fotografie e archivi sorgente riservati non vengono incorporati automaticamente nel documento.
+
+### Documenti professionali fuori dal repository
+
+La destinazione per CV, report e documenti analoghi è `C:/Users/maxim/OneDrive/Documenti/Personale/Universo Lavorativo/`. I PDF sono nella sottocartella `pdf/`; i generatori con contenuti personali dei CV sono in `scripts/`. Questi file non sono asset del sito e non devono essere versionati o pubblicati. La cartella `output/` non viene più usata per i documenti.
+
+Il generatore della versione corrente dei tre CV è `Universo Lavorativo/scripts/export-cv-stile-2023.py`. Produce `CV_Sviluppatore_Software_Web_Stile_2023.pdf`, `CV_Datacenter_Engineer_Stile_2023.pdf` e `CV_Sistemista_di_Rete_Stile_2023.pdf`, sempre nella sottocartella `pdf/` esterna. Ogni CV occupa una pagina, con layout a due colonne, competenze tecniche mirate al ruolo e un campo compilabile per la data finale dell'esperienza IT. La grafica e la scrittura seguono il modello personale del 2023; le informazioni sono integrate con il CV del 2022 e con le competenze verificate. Questi originali sono materiali personali e restano fuori da Git.
+
+Il precedente generatore `Universo Lavorativo/scripts/export-cv-templates.py` e i tre PDF senza suffisso `_Stile_2023` sono conservati separatamente. Per eseguire i generatori dei CV servono Python, ReportLab e pypdf; la versione grafica richiede anche Pillow, i font Windows usati nel modello e l'immagine originale del CV 2023 nella cartella personale. Non copiare nel repository foto, recapiti, contenuti dei CV o generatori che li includono.
+
+La variabile d'ambiente `UNIVERSO_LAVORATIVO_DIR` configura una destinazione alternativa esterna per il generatore del report e quello dei modelli precedenti. Senza tale variabile, il generatore del report usa la cartella personale indicata sopra sotto la home dell'utente; quello dei modelli precedenti usa la cartella che contiene la propria directory `scripts/`. Il generatore grafico del 2023 legge e scrive nella sottocartella `pdf/` della propria cartella personale, individuata dalla posizione dello script.
+
+Il `.gitignore` esclude PDF, `output/` e file temporanei. I PDF precedentemente versionati vengono rimossi dal tracciamento corrente; questo non elimina le copie presenti nei commit storici.
 
 ### Passioni
 

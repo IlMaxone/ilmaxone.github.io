@@ -1,0 +1,10 @@
+# Documenti personali e artefatti locali: destinazione esterna Universo Lavorativo.
+/output/
+/tmp/
+/Universo Lavorativo/
+/Universo-Lavorativo/
+*.pdf
+
+# Cache Python degli script locali.
+__pycache__/
+*.pyc
